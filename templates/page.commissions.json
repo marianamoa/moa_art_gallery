@@ -1,0 +1,5 @@
+{
+  "sections": { "main": { "type": "commission-form", "settings": {} } },
+  "order": ["main"]
+}
+

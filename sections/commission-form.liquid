@@ -1,0 +1,95 @@
+<section class="section" aria-labelledby="CommissionFormTitle-{{ section.id }}">
+  <div class="page-width">
+    <header class="page-header">
+      <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+      <h1 id="CommissionFormTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
+      <p class="lead">{{ section.settings.intro }}</p>
+    </header>
+
+    <div class="commission-form" data-commission-calculator data-currency="{{ cart.currency.iso_code }}" data-timeline-label="{{ 'commissions.ready_in' | t: count: '[count]' }}">
+      <div>
+        {% form 'contact', id: 'CommissionContactForm' %}
+          {%- if form.posted_successfully? -%}<p class="form-message" role="status">{{ 'contact.form.success' | t }}</p>{%- endif -%}
+          {%- if form.errors -%}<div class="form-message" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
+
+          <section class="commission-step">
+            <div class="commission-step__heading"><span class="meta">01</span><h2>{{ 'contact.form.size' | t }}</h2></div>
+            <div class="choice-grid">
+              <div class="choice"><input id="SizeA5" type="radio" name="commission_size" value="A5 · 15 × 21 cm" data-price="{{ section.settings.a5_price }}" data-weeks="2" checked><label for="SizeA5">A5<small>15 × 21 cm · {{ section.settings.a5_price | money }}</small></label></div>
+              <div class="choice"><input id="SizeA4" type="radio" name="commission_size" value="A4 · 21 × 30 cm" data-price="{{ section.settings.a4_price }}" data-weeks="3"><label for="SizeA4">A4<small>21 × 30 cm · {{ section.settings.a4_price | money }}</small></label></div>
+              <div class="choice"><input id="SizeA3" type="radio" name="commission_size" value="A3 · 30 × 42 cm" data-price="{{ section.settings.a3_price }}" data-weeks="4"><label for="SizeA3">A3<small>30 × 42 cm · {{ section.settings.a3_price | money }}</small></label></div>
+            </div>
+          </section>
+
+          <section class="commission-step">
+            <div class="commission-step__heading"><span class="meta">02</span><h2>{{ 'contact.form.subjects' | t }}</h2></div>
+            <div class="choice-grid">
+              <div class="choice"><input id="Subject1" type="radio" name="commission_subjects" value="1" data-price="0" checked><label for="Subject1">1<small>{{ 'commissions.subject' | t }}</small></label></div>
+              <div class="choice"><input id="Subject2" type="radio" name="commission_subjects" value="2" data-price="{{ section.settings.extra_subject_price }}"><label for="Subject2">2<small>+{{ section.settings.extra_subject_price | money }}</small></label></div>
+              <div class="choice"><input id="Subject3" type="radio" name="commission_subjects" value="3" data-price="{{ section.settings.extra_subject_price | times: 2 }}"><label for="Subject3">3<small>+{{ section.settings.extra_subject_price | times: 2 | money }}</small></label></div>
+            </div>
+          </section>
+
+          <section class="commission-step">
+            <div class="commission-step__heading"><span class="meta">03</span><h2>{{ 'contact.form.finish' | t }}</h2></div>
+            <div class="choice-grid">
+              <div class="choice"><input id="FinishLoose" type="radio" name="commission_finish" value="Aguada suelta" data-price="0" data-weeks="2" checked><label for="FinishLoose">{{ 'commissions.loose' | t }}<small>{{ 'commissions.included' | t }}</small></label></div>
+              <div class="choice"><input id="FinishBalanced" type="radio" name="commission_finish" value="Equilibrado" data-price="{{ section.settings.balanced_price }}" data-weeks="3"><label for="FinishBalanced">{{ 'commissions.balanced' | t }}<small>+{{ section.settings.balanced_price | money }}</small></label></div>
+              <div class="choice"><input id="FinishFine" type="radio" name="commission_finish" value="Detalle fino" data-price="{{ section.settings.fine_price }}" data-weeks="4"><label for="FinishFine">{{ 'commissions.fine' | t }}<small>+{{ section.settings.fine_price | money }}</small></label></div>
+            </div>
+          </section>
+
+          <section class="commission-step">
+            <div class="commission-step__heading"><span class="meta">04</span><h2>{{ 'contact.form.photos' | t }}</h2></div>
+            <p class="muted">{{ 'commissions.photo_note' | t }}</p>
+            <div class="field"><label class="label" for="CommissionName">{{ 'contact.form.name' | t }}</label><input id="CommissionName" type="text" name="contact[name]" autocomplete="name" required></div>
+            <div class="field"><label class="label" for="CommissionEmail">{{ 'contact.form.email' | t }}</label><input id="CommissionEmail" type="email" name="contact[email]" autocomplete="email" required></div>
+            <div class="field"><label class="label" for="CommissionBody">{{ 'contact.form.message' | t }}</label><textarea id="CommissionBody" name="contact[body]"></textarea></div>
+            <input type="hidden" name="contact[Tamaño]" data-hidden-size>
+            <input type="hidden" name="contact[Protagonistas]" data-hidden-subjects>
+            <input type="hidden" name="contact[Acabado]" data-hidden-finish>
+            <input type="hidden" name="contact[Presupuesto estimado]" data-hidden-estimate>
+            <button class="button button--primary" type="submit">{{ 'contact.form.submit' | t }}</button>
+            <p class="muted">{{ 'contact.form.no_payment' | t }}</p>
+          </section>
+        {% endform %}
+
+        {%- if section.blocks.size > 0 -%}
+          <div class="commission-step">
+            <p class="label">{{ 'commissions.upload_app' | t }}</p>
+            {%- for block in section.blocks -%}{%- render block -%}{%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <aside class="commission-summary" aria-live="polite">
+        <div class="commission-summary__image"></div>
+        <p class="eyebrow">{{ 'commissions.your_piece' | t }}</p>
+        <div class="commission-summary__row"><span>{{ 'contact.form.estimate' | t }}</span><strong class="commission-summary__total" data-commission-total></strong></div>
+        <div class="commission-summary__row"><span>{{ 'contact.form.timeline' | t }}</span><strong data-commission-timeline></strong></div>
+        <p>{{ 'commissions.summary_note' | t }}</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:schema.sections.commission_form",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Encargos · 3 de 4 lugares libres" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Hagamos una <em>para ti.</em>" },
+    { "type": "textarea", "id": "intro", "label": "Introduction", "default": "Cuatro decisiones. Cada una cambia el precio y el plazo. Aquí no se cobra nada." },
+    { "type": "header", "content": "Prices in cents" },
+    { "type": "number", "id": "a5_price", "label": "A5 price", "default": 6000 },
+    { "type": "number", "id": "a4_price", "label": "A4 price", "default": 8000 },
+    { "type": "number", "id": "a3_price", "label": "A3 price", "default": 10000 },
+    { "type": "number", "id": "extra_subject_price", "label": "Each additional subject", "default": 3000 },
+    { "type": "number", "id": "balanced_price", "label": "Balanced finish", "default": 1200 },
+    { "type": "number", "id": "fine_price", "label": "Fine detail finish", "default": 2800 }
+  ],
+  "blocks": [{ "type": "@app" }],
+  "presets": [{ "name": "t:schema.sections.commission_form" }]
+}
+{% endschema %}
+

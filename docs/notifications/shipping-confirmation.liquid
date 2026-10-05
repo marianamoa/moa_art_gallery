@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="{{ shop.locale }}">
+  <body style="margin:0;background:#F6F3EE;color:#1F1D1A;font-family:Arial,sans-serif">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td align="center" style="padding:32px 16px">
+      <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px">
+        <tr><td style="padding:24px 0;border-bottom:1px solid #C9C3BA;font-family:Georgia,serif;font-size:24px;letter-spacing:6px;text-align:center">{{ shop.name | upcase }}</td></tr>
+        <tr><td style="padding:40px 0 16px;font-family:Georgia,serif;font-size:42px">Va en camino.</td></tr>
+        <tr><td style="padding-bottom:28px;color:#4A463F;line-height:1.7">Tu pedido {{ order.name }} ya ha salido del taller.</td></tr>
+        {% if fulfillment.tracking_number %}<tr><td style="padding:24px;background:#ECE6DD"><span style="font-family:monospace;font-size:11px;letter-spacing:1px">SEGUIMIENTO</span><br><br><strong style="font-family:Georgia,serif;font-size:24px">{{ fulfillment.tracking_number }}</strong>{% if fulfillment.tracking_company %}<br>{{ fulfillment.tracking_company }}{% endif %}</td></tr>{% endif %}
+        {% if fulfillment.tracking_url %}<tr><td align="center" style="padding:32px 0"><a href="{{ fulfillment.tracking_url }}" style="display:inline-block;background:#1F1D1A;color:#F6F3EE;padding:16px 28px;text-decoration:none;font-size:12px;letter-spacing:1px">SEGUIR EL ENVÍO</a></td></tr>{% endif %}
+        <tr><td style="padding:12px 0;border-bottom:1px solid #1F1D1A;font-family:monospace;font-size:11px;letter-spacing:1px">EN EL PAQUETE</td></tr>
+        {% for line in fulfillment.fulfillment_line_items %}<tr><td style="padding:14px 0;border-bottom:1px solid #D8D2C9">{{ line.line_item.product.title }}{% unless line.line_item.variant.title == 'Default Title' %} · {{ line.line_item.variant.title }}{% endunless %}</td></tr>{% endfor %}
+        <tr><td style="padding:32px 0;color:#4A463F;line-height:1.7"><strong>AL ABRIRLO</strong><br><br>Saca la pieza por los bordes y déjala plana un día si viene de frío. Mantenla lejos del sol directo y del vapor.</td></tr>
+        <tr><td style="padding:24px 0;border-top:1px solid #C9C3BA;color:#635E54;font-size:12px">{{ shop.name }} · {{ shop.email }}</td></tr>
+      </table>
+    </td></tr></table>
+  </body>
+</html>
+

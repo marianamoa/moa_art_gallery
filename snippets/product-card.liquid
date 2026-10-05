@@ -1,0 +1,49 @@
+{% doc %}
+Renders a product card with artwork, status, title, metadata, and price.
+@param {product} product - Product to render
+@param {number} [index] - Position used for image loading priority
+{% enddoc %}
+
+{%- liquid
+  assign card_label = product.type
+  if product.tags contains 'original'
+    assign card_label = 'products.product.unique' | t
+  elsif product.tags contains 'digital'
+    assign card_label = 'products.product.digital' | t
+  elsif product.metafields.custom.edition_size.value
+    assign card_label = 'products.product.edition' | t: count: product.metafields.custom.edition_size.value
+  endif
+  assign loading = 'lazy'
+  if index and index <= 4
+    assign loading = 'eager'
+  endif
+  assign minimum_price = product.price_min | money
+-%}
+
+<article class="product-card">
+  <a class="product-card__link" href="{{ product.url }}" aria-label="{{ 'products.product.view_product' | t: title: product.title | escape }}">
+    <div class="product-card__media">
+      {%- if product.featured_image -%}
+        {{ product.featured_image | image_url: width: 900 | image_tag: loading: loading, widths: '260, 420, 640, 900', sizes: '(min-width: 990px) 25vw, 50vw', alt: product.featured_image.alt | default: product.title }}
+      {%- else -%}
+        <div class="placeholder">{{ 'product-1' | placeholder_svg_tag }}<span class="placeholder__label meta">{{ product.title }}</span></div>
+      {%- endif -%}
+      {%- unless product.available -%}
+        <span class="product-card__badge badge">{{ 'products.product.sold_out' | t }}</span>
+      {%- elsif card_label != blank -%}
+        <span class="product-card__badge badge">{{ card_label }}</span>
+      {%- endunless -%}
+    </div>
+    <div class="product-card__content">
+      <h3 class="product-card__title">{{ product.title }}</h3>
+      <p class="product-card__meta">{{ product.metafields.custom.medium.value | default: product.type }}</p>
+      <span class="product-card__price">
+        {%- if product.price_varies -%}
+          {{ 'products.product.from_price' | t: price: minimum_price }}
+        {%- else -%}
+          {{ product.price | money }}
+        {%- endif -%}
+      </span>
+    </div>
+  </a>
+</article>

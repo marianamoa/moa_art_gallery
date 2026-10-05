@@ -1,0 +1,20 @@
+{
+  "sections": {
+    "main": {
+      "type": "about-story",
+      "blocks": {
+        "process_1": { "type": "process", "settings": { "heading": "El dibujo", "text": "Encajo la forma a lápiz muy suave, para que no quede marca bajo el color." } },
+        "process_2": { "type": "process", "settings": { "heading": "El agua", "text": "Húmedo sobre húmedo: la primera capa decide casi todo." } },
+        "process_3": { "type": "process", "settings": { "heading": "El detalle y la firma", "text": "Los últimos toques en seco, el título al dorso y la carpeta entre cartones." } },
+        "fact_1": { "type": "fact", "settings": { "label": "Papel", "value": "Arches 300 g" } },
+        "fact_2": { "type": "fact", "settings": { "label": "Pintura", "value": "Acuarela en pastilla" } },
+        "fact_3": { "type": "fact", "settings": { "label": "Pinceles", "value": "Tres, muy gastados" } },
+        "fact_4": { "type": "fact", "settings": { "label": "Al año", "value": "Unas 90 piezas" } }
+      },
+      "block_order": ["process_1", "process_2", "process_3", "fact_1", "fact_2", "fact_3", "fact_4"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
+

@@ -1,0 +1,161 @@
+{
+  "accessibility": {
+    "skip_to_content": "Saltar al contenido",
+    "close": "Cerrar",
+    "menu": "Abrir menú",
+    "loading": "Cargando",
+    "error": "Error",
+    "pagination": "Paginación",
+    "decrease_quantity": "Reducir cantidad",
+    "increase_quantity": "Aumentar cantidad"
+  },
+  "general": {
+    "meta": { "tags": "Etiquetas: {{ tags }}", "page": "Página {{ page }}" },
+    "navigation": { "home": "Inicio", "back": "Volver", "menu": "Menú" },
+    "newsletter": { "email": "Correo", "submit": "Unirme", "success": "Gracias por unirte.", "error": "Revisa el correo e inténtalo de nuevo." },
+    "search": { "title": "Buscar", "placeholder": "Buscar obra", "submit": "Buscar", "results": "Resultados para “{{ terms }}”", "no_results": "No encontramos resultados." },
+    "pagination": { "previous": "Anterior", "next": "Siguiente" }
+  },
+  "header": {
+    "announcement": "Envío gratis en láminas desde 75 € · 3 lugares libres para encargos este mes",
+    "primary_navigation": "Navegación principal",
+    "mobile_navigation": "Navegación móvil",
+    "secondary_navigation": "Acciones de la tienda",
+    "cart": "Bolsa ({{ count }})"
+  },
+  "footer": {
+    "shop_navigation": "Tienda",
+    "information_navigation": "Información",
+    "made_slowly": "Pintado y preparado despacio"
+  },
+  "home": {
+    "hero_placeholder": "Portada · mesa de trabajo, pieza en proceso",
+    "artwork_placeholder": "Obra",
+    "artwork_title": "Título de la obra",
+    "artwork_meta": "Acuarela sobre papel",
+    "commission_placeholder": "Encargo · proceso en el taller",
+    "price_from": "Precio desde",
+    "in_studio": "Semanas en el taller",
+    "slots_available": "Lugares disponibles",
+    "hero_fallback_alt": "Acuarela en el escritorio del taller",
+    "commission_fallback_alt": "Retrato en acuarela de un perro"
+  },
+  "product_details": {
+    "dimensions": "Medidas",
+    "medium": "Técnica",
+    "paper": "Papel",
+    "shipping": "Envío"
+  },
+  "commissions": {
+    "ready_in": "Lista en {{ count }} semanas",
+    "subject": "protagonista",
+    "loose": "Aguada suelta",
+    "balanced": "Equilibrado",
+    "fine": "Detalle fino",
+    "included": "incluido",
+    "photo_note": "Para adjuntar hasta cinco fotos, añade el bloque de la aplicación Shopify Forms debajo de este formulario.",
+    "upload_app": "Subida de fotos",
+    "your_piece": "Tu pieza",
+    "summary_note": "El precio es una estimación. Se confirma por correo antes de cobrar nada."
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Añadir a la bolsa",
+      "added_to_cart": "Añadido a la bolsa.",
+      "variant": "Variante",
+      "sold_out": "Agotado",
+      "unavailable": "No disponible",
+      "quantity": "Cantidad",
+      "choose_option": "Elige {{ option }}",
+      "tax_included": "IVA incluido",
+      "from_price": "Desde {{ price }}",
+      "view_product": "Ver {{ title }}",
+      "edition": "Edición de {{ count }}",
+      "remaining": "Quedan {{ count }} de {{ total }}",
+      "unique": "Pieza única",
+      "digital": "Descarga digital",
+      "details": "Detalles",
+      "pair_note": "Dos láminas cualesquiera, 10 € menos.",
+      "shipping_checkout": "Envío calculado al finalizar la compra"
+    }
+  },
+  "collections": {
+    "general": {
+      "title": "Todo lo disponible ahora mismo.",
+      "filter": "Filtrar",
+      "sort": "Ordenar",
+      "products_count": "{{ count }} piezas",
+      "empty": "Todavía no hay obra en esta colección.",
+      "remove_filter": "Quitar filtro {{ value }}",
+      "clear": "Limpiar filtros"
+    }
+  },
+  "cart": {
+    "general": {
+      "title": "Tu bolsa",
+      "empty": "La bolsa está vacía.",
+      "continue": "Ver la obra disponible",
+      "remove": "Quitar",
+      "subtotal": "Subtotal",
+      "discounts": "Descuentos",
+      "shipping": "Envío calculado al finalizar la compra",
+      "checkout": "Pagar",
+      "update": "Actualizar",
+      "note": "Nota del pedido"
+    }
+  },
+  "contact": {
+    "form": {
+      "name": "Nombre",
+      "email": "Correo",
+      "message": "Cuéntame algo que deba saber",
+      "submit": "Enviar solicitud",
+      "success": "He recibido tu solicitud. Te responderé en dos días laborables.",
+      "no_payment": "Todavía no se cobra nada.",
+      "size": "Tamaño",
+      "subjects": "Protagonistas",
+      "finish": "Acabado",
+      "photos": "Fotos",
+      "estimate": "Presupuesto estimado",
+      "timeline": "Plazo estimado"
+    }
+  },
+  "templates": {
+    "404": { "title": "Esta página no está aquí.", "text": "Puede que la obra haya cambiado de lugar.", "button": "Volver a la tienda" },
+    "password": { "title": "La tienda abrirá pronto.", "password": "Contraseña", "enter": "Entrar" }
+  },
+  "schema": {
+    "global": {
+      "name": "Diseño global",
+      "brand_name": "Nombre de marca",
+      "paper": "Papel",
+      "paper_deep": "Papel hondo",
+      "ink": "Tinta",
+      "ink_soft": "Tinta suave",
+      "ink_muted": "Tinta secundaria",
+      "studio": "Azul taller",
+      "low_stock": "Terracota",
+      "heading_font": "Tipografía de títulos",
+      "body_font": "Tipografía de cuerpo",
+      "page_width": "Ancho máximo",
+      "currency_codes": "Mostrar código de moneda"
+    },
+    "social": { "name": "Redes y contacto", "contact": "Enlace de contacto" },
+    "sections": {
+      "header": "Cabecera",
+      "footer": "Pie",
+      "hero": "Portada de galería",
+      "featured_collection": "Colección destacada",
+      "commission_callout": "Llamada a encargos",
+      "newsletter": "Boletín",
+      "main_product": "Producto",
+      "main_collection": "Colección",
+      "main_cart": "Bolsa",
+      "main_page": "Página",
+      "main_search": "Búsqueda",
+      "commission_form": "Formulario de encargos",
+      "about_story": "Sobre mí",
+      "faq": "Preguntas frecuentes"
+    }
+  }
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Sorrel Gallery",
+    "theme_version": "1.0.0",
+    "theme_author": "Mariana Ordonez",
+    "theme_documentation_url": "https://github.com/marianamoa/moa_art_gallery",
+    "theme_support_url": "https://github.com/marianamoa/moa_art_gallery/issues"
+  },
+  {
+    "name": "t:schema.global.name",
+    "settings": [
+      { "type": "text", "id": "brand_name", "label": "t:schema.global.brand_name", "default": "Sorrel" },
+      { "type": "color", "id": "color_paper", "label": "t:schema.global.paper", "default": "#F6F3EE" },
+      { "type": "color", "id": "color_paper_deep", "label": "t:schema.global.paper_deep", "default": "#ECE6DD" },
+      { "type": "color", "id": "color_ink", "label": "t:schema.global.ink", "default": "#1F1D1A" },
+      { "type": "color", "id": "color_ink_soft", "label": "t:schema.global.ink_soft", "default": "#4A463F" },
+      { "type": "color", "id": "color_ink_muted", "label": "t:schema.global.ink_muted", "default": "#635E54" },
+      { "type": "color", "id": "color_studio", "label": "t:schema.global.studio", "default": "#4E5E6B" },
+      { "type": "color", "id": "color_low_stock", "label": "t:schema.global.low_stock", "default": "#8A4F3C" },
+      { "type": "font_picker", "id": "font_heading", "label": "t:schema.global.heading_font", "default": "playfair_display_n4" },
+      { "type": "font_picker", "id": "font_body", "label": "t:schema.global.body_font", "default": "assistant_n4" },
+      { "type": "range", "id": "page_width", "label": "t:schema.global.page_width", "min": 1000, "max": 1600, "step": 20, "unit": "px", "default": 1320 },
+      { "type": "checkbox", "id": "show_currency_codes", "label": "t:schema.global.currency_codes", "default": false }
+    ]
+  },
+  {
+    "name": "t:schema.social.name",
+    "settings": [
+      { "type": "url", "id": "instagram_url", "label": "Instagram" },
+      { "type": "url", "id": "contact_url", "label": "t:schema.social.contact" }
+    ]
+  }
+]
+

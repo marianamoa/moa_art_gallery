@@ -1,0 +1,51 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="{{ settings.color_paper }}">
+    <link rel="canonical" href="{{ canonical_url }}">
+    {%- if settings.font_heading.system? == false -%}{{ settings.font_heading | font_url | preload_tag: as: 'font', type: 'font/woff2' }}{%- endif -%}
+    {%- if settings.font_body.system? == false -%}{{ settings.font_body | font_url | preload_tag: as: 'font', type: 'font/woff2' }}{%- endif -%}
+    {%- assign current_tag_names = current_tags | join: ', ' -%}
+    <title>
+      {{ page_title }}
+      {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tag_names }}{% endif -%}
+      {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+    </title>
+    {%- if page_description -%}<meta name="description" content="{{ page_description | escape }}">{%- endif -%}
+    {%- liquid
+      assign heading_bold = settings.font_heading | font_modify: 'weight', 'bolder'
+      assign body_bold = settings.font_body | font_modify: 'weight', 'bolder'
+    -%}
+    {% style %}
+      {{ settings.font_heading | font_face: font_display: 'swap' }}
+      {{ heading_bold | font_face: font_display: 'swap' }}
+      {{ settings.font_body | font_face: font_display: 'swap' }}
+      {{ body_bold | font_face: font_display: 'swap' }}
+      :root {
+        --paper: {{ settings.color_paper }};
+        --paper-deep: {{ settings.color_paper_deep }};
+        --ink: {{ settings.color_ink }};
+        --ink-soft: {{ settings.color_ink_soft }};
+        --ink-muted: {{ settings.color_ink_muted }};
+        --studio: {{ settings.color_studio }};
+        --low-stock: {{ settings.color_low_stock }};
+        --font-heading: {{ settings.font_heading.family }}, Georgia, serif;
+        --font-body: {{ settings.font_body.family }}, Arial, sans-serif;
+        --page-width: {{ settings.page_width }}px;
+      }
+    {% endstyle %}
+    {{ 'base.css' | asset_url | stylesheet_tag: preload: true }}
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+    {{ content_for_header }}
+  </head>
+  <body>
+    <a class="skip-link" href="#MainContent">{{ 'accessibility.skip_to_content' | t }}</a>
+    {% sections 'header-group' %}
+    <main id="MainContent" tabindex="-1">{{ content_for_layout }}</main>
+    {% sections 'footer-group' %}
+  </body>
+</html>
