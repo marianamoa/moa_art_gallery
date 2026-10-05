@@ -1,0 +1,37 @@
+{
+  "schema": {
+    "global": {
+      "name": "Diseño global",
+      "brand_name": "Nombre de marca",
+      "paper": "Papel",
+      "paper_deep": "Papel hondo",
+      "ink": "Tinta",
+      "ink_soft": "Tinta suave",
+      "ink_muted": "Tinta secundaria",
+      "studio": "Azul taller",
+      "low_stock": "Terracota",
+      "heading_font": "Tipografía de títulos",
+      "body_font": "Tipografía de cuerpo",
+      "page_width": "Ancho máximo",
+      "currency_codes": "Mostrar código de moneda"
+    },
+    "social": { "name": "Redes y contacto", "contact": "Enlace de contacto" },
+    "sections": {
+      "header": "Cabecera",
+      "footer": "Pie",
+      "hero": "Portada de galería",
+      "featured_collection": "Colección destacada",
+      "commission_callout": "Llamada a encargos",
+      "newsletter": "Boletín",
+      "main_product": "Producto",
+      "main_collection": "Colección",
+      "main_cart": "Bolsa",
+      "main_page": "Página",
+      "main_search": "Búsqueda",
+      "commission_form": "Formulario de encargos",
+      "about_story": "Sobre mí",
+      "faq": "Preguntas frecuentes"
+    }
+  }
+}
+

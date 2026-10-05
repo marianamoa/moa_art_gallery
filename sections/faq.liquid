@@ -1,0 +1,29 @@
+<section class="section" aria-labelledby="FaqTitle-{{ section.id }}">
+  <div class="faq-layout page-width">
+    <header><p class="eyebrow">{{ section.settings.eyebrow }}</p><h1 id="FaqTitle-{{ section.id }}">{{ section.settings.heading }}</h1><p class="lead">{{ section.settings.text }}</p></header>
+    <div class="faq-group">
+      {%- for block in section.blocks -%}
+        <details class="faq-item" {{ block.shopify_attributes }}{% if forloop.first %} open{% endif %}>
+          <summary><span>{{ block.settings.question }}</span></summary>
+          <div class="faq-item__answer rte">{{ block.settings.answer }}</div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:schema.sections.faq",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Envíos y preguntas" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Envíos, cuidados <em>y preguntas.</em>" },
+    { "type": "textarea", "id": "text", "label": "Introduction", "default": "Todo sale del taller en tres días laborables, plano entre cartones." }
+  ],
+  "blocks": [
+    { "type": "question", "name": "Question", "settings": [{ "type": "text", "id": "question", "label": "Question", "default": "¿Las láminas se parecen al original?" }, { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>Escaneo la acuarela a alta resolución y ajusto la prueba a mano hasta que el color coincide.</p>" }] }
+  ],
+  "presets": [{ "name": "t:schema.sections.faq", "blocks": [{ "type": "question" }, { "type": "question" }, { "type": "question" }] }]
+}
+{% endschema %}
+

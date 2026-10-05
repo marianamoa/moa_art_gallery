@@ -1,0 +1,51 @@
+{%- if section.settings.show_announcement -%}
+  <div class="announcement" role="region" aria-label="Announcement">
+    <p>
+      {%- if section.settings.announcement != blank -%}
+        {{ section.settings.announcement }}
+      {%- else -%}
+        {{ 'header.announcement' | t }}
+      {%- endif -%}
+    </p>
+  </div>
+{%- endif -%}
+<header class="site-header">
+  <div class="site-header__inner page-width">
+    <nav class="site-header__nav" aria-label="{{ 'header.primary_navigation' | t }}">
+      {%- for link in section.settings.menu.links limit: 4 -%}
+        <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+    <details class="mobile-menu">
+      <summary aria-label="{{ 'accessibility.menu' | t }}">{{ 'general.navigation.menu' | t }}</summary>
+      <nav class="mobile-menu__panel" aria-label="{{ 'header.mobile_navigation' | t }}">
+        {%- for link in section.settings.menu.links -%}
+          <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {%- endfor -%}
+      </nav>
+    </details>
+    <a class="site-header__brand" href="{{ routes.root_url }}">
+      {%- if section.settings.logo -%}
+        {{ section.settings.logo | image_url: width: 360 | image_tag: widths: '180, 260, 360', alt: shop.name }}
+      {%- else -%}
+        {{ settings.brand_name | default: shop.name }}
+      {%- endif -%}
+    </a>
+    <nav class="site-header__actions" aria-label="{{ 'header.secondary_navigation' | t }}">
+      <a class="search-link" href="{{ routes.search_url }}">{{ 'general.search.title' | t }}</a>
+      <a href="{{ routes.cart_url }}" data-cart-count data-cart-label="{{ 'header.cart' | t: count: '[count]' }}">{{ 'header.cart' | t: count: cart.item_count }}</a>
+    </nav>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "t:schema.sections.header",
+  "settings": [
+    { "type": "checkbox", "id": "show_announcement", "label": "Show announcement", "default": true },
+    { "type": "text", "id": "announcement", "label": "Announcement" },
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+  ]
+}
+{% endschema %}

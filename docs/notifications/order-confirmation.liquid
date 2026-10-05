@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="{{ shop.locale }}">
+  <body style="margin:0;background:#F6F3EE;color:#1F1D1A;font-family:Arial,sans-serif">
+    <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="background:#F6F3EE">
+      <tr><td align="center" style="padding:32px 16px">
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:640px">
+          <tr><td style="padding:24px 0;border-bottom:1px solid #C9C3BA;font-family:Georgia,serif;font-size:24px;letter-spacing:6px;text-align:center">{{ shop.name | upcase }}</td></tr>
+          <tr><td style="padding:40px 0 16px;font-family:Georgia,serif;font-size:40px;line-height:1.1">Gracias{% if customer.first_name %}, {{ customer.first_name }}{% endif %}.</td></tr>
+          <tr><td style="padding-bottom:32px;font-size:15px;line-height:1.7;color:#4A463F">Tu pedido {{ order.name }} está confirmado. Te escribiré de nuevo cuando salga del taller.</td></tr>
+          <tr><td style="padding:12px 0;border-bottom:1px solid #1F1D1A;font-family:monospace;font-size:11px;letter-spacing:1px">LO QUE LLEVAS</td></tr>
+          {% for line in subtotal_line_items %}
+            <tr><td style="padding:18px 0;border-bottom:1px solid #D8D2C9">
+              <table role="presentation" width="100%"><tr>
+                <td><strong style="font-family:Georgia,serif;font-size:18px">{{ line.product.title }}</strong>{% unless line.variant.title == 'Default Title' %}<br><span style="color:#635E54">{{ line.variant.title }}</span>{% endunless %}</td>
+                <td align="right">{{ line.final_line_price | money }}</td>
+              </tr></table>
+            </td></tr>
+          {% endfor %}
+          <tr><td style="padding-top:24px">
+            <table role="presentation" width="100%">
+              <tr><td>Subtotal</td><td align="right">{{ subtotal_price | money }}</td></tr>
+              {% if total_discounts > 0 %}<tr><td>Descuentos</td><td align="right">−{{ total_discounts | money }}</td></tr>{% endif %}
+              <tr><td>Envío</td><td align="right">{{ shipping_price | money }}</td></tr>
+              <tr><td style="padding-top:12px;font-family:Georgia,serif;font-size:22px">Total pagado</td><td align="right" style="padding-top:12px;font-family:Georgia,serif;font-size:22px">{{ total_price | money }}</td></tr>
+            </table>
+          </td></tr>
+          {% if shipping_address %}<tr><td style="padding:32px 0;color:#4A463F"><strong>ENVIAR A</strong><br><br>{{ shipping_address | format_address }}</td></tr>{% endif %}
+          <tr><td align="center" style="padding:16px 0 40px"><a href="{{ order_status_url }}" style="display:inline-block;background:#1F1D1A;color:#F6F3EE;padding:16px 28px;text-decoration:none;font-size:12px;letter-spacing:1px">VER MI PEDIDO</a></td></tr>
+          <tr><td style="padding:24px 0;border-top:1px solid #C9C3BA;color:#635E54;font-size:12px;line-height:1.6">{{ shop.name }} · {{ shop.email }}</td></tr>
+        </table>
+      </td></tr>
+    </table>
+  </body>
+</html>
+

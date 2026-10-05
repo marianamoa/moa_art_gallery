@@ -1,0 +1,18 @@
+{
+  "sections": {
+    "main": {
+      "type": "faq",
+      "blocks": {
+        "q1": { "type": "question", "settings": { "question": "¿Las láminas se parecen al original?", "answer": "<p>Escaneo la acuarela a alta resolución y ajusto la prueba a mano hasta que el color coincide.</p>" } },
+        "q2": { "type": "question", "settings": { "question": "¿Vienen enmarcadas?", "answer": "<p>No. Todo lleva margen para enmarcar en medidas estándar.</p>" } },
+        "q3": { "type": "question", "settings": { "question": "¿Puedo devolver una pieza?", "answer": "<p>Las condiciones dependen del tipo de obra. Actualiza esta respuesta con la política definitiva de la tienda.</p>" } },
+        "q4": { "type": "question", "settings": { "question": "¿Cómo cuido una acuarela?", "answer": "<p>Lejos del sol directo y de baños con vapor. Si recibe luz intensa, usa cristal con filtro UV.</p>" } },
+        "q5": { "type": "question", "settings": { "question": "¿Cómo se paga un encargo?", "answer": "<p>Después de revisar la solicitud se envía una factura con el anticipo acordado.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
+      "settings": {}
+    }
+  },
+  "order": ["main"]
+}
+

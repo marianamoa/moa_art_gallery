@@ -1,0 +1,52 @@
+<section class="section" aria-labelledby="AboutTitle-{{ section.id }}">
+  <div class="page-width">
+    <div class="about-intro">
+      <div>
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        <h1 id="AboutTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
+        <div class="lead rte">{{ section.settings.text }}</div>
+        <p class="display" style="font-size:1.8rem">— {{ settings.brand_name | default: shop.name }}</p>
+      </div>
+      <div class="about-intro__image">
+        {%- if section.settings.image -%}{{ section.settings.image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(min-width: 990px) 45vw, 100vw', alt: section.settings.image.alt }}{%- else -%}<div class="placeholder">{{ 'lifestyle-1' | placeholder_svg_tag }}</div>{%- endif -%}
+      </div>
+    </div>
+
+    {%- assign process_blocks = section.blocks | where: 'type', 'process' -%}
+    {%- if process_blocks.size > 0 -%}
+      <div class="process-grid">
+        {%- for block in process_blocks -%}
+          <article class="process-card" {{ block.shopify_attributes }}>
+            {%- if block.settings.image -%}{{ block.settings.image | image_url: width: 900 | image_tag: class: 'process-card__image', loading: 'lazy', alt: block.settings.image.alt }}{%- endif -%}
+            <span class="meta">0{{ forloop.index }}</span><h3>{{ block.settings.heading }}</h3><p>{{ block.settings.text }}</p>
+          </article>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- assign fact_blocks = section.blocks | where: 'type', 'fact' -%}
+    {%- if fact_blocks.size > 0 -%}
+      <div class="facts-grid">
+        {%- for block in fact_blocks -%}<div {{ block.shopify_attributes }}><span class="meta">{{ block.settings.label }}</span><strong>{{ block.settings.value }}</strong></div>{%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:schema.sections.about_story",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Sobre mí" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Pinto cosas pequeñas <em>con mucha agua.</em>" },
+    { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Trabajo con luz natural: un objeto o un animal sobre el papel, sin fondo, hasta que el agua decide por mí.</p><p>Lo que ves aquí lo pinto, lo firmo y lo envuelvo yo.</p>" },
+    { "type": "image_picker", "id": "image", "label": "Portrait" }
+  ],
+  "blocks": [
+    { "type": "process", "name": "Process step", "settings": [{ "type": "image_picker", "id": "image", "label": "Image" }, { "type": "text", "id": "heading", "label": "Heading", "default": "El dibujo" }, { "type": "textarea", "id": "text", "label": "Text", "default": "Encajo la forma a lápiz muy suave." }] },
+    { "type": "fact", "name": "Fact", "settings": [{ "type": "text", "id": "label", "label": "Label", "default": "Papel" }, { "type": "text", "id": "value", "label": "Value", "default": "Arches 300 g" }] }
+  ],
+  "presets": [{ "name": "t:schema.sections.about_story", "blocks": [{ "type": "process" }, { "type": "process" }, { "type": "process" }, { "type": "fact" }, { "type": "fact" }, { "type": "fact" }, { "type": "fact" }] }]
+}
+{% endschema %}
+

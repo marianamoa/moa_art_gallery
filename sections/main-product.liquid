@@ -1,0 +1,132 @@
+{%- liquid
+  assign current_variant = product.selected_or_first_available_variant
+  assign edition_size = current_variant.metafields.custom.edition_size.value | default: product.metafields.custom.edition_size.value
+  assign current_inventory = current_variant.inventory_quantity | at_least: 0
+  assign is_original = false
+  assign is_digital = false
+  assign is_cards = false
+  if product.tags contains 'original'
+    assign is_original = true
+  endif
+  if product.tags contains 'digital'
+    assign is_digital = true
+  endif
+  if product.tags contains 'cards'
+    assign is_cards = true
+  endif
+-%}
+
+<section class="product page-width" data-product-root data-currency="{{ cart.currency.iso_code }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_cart' | t }}">
+  <div class="product-gallery" aria-label="{{ product.title | escape }}">
+    {%- if product.media.size > 0 -%}
+      {%- for media in product.media -%}
+        <div class="product-gallery__item">
+          {%- if media.media_type == 'image' -%}
+            {{ media | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '420, 720, 1100, 1600', sizes: '(min-width: 990px) 55vw, 100vw', alt: media.alt | default: product.title }}
+          {%- else -%}
+            {{ media | media_tag: image_size: '1200x', controls: true }}
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="product-gallery__item placeholder">{{ 'product-1' | placeholder_svg_tag }}<span class="placeholder__label meta">{{ product.title }}</span></div>
+    {%- endif -%}
+  </div>
+
+  <div class="product-info">
+    <p class="eyebrow">
+      {%- if is_original -%}{{ 'products.product.unique' | t }}
+      {%- elsif is_digital -%}{{ 'products.product.digital' | t }}
+      {%- elsif edition_size -%}{{ 'products.product.edition' | t: count: edition_size }}
+      {%- else -%}{{ product.type }}{%- endif -%}
+    </p>
+    <h1>{{ product.title }}</h1>
+    <div class="price-large" data-product-price>{{ current_variant.price | money }}</div>
+    <p class="muted">{{ 'products.product.tax_included' | t }} · {{ 'products.product.shipping_checkout' | t }}</p>
+    {%- if product.description != blank -%}<div class="product-info__description rte">{{ product.description }}</div>{%- endif -%}
+
+    {%- assign product_form_id = 'ProductForm-' | append: section.id -%}
+    {%- form 'product', product, id: product_form_id, class: 'product-form' -%}
+      <select class="visually-hidden" name="id" aria-label="{{ 'products.product.variant' | t }}">
+        {%- for variant in product.variants -%}<option value="{{ variant.id }}"{% if variant == current_variant %} selected{% endif %}>{{ variant.title }}</option>{%- endfor -%}
+      </select>
+
+      {%- unless product.has_only_default_variant -%}
+        <div class="product-options">
+          {%- for option in product.options_with_values -%}
+            <fieldset>
+              <legend class="label">{{ 'products.product.choose_option' | t: option: option.name }}</legend>
+              <div class="option-grid">
+                {%- for value in option.values -%}
+                  <div class="option-card">
+                    <input id="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}" type="radio" name="option{{ option.position }}" value="{{ value | escape }}" data-option-input{% if option.selected_value == value %} checked{% endif %}>
+                    <label for="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}">{{ value }}</label>
+                  </div>
+                {%- endfor -%}
+              </div>
+            </fieldset>
+          {%- endfor -%}
+        </div>
+      {%- endunless -%}
+
+    <div class="stock-meter{% if current_inventory <= 5 %} low{% endif %}" data-stock-meter{% unless current_variant.inventory_management %} hidden{% endunless %}>
+        <p class="meta" data-stock-label>
+          {%- if edition_size -%}{{ 'products.product.remaining' | t: count: current_inventory, total: edition_size }}{%- else -%}{{ current_inventory }}{%- endif -%}
+        </p>
+        <div class="stock-meter__track"><span class="stock-meter__bar" data-stock-bar style="width:{% if edition_size %}{{ current_inventory | times: 100.0 | divided_by: edition_size | at_most: 100 }}{% else %}100{% endif %}%"></span></div>
+      </div>
+
+      {%- unless is_original or is_digital -%}
+        <label class="label" for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
+        <div class="quantity" data-quantity>
+          <button type="button" data-quantity-action="decrease" aria-label="{{ 'accessibility.decrease_quantity' | t }}">−</button>
+          <input id="Quantity-{{ section.id }}" type="number" name="quantity" value="1" min="1">
+          <button type="button" data-quantity-action="increase" aria-label="{{ 'accessibility.increase_quantity' | t }}">+</button>
+        </div>
+      {%- endunless -%}
+
+      <button class="button button--primary product-form__submit" type="submit" data-product-submit data-add-label="{{ 'products.product.add_to_cart' | t }}" data-sold-label="{{ 'products.product.sold_out' | t }}"{% unless current_variant.available %} disabled{% endunless %}>
+        <span>{% if current_variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+      </button>
+      <p class="form-message" data-product-message role="status" hidden></p>
+      {%- if section.settings.show_dynamic_checkout and current_variant.available -%}{{ form | payment_button }}{%- endif -%}
+    {%- endform -%}
+
+    {%- unless is_original or is_cards or is_digital -%}<p class="muted">{{ 'products.product.pair_note' | t }}</p>{%- endunless -%}
+
+    <dl class="product-details">
+      {%- if product.metafields.custom.dimensions.value != blank -%}<div><dt>{{ 'product_details.dimensions' | t }}</dt><dd>{{ product.metafields.custom.dimensions.value }}</dd></div>{%- endif -%}
+      {%- if product.metafields.custom.medium.value != blank -%}<div><dt>{{ 'product_details.medium' | t }}</dt><dd>{{ product.metafields.custom.medium.value }}</dd></div>{%- endif -%}
+      {%- if product.metafields.custom.paper.value != blank -%}<div><dt>{{ 'product_details.paper' | t }}</dt><dd>{{ product.metafields.custom.paper.value }}</dd></div>{%- endif -%}
+      {%- if product.metafields.custom.shipping_note.value != blank -%}<div><dt>{{ 'product_details.shipping' | t }}</dt><dd>{{ product.metafields.custom.shipping_note.value }}</dd></div>{%- endif -%}
+    </dl>
+
+    {%- for block in section.blocks -%}{%- render block -%}{%- endfor -%}
+  </div>
+
+  <script type="application/json" data-variants-json>
+    [
+      {%- for variant in product.variants -%}
+        {
+          "id": {{ variant.id | json }},
+          "options": {{ variant.options | json }},
+          "price": {{ variant.price | json }},
+          "available": {{ variant.available | json }},
+          "tracked": {% if variant.inventory_management %}true{% else %}false{% endif %},
+          "inventoryQuantity": {{ variant.inventory_quantity | json }},
+          "editionSize": {{ variant.metafields.custom.edition_size.value | default: product.metafields.custom.edition_size.value | default: 0 | json }}
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ]
+  </script>
+</section>
+
+{% schema %}
+{
+  "name": "t:schema.sections.main_product",
+  "settings": [
+    { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout button", "default": false }
+  ],
+  "blocks": [{ "type": "@app" }]
+}
+{% endschema %}

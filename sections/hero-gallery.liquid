@@ -1,0 +1,36 @@
+<section class="hero section" aria-labelledby="HeroTitle-{{ section.id }}">
+  <div class="hero__media">
+    {%- if section.settings.image -%}
+      {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '640, 960, 1440, 1920, 2400', sizes: '100vw', alt: section.settings.image.alt }}
+    {%- else -%}
+      {%- assign hero_fallback_alt = 'home.hero_fallback_alt' | t -%}
+      {{ 'studio-hero.jpg' | asset_url | image_tag: loading: 'eager', fetchpriority: 'high', alt: hero_fallback_alt }}
+    {%- endif -%}
+  </div>
+  <div class="hero__content page-width">
+    <h1 id="HeroTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
+    <div class="hero__copy">
+      <p>{{ section.settings.text }}</p>
+      <div class="cluster">
+        {%- if section.settings.primary_label != blank and section.settings.primary_link != blank -%}<a class="button button--primary" href="{{ section.settings.primary_link }}">{{ section.settings.primary_label }}</a>{%- endif -%}
+        {%- if section.settings.secondary_label != blank and section.settings.secondary_link != blank -%}<a class="button" href="{{ section.settings.secondary_link }}">{{ section.settings.secondary_label }}</a>{%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:schema.sections.hero",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Hero image" },
+    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Acuarelas, <em>pintadas despacio.</em>" },
+    { "type": "textarea", "id": "text", "label": "Text", "default": "Originales sobre papel de algodón, ediciones cortas y encargos de cuatro en cuatro." },
+    { "type": "text", "id": "primary_label", "label": "Primary button", "default": "Ver originales" },
+    { "type": "url", "id": "primary_link", "label": "Primary link" },
+    { "type": "text", "id": "secondary_label", "label": "Secondary button", "default": "Encargar una pieza" },
+    { "type": "url", "id": "secondary_link", "label": "Secondary link" }
+  ],
+  "presets": [{ "name": "t:schema.sections.hero" }]
+}
+{% endschema %}

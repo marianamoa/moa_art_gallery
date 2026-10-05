@@ -1,0 +1,25 @@
+{
+  "accessibility": { "skip_to_content": "Skip to content", "close": "Close", "menu": "Open menu", "loading": "Loading", "error": "Error", "pagination": "Pagination", "decrease_quantity": "Decrease quantity", "increase_quantity": "Increase quantity" },
+  "general": {
+    "meta": { "tags": "Tags: {{ tags }}", "page": "Page {{ page }}" },
+    "navigation": { "home": "Home", "back": "Back", "menu": "Menu" },
+    "newsletter": { "email": "Email", "submit": "Join", "success": "Thank you for joining.", "error": "Check your email and try again." },
+    "search": { "title": "Search", "placeholder": "Search artwork", "submit": "Search", "results": "Results for “{{ terms }}”", "no_results": "No results found." },
+    "pagination": { "previous": "Previous", "next": "Next" }
+  },
+  "header": { "announcement": "Free print shipping over €75 · 3 commission places available this month", "primary_navigation": "Primary navigation", "mobile_navigation": "Mobile navigation", "secondary_navigation": "Store actions", "cart": "Bag ({{ count }})" },
+  "footer": { "shop_navigation": "Shop", "information_navigation": "Information", "made_slowly": "Painted and prepared slowly" },
+  "home": { "hero_placeholder": "Hero · worktable and work in progress", "artwork_placeholder": "Artwork", "artwork_title": "Artwork title", "artwork_meta": "Watercolour on paper", "commission_placeholder": "Commission · studio process", "price_from": "Starting price", "in_studio": "Weeks in the studio", "slots_available": "Places available", "hero_fallback_alt": "Watercolour on the studio desk", "commission_fallback_alt": "Watercolour portrait of a dog" },
+  "product_details": { "dimensions": "Dimensions", "medium": "Medium", "paper": "Paper", "shipping": "Shipping" },
+  "commissions": { "ready_in": "Ready in {{ count }} weeks", "subject": "subject", "loose": "Loose wash", "balanced": "Balanced", "fine": "Fine detail", "included": "included", "photo_note": "To attach up to five photos, add the Shopify Forms app block below this form.", "upload_app": "Photo upload", "your_piece": "Your piece", "summary_note": "The price is an estimate. It is confirmed by email before any payment is taken." },
+  "products": { "product": { "add_to_cart": "Add to bag", "added_to_cart": "Added to bag.", "variant": "Variant", "sold_out": "Sold out", "unavailable": "Unavailable", "quantity": "Quantity", "choose_option": "Choose {{ option }}", "tax_included": "Tax included", "from_price": "From {{ price }}", "view_product": "View {{ title }}", "edition": "Edition of {{ count }}", "remaining": "{{ count }} of {{ total }} left", "unique": "One of a kind", "digital": "Digital download", "details": "Details", "pair_note": "Any two prints, €10 less.", "shipping_checkout": "Shipping calculated at checkout" } },
+  "collections": { "general": { "title": "Everything available now.", "filter": "Filter", "sort": "Sort", "products_count": "{{ count }} pieces", "empty": "There is no artwork in this collection yet.", "remove_filter": "Remove filter {{ value }}", "clear": "Clear filters" } },
+  "cart": { "general": { "title": "Your bag", "empty": "Your bag is empty.", "continue": "View available work", "remove": "Remove", "subtotal": "Subtotal", "discounts": "Discounts", "shipping": "Shipping calculated at checkout", "checkout": "Checkout", "update": "Update", "note": "Order note" } },
+  "contact": { "form": { "name": "Name", "email": "Email", "message": "Anything else I should know", "submit": "Send request", "success": "I received your request. I will reply within two business days.", "no_payment": "No payment is taken yet.", "size": "Size", "subjects": "Subjects", "finish": "Finish", "photos": "Photos", "estimate": "Estimated price", "timeline": "Estimated timeline" } },
+  "templates": { "404": { "title": "This page is not here.", "text": "The artwork may have moved.", "button": "Back to the shop" }, "password": { "title": "The shop will open soon.", "password": "Password", "enter": "Enter" } },
+  "schema": {
+    "global": { "name": "Global design", "brand_name": "Brand name", "paper": "Paper", "paper_deep": "Deep paper", "ink": "Ink", "ink_soft": "Soft ink", "ink_muted": "Muted ink", "studio": "Studio blue", "low_stock": "Terracotta", "heading_font": "Heading font", "body_font": "Body font", "page_width": "Maximum width", "currency_codes": "Show currency codes" },
+    "social": { "name": "Social and contact", "contact": "Contact link" },
+    "sections": { "header": "Header", "footer": "Footer", "hero": "Gallery hero", "featured_collection": "Featured collection", "commission_callout": "Commission callout", "newsletter": "Newsletter", "main_product": "Product", "main_collection": "Collection", "main_cart": "Bag", "main_page": "Page", "main_search": "Search", "commission_form": "Commission form", "about_story": "About", "faq": "Frequently asked questions" }
+  }
+}
