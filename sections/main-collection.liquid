@@ -14,6 +14,7 @@
         <div class="facets__groups">
           {%- if section.settings.enable_filtering -%}
             {%- for filter in collection.filters -%}
+              {%- assign filter_index = forloop.index -%}
               <div class="facet">
                 <details>
                   <summary>{{ filter.label }}{% if filter.active_values.size > 0 %} ({{ filter.active_values.size }}){% endif %}</summary>
@@ -21,8 +22,9 @@
                     {%- case filter.type -%}
                       {%- when 'list', 'boolean' -%}
                         {%- for value in filter.values -%}
-                          <label>
-                            <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
+                          {%- capture input_id -%}Filter-{{ section.id }}-{{ filter_index }}-{{ forloop.index }}{%- endcapture -%}
+                          <label for="{{ input_id }}">
+                            <input id="{{ input_id }}" type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
                             <span>{{ value.label }} ({{ value.count }})</span>
                           </label>
                         {%- endfor -%}
@@ -75,4 +77,3 @@
   ]
 }
 {% endschema %}
-
