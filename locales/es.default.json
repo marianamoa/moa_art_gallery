@@ -72,6 +72,7 @@
       "view_product": "Ver {{ title }}",
       "edition": "Edición de {{ count }}",
       "remaining": "Quedan {{ count }} de {{ total }}",
+      "original_remaining": "{{ count }} disponible",
       "unique": "Pieza única",
       "digital": "Descarga digital",
       "details": "Detalles",

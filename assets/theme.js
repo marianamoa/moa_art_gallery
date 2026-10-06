@@ -1,4 +1,8 @@
-const money = (cents, currency = document.documentElement.lang === 'es' ? 'EUR' : 'EUR') => new Intl.NumberFormat(document.documentElement.lang, { style: 'currency', currency }).format(cents / 100)
+const money = (cents, currency = 'COP', showCurrencyCode = false) => new Intl.NumberFormat(document.documentElement.lang, {
+  style: 'currency',
+  currency,
+  currencyDisplay: showCurrencyCode ? 'code' : 'symbol'
+}).format(cents / 100)
 
 document.addEventListener('click', event => {
   const trigger = event.target.closest('[data-quantity-action]')
@@ -25,7 +29,7 @@ document.querySelectorAll('[data-product-root]').forEach(root => {
     const variant = variants.find(item => item.options.every((option, index) => option === selected[index]))
     if (!variant) return
     master.value = variant.id
-    if (price) price.textContent = money(variant.price, root.dataset.currency)
+    if (price) price.textContent = money(variant.price, root.dataset.currency, root.dataset.showCurrencyCode === 'true')
     if (submit) submit.disabled = !variant.available
     if (submitLabel) submitLabel.textContent = variant.available ? submit.dataset.addLabel : submit.dataset.soldLabel
     if (stock && variant.tracked) {
@@ -57,12 +61,12 @@ document.querySelectorAll('[data-commission-calculator]').forEach(root => {
     if (!size || !subjects || !finish) return
     const total = Number(size.dataset.price) + Number(subjects.dataset.price) + Number(finish.dataset.price)
     const weeks = Math.max(Number(size.dataset.weeks), Number(finish.dataset.weeks))
-    if (output) output.textContent = money(total, root.dataset.currency)
+    if (output) output.textContent = money(total, root.dataset.currency, root.dataset.showCurrencyCode === 'true')
     if (timeline) timeline.textContent = root.dataset.timelineLabel.replace('[count]', weeks)
     if (hiddenSize) hiddenSize.value = size.value
     if (hiddenSubjects) hiddenSubjects.value = subjects.value
     if (hiddenFinish) hiddenFinish.value = finish.value
-    if (hiddenEstimate) hiddenEstimate.value = money(total, root.dataset.currency)
+    if (hiddenEstimate) hiddenEstimate.value = money(total, root.dataset.currency, root.dataset.showCurrencyCode === 'true')
   }
   root.querySelectorAll('input[type="radio"]').forEach(input => input.addEventListener('change', update))
   update()
