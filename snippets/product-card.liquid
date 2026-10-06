@@ -17,8 +17,9 @@ Renders a product card with artwork, status, title, metadata, and price.
   if index and index <= 4
     assign loading = 'eager'
   endif
-  assign minimum_price = product.price_min | money
 -%}
+
+{%- capture minimum_price -%}{%- render 'money', amount: product.price_min -%}{%- endcapture -%}
 
 <article class="product-card">
   <a class="product-card__link" href="{{ product.url }}" aria-label="{{ 'products.product.view_product' | t: title: product.title | escape }}">
@@ -41,7 +42,7 @@ Renders a product card with artwork, status, title, metadata, and price.
         {%- if product.price_varies -%}
           {{ 'products.product.from_price' | t: price: minimum_price }}
         {%- else -%}
-          {{ product.price | money }}
+          {%- render 'money', amount: product.price -%}
         {%- endif -%}
       </span>
     </div>

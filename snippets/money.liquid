@@ -1,0 +1,10 @@
+{% doc %}
+Renders a monetary amount using the merchant's currency-code preference.
+@param {number} amount - Monetary value in Shopify currency subunits
+{% enddoc %}
+
+{%- if settings.show_currency_codes -%}
+  {{- amount | money_with_currency -}}
+{%- else -%}
+  {{- amount | money -}}
+{%- endif -%}

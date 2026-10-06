@@ -17,7 +17,7 @@
     "pagination": { "previous": "Anterior", "next": "Siguiente" }
   },
   "header": {
-    "announcement": "Envío gratis en láminas desde 75 € · 3 lugares libres para encargos este mes",
+    "announcement": "Envío gratis en láminas desde $75.000 COP · 3 lugares libres para encargos este mes",
     "primary_navigation": "Navegación principal",
     "mobile_navigation": "Navegación móvil",
     "secondary_navigation": "Acciones de la tienda",
@@ -75,7 +75,7 @@
       "unique": "Pieza única",
       "digital": "Descarga digital",
       "details": "Detalles",
-      "pair_note": "Dos láminas cualesquiera, 10 € menos.",
+      "pair_note": "Dos láminas cualesquiera, $10.000 COP menos.",
       "shipping_checkout": "Envío calculado al finalizar la compra"
     }
   },

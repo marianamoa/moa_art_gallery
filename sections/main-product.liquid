@@ -41,7 +41,7 @@
       {%- else -%}{{ product.type }}{%- endif -%}
     </p>
     <h1>{{ product.title }}</h1>
-    <div class="price-large" data-product-price>{{ current_variant.price | money }}</div>
+    <div class="price-large" data-product-price>{% render 'money', amount: current_variant.price %}</div>
     <p class="muted">{{ 'products.product.tax_included' | t }} · {{ 'products.product.shipping_checkout' | t }}</p>
     {%- if product.description != blank -%}<div class="product-info__description rte">{{ product.description }}</div>{%- endif -%}
 
