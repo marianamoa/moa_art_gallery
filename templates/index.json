@@ -1,11 +1,10 @@
 {
   "sections": {
-    "hero": { "type": "hero-gallery", "settings": {} },
-    "originals": { "type": "featured-collection", "settings": { "eyebrow": "Pieza única", "heading": "Originales disponibles", "products_to_show": 4, "link_label": "Ver todos los originales", "deep_background": false } },
-    "editions": { "type": "featured-collection", "settings": { "eyebrow": "Ediciones cortas", "heading": "Ediciones limitadas", "products_to_show": 4, "link_label": "Elegir una edición", "deep_background": true } },
-    "commissions": { "type": "commission-callout", "settings": {} },
+    "hero": { "type": "hero-gallery", "settings": { "primary_link": "shopify://collections/originales", "secondary_link": "shopify://pages/encargos" } },
+    "originals": { "type": "featured-collection", "settings": { "eyebrow": "Pieza única", "heading": "Originales disponibles", "collection": "originales", "products_to_show": 4, "link_label": "Ver todos los originales", "deep_background": false } },
+    "editions": { "type": "featured-collection", "settings": { "eyebrow": "Ediciones cortas", "heading": "Ediciones limitadas", "collection": "ediciones", "products_to_show": 4, "link_label": "Elegir una edición", "deep_background": true } },
+    "commissions": { "type": "commission-callout", "settings": { "link": "shopify://pages/encargos" } },
     "newsletter": { "type": "newsletter", "settings": {} }
   },
   "order": ["hero", "originals", "editions", "commissions", "newsletter"]
 }
-
