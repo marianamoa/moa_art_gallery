@@ -20,21 +20,21 @@
               </div>
             </div>
             <div class="cart-line__price">
-              {%- if item.original_final_line_price != item.final_line_price -%}<s>{{ item.original_final_line_price | money }}</s>{%- endif -%}
-              <div>{{ item.final_line_price | money }}</div>
-              {%- for discount in item.line_level_discount_allocations -%}<span class="meta">{{ discount.discount_application.title }} −{{ discount.amount | money }}</span>{%- endfor -%}
+              {%- if item.original_final_line_price != item.final_line_price -%}<s>{% render 'money', amount: item.original_final_line_price %}</s>{%- endif -%}
+              <div>{% render 'money', amount: item.final_line_price %}</div>
+              {%- for discount in item.line_level_discount_allocations -%}<span class="meta">{{ discount.discount_application.title }} −{% render 'money', amount: discount.amount %}</span>{%- endfor -%}
             </div>
           </article>
         {%- endfor -%}
         <button class="button" type="submit" name="update">{{ 'cart.general.update' | t }}</button>
       </div>
       <aside class="cart-summary">
-        <div class="cart-summary__row"><span>{{ 'cart.general.subtotal' | t }}</span><strong>{{ cart.items_subtotal_price | money }}</strong></div>
+        <div class="cart-summary__row"><span>{{ 'cart.general.subtotal' | t }}</span><strong>{% render 'money', amount: cart.items_subtotal_price %}</strong></div>
         {%- if cart.cart_level_discount_applications.size > 0 -%}
-          {%- for discount in cart.cart_level_discount_applications -%}<div class="cart-summary__row"><span>{{ discount.title }}</span><strong>−{{ discount.total_allocated_amount | money }}</strong></div>{%- endfor -%}
+          {%- for discount in cart.cart_level_discount_applications -%}<div class="cart-summary__row"><span>{{ discount.title }}</span><strong>−{% render 'money', amount: discount.total_allocated_amount %}</strong></div>{%- endfor -%}
         {%- endif -%}
         <div class="cart-summary__row muted"><span>{{ 'cart.general.shipping' | t }}</span></div>
-        <div class="cart-summary__row cart-summary__total"><span>{{ 'cart.general.subtotal' | t }}</span><strong>{{ cart.total_price | money }}</strong></div>
+        <div class="cart-summary__row cart-summary__total"><span>{{ 'cart.general.subtotal' | t }}</span><strong>{% render 'money', amount: cart.total_price %}</strong></div>
         <button class="button button--primary" type="submit" name="checkout">{{ 'cart.general.checkout' | t }}</button>
       </aside>
     </form>

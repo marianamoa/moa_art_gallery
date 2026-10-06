@@ -1,11 +1,16 @@
 {
   "current": {
-    "settings": {}
+    "settings": {
+      "brand_name": "Mariana Ordoñez",
+      "show_currency_codes": true
+    }
   },
   "presets": {
-    "Sorrel Gallery": {
-      "settings": {}
+    "Mariana Ordoñez Gallery": {
+      "settings": {
+        "brand_name": "Mariana Ordoñez",
+        "show_currency_codes": true
+      }
     }
   }
 }
-

@@ -7,9 +7,9 @@
         <label class="visually-hidden" for="NewsletterEmail-{{ section.id }}">{{ 'general.newsletter.email' | t }}</label>
         <input id="NewsletterEmail-{{ section.id }}" type="email" name="contact[email]" value="{{ form.email }}" placeholder="{{ 'general.newsletter.email' | t }}" autocomplete="email" required>
         <button type="submit">{{ 'general.newsletter.submit' | t }}</button>
+        {%- if form.posted_successfully? -%}<p class="form-message" role="status">{{ 'general.newsletter.success' | t }}</p>{%- endif -%}
+        {%- if form.errors -%}<div class="form-message" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
       {% endform %}
-      {%- if form.posted_successfully? -%}<p class="form-message" role="status">{{ 'general.newsletter.success' | t }}</p>{%- endif -%}
-      {%- if form.errors -%}<div class="form-message" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
     </div>
   </div>
 </section>
@@ -26,4 +26,3 @@
   "presets": [{ "name": "t:schema.sections.newsletter" }]
 }
 {% endschema %}
-

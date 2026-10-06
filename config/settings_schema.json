@@ -1,16 +1,16 @@
 [
   {
     "name": "theme_info",
-    "theme_name": "Sorrel Gallery",
+    "theme_name": "Mariana Ordoñez Gallery",
     "theme_version": "1.0.0",
-    "theme_author": "Mariana Ordonez",
+    "theme_author": "Mariana Ordoñez",
     "theme_documentation_url": "https://github.com/marianamoa/moa_art_gallery",
     "theme_support_url": "https://github.com/marianamoa/moa_art_gallery/issues"
   },
   {
     "name": "t:schema.global.name",
     "settings": [
-      { "type": "text", "id": "brand_name", "label": "t:schema.global.brand_name", "default": "Sorrel" },
+      { "type": "text", "id": "brand_name", "label": "t:schema.global.brand_name", "default": "Mariana Ordoñez" },
       { "type": "color", "id": "color_paper", "label": "t:schema.global.paper", "default": "#F6F3EE" },
       { "type": "color", "id": "color_paper_deep", "label": "t:schema.global.paper_deep", "default": "#ECE6DD" },
       { "type": "color", "id": "color_ink", "label": "t:schema.global.ink", "default": "#1F1D1A" },
@@ -32,4 +32,3 @@
     ]
   }
 ]
-
