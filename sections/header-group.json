@@ -1,7 +1,14 @@
 {
   "type": "header",
   "name": "Header group",
-  "sections": { "header": { "type": "header", "settings": {} } },
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "commission_label": "Encargos",
+        "commission_link": "shopify://pages/encargos"
+      }
+    }
+  },
   "order": ["header"]
 }
-
