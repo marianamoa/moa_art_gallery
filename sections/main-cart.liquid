@@ -34,7 +34,7 @@
           {%- for discount in cart.cart_level_discount_applications -%}<div class="cart-summary__row"><span>{{ discount.title }}</span><strong>−{% render 'money', amount: discount.total_allocated_amount %}</strong></div>{%- endfor -%}
         {%- endif -%}
         <div class="cart-summary__row muted"><span>{{ 'cart.general.shipping' | t }}</span></div>
-        <div class="cart-summary__row cart-summary__total"><span>{{ 'cart.general.subtotal' | t }}</span><strong>{% render 'money', amount: cart.total_price %}</strong></div>
+        <div class="cart-summary__row cart-summary__total"><span>{{ 'cart.general.total' | t }}</span><strong>{% render 'money', amount: cart.total_price %}</strong></div>
         <button class="button button--primary" type="submit" name="checkout">{{ 'cart.general.checkout' | t }}</button>
       </aside>
     </form>
