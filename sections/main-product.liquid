@@ -16,7 +16,7 @@
   endif
 -%}
 
-<section class="product page-width" data-product-root data-currency="{{ cart.currency.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_cart' | t }}">
+<section class="product page-width" data-product-root data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_cart' | t }}">
   <div class="product-gallery" aria-label="{{ product.title | escape }}">
     {%- if product.media.size > 0 -%}
       {%- for media in product.media -%}
