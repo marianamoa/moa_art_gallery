@@ -6,7 +6,7 @@
       <p class="lead">{{ section.settings.intro }}</p>
     </header>
 
-    <div class="commission-form" data-commission-calculator data-currency="{{ cart.currency.iso_code }}" data-timeline-label="{{ 'commissions.ready_in' | t: count: '[count]' }}">
+    <div class="commission-form" data-commission-calculator data-currency="{{ cart.currency.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-timeline-label="{{ 'commissions.ready_in' | t: count: '[count]' }}">
       <div>
         {% form 'contact', id: 'CommissionContactForm' %}
           {%- if form.posted_successfully? -%}<p class="form-message" role="status">{{ 'contact.form.success' | t }}</p>{%- endif -%}

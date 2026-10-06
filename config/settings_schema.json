@@ -21,7 +21,7 @@
       { "type": "font_picker", "id": "font_heading", "label": "t:schema.global.heading_font", "default": "playfair_display_n4" },
       { "type": "font_picker", "id": "font_body", "label": "t:schema.global.body_font", "default": "assistant_n4" },
       { "type": "range", "id": "page_width", "label": "t:schema.global.page_width", "min": 1000, "max": 1600, "step": 20, "unit": "px", "default": 1320 },
-      { "type": "checkbox", "id": "show_currency_codes", "label": "t:schema.global.currency_codes", "default": false }
+      { "type": "checkbox", "id": "show_currency_codes", "label": "t:schema.global.currency_codes", "default": true }
     ]
   },
   {
