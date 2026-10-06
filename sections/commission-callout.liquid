@@ -15,7 +15,7 @@
       {{ section.settings.image | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '520, 800, 1200, 1600', sizes: '(min-width: 990px) 50vw, 100vw', alt: section.settings.image.alt }}
     {%- else -%}
       {%- assign commission_fallback_alt = 'home.commission_fallback_alt' | t -%}
-      {{ 'commission-dog.jpg' | asset_url | image_tag: loading: 'lazy', alt: commission_fallback_alt }}
+      <img src="{{ 'commission-dog.jpg' | asset_url }}" width="1600" height="1200" loading="lazy" alt="{{ commission_fallback_alt | escape }}">
     {%- endif -%}
   </div>
 </section>
