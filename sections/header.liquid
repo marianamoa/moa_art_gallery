@@ -1,3 +1,10 @@
+{%- liquid
+  assign commission_link = section.settings.commission_link
+  if commission_link == blank and pages['encargos'] != blank
+    assign commission_link = pages['encargos'].url
+  endif
+-%}
+
 {%- if section.settings.show_announcement -%}
   <div class="announcement" role="region" aria-label="Announcement">
     <p>
@@ -22,6 +29,7 @@
         {%- for link in section.settings.menu.links -%}
           <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
         {%- endfor -%}
+        {%- if commission_link != blank -%}<a href="{{ commission_link }}">{{ section.settings.commission_label }}</a>{%- endif -%}
       </nav>
     </details>
     <a class="site-header__brand" href="{{ routes.root_url }}">
@@ -32,6 +40,7 @@
       {%- endif -%}
     </a>
     <nav class="site-header__actions" aria-label="{{ 'header.secondary_navigation' | t }}">
+      {%- if commission_link != blank -%}<a class="commission-link" href="{{ commission_link }}">{{ section.settings.commission_label }}</a>{%- endif -%}
       <a class="search-link" href="{{ routes.search_url }}">{{ 'general.search.title' | t }}</a>
       <a href="{{ routes.cart_url }}" data-cart-count data-cart-label="{{ 'header.cart' | t: count: '[count]' }}">{{ 'header.cart' | t: count: cart.item_count }}</a>
     </nav>
@@ -45,7 +54,9 @@
     { "type": "checkbox", "id": "show_announcement", "label": "Show announcement", "default": true },
     { "type": "text", "id": "announcement", "label": "Announcement" },
     { "type": "image_picker", "id": "logo", "label": "Logo" },
-    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" }
+    { "type": "link_list", "id": "menu", "label": "Menu", "default": "main-menu" },
+    { "type": "text", "id": "commission_label", "label": "Commission link label", "default": "Encargos" },
+    { "type": "url", "id": "commission_link", "label": "Commission link" }
   ]
 }
 {% endschema %}
