@@ -24,13 +24,13 @@
                         {%- for value in filter.values -%}
                           {%- capture input_id -%}Filter-{{ section.id }}-{{ filter_index }}-{{ forloop.index }}{%- endcapture -%}
                           <label for="{{ input_id }}">
-                            <input id="{{ input_id }}" type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}"{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
+                            <input id="{{ input_id }}" type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" data-auto-submit{% if value.active %} checked{% endif %}{% if value.count == 0 and value.active == false %} disabled{% endif %}>
                             <span>{{ value.label }} ({{ value.count }})</span>
                           </label>
                         {%- endfor -%}
                       {%- when 'price_range' -%}
-                        <label>{{ filter.min_value.label }}<input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}" min="0" placeholder="0"></label>
-                        <label>{{ filter.max_value.label }}<input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}" min="0" placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"></label>
+                        <label>{{ filter.min_value.label }}<input type="number" name="{{ filter.min_value.param_name }}" value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}" min="0" placeholder="0" data-auto-submit></label>
+                        <label>{{ filter.max_value.label }}<input type="number" name="{{ filter.max_value.param_name }}" value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}" min="0" placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}" data-auto-submit></label>
                     {%- endcase -%}
                   </div>
                 </details>
