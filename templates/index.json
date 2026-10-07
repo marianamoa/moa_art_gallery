@@ -13,7 +13,7 @@
       "type": "hero-gallery",
       "settings": {
         "heading": "Acuarelas, <em>pintadas a mano</em>",
-        "text": "Originales sobre papel de algodón, ediciones cortas y encargos de cuatro en cuatro.",
+        "text": "Originales sobre papel de algodón, ediciones cortas y encargos personalizados.",
         "primary_label": "Ver originales",
         "primary_link": "shopify://collections/originales",
         "secondary_label": "Encargar una pieza",
@@ -45,12 +45,11 @@
     "commissions": {
       "type": "commission-callout",
       "settings": {
-        "eyebrow": "Encargos · 3 de 4 lugares libres",
+        "eyebrow": "Encargos",
         "heading": "Que te pinte <em>algo tuyo.</em>",
         "text": "Animales y objetos a partir de tus fotos, siempre sobre fondo blanco.",
         "starting_price": "$60.000 COP",
         "timeline": "2–4",
-        "slots": "3/4",
         "link_label": "Empezar mi encargo",
         "link": "shopify://pages/encargos"
       }
@@ -60,7 +59,7 @@
       "settings": {
         "eyebrow": "Desde el taller",
         "heading": "Obra nueva, antes que nadie.",
-        "text": "La lista ve los originales la tarde anterior y se entera cuando se abren los lugares de encargo.",
+        "text": "La lista ve los originales la tarde anterior y recibe novedades del estudio.",
         "deep_background": true
       }
     }

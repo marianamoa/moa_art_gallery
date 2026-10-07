@@ -17,7 +17,7 @@
     "pagination": { "previous": "Anterior", "next": "Siguiente" }
   },
   "header": {
-    "announcement": "Envío gratis en compras desde $200.000 COP · 3 lugares libres para encargos este mes",
+    "announcement": "Envío gratis en compras desde $200.000 COP",
     "primary_navigation": "Navegación principal",
     "mobile_navigation": "Navegación móvil",
     "secondary_navigation": "Acciones de la tienda",
@@ -37,7 +37,6 @@
     "commission_placeholder": "Encargo · proceso en el taller",
     "price_from": "Precio desde",
     "in_studio": "Semanas en el taller",
-    "slots_available": "Lugares disponibles",
     "hero_fallback_alt": "Acuarela en el escritorio del taller",
     "commission_fallback_alt": "Retrato en acuarela de un perro"
   },

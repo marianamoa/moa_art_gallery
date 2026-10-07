@@ -6,7 +6,6 @@
     <div class="commission-facts">
       <div><strong>{{ section.settings.starting_price }}</strong><span class="meta">{{ 'home.price_from' | t }}</span></div>
       <div><strong>{{ section.settings.timeline }}</strong><span class="meta">{{ 'home.in_studio' | t }}</span></div>
-      <div><strong>{{ section.settings.slots }}</strong><span class="meta">{{ 'home.slots_available' | t }}</span></div>
     </div>
     {%- if section.settings.link != blank -%}<a class="button button--primary" href="{{ section.settings.link }}">{{ section.settings.link_label }}</a>{%- endif -%}
   </div>
@@ -24,12 +23,11 @@
 {
   "name": "t:schema.sections.commission_callout",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Encargos · 3 de 4 lugares libres" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Encargos" },
     { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Que te pinte <em>algo tuyo.</em>" },
     { "type": "textarea", "id": "text", "label": "Text", "default": "Animales y objetos a partir de tus fotos, siempre sobre fondo blanco." },
     { "type": "text", "id": "starting_price", "label": "Starting price", "default": "$60.000 COP" },
     { "type": "text", "id": "timeline", "label": "Timeline", "default": "2–4" },
-    { "type": "text", "id": "slots", "label": "Available slots", "default": "3/4" },
     { "type": "text", "id": "link_label", "label": "Button", "default": "Empezar mi encargo" },
     { "type": "url", "id": "link", "label": "Link" },
     { "type": "image_picker", "id": "image", "label": "Image" }
