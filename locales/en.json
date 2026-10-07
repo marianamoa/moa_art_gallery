@@ -7,7 +7,7 @@
     "search": { "title": "Search", "placeholder": "Search artwork", "submit": "Search", "results": "Results for “{{ terms }}”", "no_results": "No results found." },
     "pagination": { "previous": "Previous", "next": "Next" }
   },
-  "header": { "announcement": "Free shipping in Colombia from COP $200,000", "primary_navigation": "Primary navigation", "mobile_navigation": "Mobile navigation", "secondary_navigation": "Store actions", "cart": "Bag ({{ count }})" },
+  "header": { "announcement": "Free shipping only in Colombia from COP $200,000", "primary_navigation": "Primary navigation", "mobile_navigation": "Mobile navigation", "secondary_navigation": "Store actions", "cart": "Bag ({{ count }})" },
   "footer": { "shop_navigation": "Shop", "information_navigation": "Information", "policies_navigation": "Policies", "made_slowly": "Painted and prepared slowly" },
   "home": { "hero_placeholder": "Hero · worktable and work in progress", "artwork_placeholder": "Artwork", "artwork_title": "Artwork title", "artwork_meta": "Watercolour on paper", "commission_placeholder": "Commission · studio process", "price_from": "Starting price", "in_studio": "Weeks in the studio", "hero_fallback_alt": "Watercolour on the studio desk", "commission_fallback_alt": "Watercolour portrait of a dog" },
   "product_details": { "dimensions": "Dimensions", "medium": "Medium", "paper": "Paper", "shipping": "Shipping" },
