@@ -1,10 +1,75 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "hero": { "type": "hero-gallery", "settings": { "primary_link": "shopify://collections/originales", "secondary_link": "shopify://pages/encargos" } },
-    "originals": { "type": "featured-collection", "settings": { "eyebrow": "Pieza única", "heading": "Originales disponibles", "collection": "originales", "products_to_show": 4, "link_label": "Ver todos los originales", "deep_background": false } },
-    "editions": { "type": "featured-collection", "settings": { "eyebrow": "Ediciones cortas", "heading": "Ediciones limitadas", "collection": "ediciones", "products_to_show": 4, "link_label": "Elegir una edición", "deep_background": true } },
-    "commissions": { "type": "commission-callout", "settings": { "link": "shopify://pages/encargos" } },
-    "newsletter": { "type": "newsletter", "settings": {} }
+    "hero": {
+      "type": "hero-gallery",
+      "settings": {
+        "heading": "Acuarelas, <em>pintadas a mano</em>",
+        "text": "Originales sobre papel de algodón, ediciones cortas y encargos de cuatro en cuatro.",
+        "primary_label": "Ver originales",
+        "primary_link": "shopify://collections/originales",
+        "secondary_label": "Encargar una pieza",
+        "secondary_link": "shopify://pages/encargos"
+      }
+    },
+    "originals": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Pieza única",
+        "heading": "Originales disponibles",
+        "collection": "originales",
+        "products_to_show": 4,
+        "link_label": "Ver todos los originales",
+        "deep_background": false
+      }
+    },
+    "editions": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Ediciones cortas",
+        "heading": "Ediciones limitadas",
+        "collection": "ediciones",
+        "products_to_show": 4,
+        "link_label": "Elegir una edición",
+        "deep_background": true
+      }
+    },
+    "commissions": {
+      "type": "commission-callout",
+      "settings": {
+        "eyebrow": "Encargos · 3 de 4 lugares libres",
+        "heading": "Que te pinte <em>algo tuyo.</em>",
+        "text": "Animales y objetos a partir de tus fotos, siempre sobre fondo blanco.",
+        "starting_price": "$60.000 COP",
+        "timeline": "2–4",
+        "slots": "3/4",
+        "link_label": "Empezar mi encargo",
+        "link": "shopify://pages/encargos"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "eyebrow": "Desde el taller",
+        "heading": "Obra nueva, antes que nadie.",
+        "text": "La lista ve los originales la tarde anterior y se entera cuando se abren los lugares de encargo.",
+        "deep_background": true
+      }
+    }
   },
-  "order": ["hero", "originals", "editions", "commissions", "newsletter"]
+  "order": [
+    "hero",
+    "originals",
+    "editions",
+    "commissions",
+    "newsletter"
+  ]
 }
