@@ -186,7 +186,7 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
 .field textarea{min-height:120px;resize:vertical}
 .commission-summary{position:sticky;top:2rem;background:var(--ink);color:var(--paper);padding:clamp(1.5rem,4vw,3rem)}
 .commission-summary__image{aspect-ratio:4/5;margin:-1rem -1rem 2rem;background:repeating-linear-gradient(135deg,#393733 0 10px,#302e2a 10px 20px)}
-.commission-summary__row{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 0;border-bottom:1px solid color-mix(in srgb,var(--paper) 18%,transparent)}
+.commission-summary__row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;padding:.65rem 0;border-bottom:1px solid color-mix(in srgb,var(--paper) 18%,transparent)}
 .commission-summary__total{font-family:var(--font-heading);font-size:2.4rem}
 .commission-summary .button{width:100%;margin-top:1.5rem;border-color:var(--paper);background:var(--paper);color:var(--ink)}
 .search-form{display:flex;max-width:720px;border-bottom:1px solid var(--ink)}
