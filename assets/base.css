@@ -170,6 +170,7 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
 .faq-item[open] summary::after{content:"−"}
 .faq-item__answer{padding:0 2rem 1.4rem 0;color:var(--ink-soft)}
 .commission-form{display:grid;grid-template-columns:1fr minmax(340px,.75fr);gap:clamp(2rem,7vw,7rem);align-items:start}
+.commission-form>*{min-width:0}
 .commission-step{padding-block:2rem;border-top:1px solid color-mix(in srgb,var(--ink) 14%,transparent)}
 .commission-step__heading{display:flex;gap:1rem;align-items:baseline}
 .commission-step__heading span{color:var(--studio)}
