@@ -15,7 +15,7 @@
       "type": "header",
       "settings": {
         "show_announcement": true,
-        "announcement": "Envío gratis a todo Colombia en compras desde $200.000 COP",
+        "announcement": "Envío gratis en Colombia por compras desde $200.000 COP",
         "menu": "main-menu",
         "commission_label": "Encargos",
         "commission_link": "shopify://pages/encargos"
