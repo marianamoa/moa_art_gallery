@@ -54,8 +54,10 @@
     "balanced": "Equilibrado",
     "fine": "Detalle fino",
     "included": "incluido",
-    "photo_note": "Completa tus datos y sube hasta cinco fotos de referencia en el formulario de abajo.",
-    "upload_app": "Fotos de referencia",
+    "photo_note": "Paso 1: envía tus preferencias y datos. En el paso 2 podrás adjuntar hasta cinco fotos de referencia.",
+    "send_details": "Enviar preferencias",
+    "next_step": "Después de enviar, completa el formulario de fotos. Aquí todavía no se cobra nada.",
+    "upload_app": "Paso 2 · Fotos de referencia",
     "your_piece": "Tu pieza",
     "summary_note": "El precio es una estimación. Se confirma por correo antes de cobrar nada."
   },
