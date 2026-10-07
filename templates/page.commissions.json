@@ -1,5 +1,52 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "sections": { "main": { "type": "commission-form", "settings": {} } },
-  "order": ["main"]
+  "sections": {
+    "main": {
+      "type": "commission-form",
+      "blocks": {
+        "forms_inline_HYARkV": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "settings": {
+            "form_id": "1187061",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#FFFFFF",
+            "links_color": "#1878B9",
+            "errors_color": "#E02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 24,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_HYARkV"
+      ],
+      "settings": {
+        "eyebrow": "Encargos · 3 de 4 lugares libres",
+        "heading": "Hagamos una <em>para ti.</em>",
+        "intro": "Cuatro decisiones. Cada una cambia el precio y el plazo. Aquí no se cobra nada.",
+        "a5_price": 6000000,
+        "a4_price": 8000000,
+        "a3_price": 10000000,
+        "extra_subject_price": 3000000,
+        "balanced_price": 1200000,
+        "fine_price": 2800000
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }
-
