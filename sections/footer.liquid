@@ -15,6 +15,13 @@
     </div>
     <div class="site-footer__bottom">
       <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      {%- if shop.policies.size > 0 -%}
+        <nav class="site-footer__policies" aria-label="{{ 'footer.policies_navigation' | t }}">
+          {%- for policy in shop.policies -%}
+            {%- if policy.body != blank -%}<a href="{{ policy.url }}">{{ policy.title }}</a>{%- endif -%}
+          {%- endfor -%}
+        </nav>
+      {%- endif -%}
       <span>{{ 'footer.made_slowly' | t }}</span>
     </div>
   </div>

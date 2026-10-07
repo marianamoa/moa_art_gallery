@@ -89,6 +89,8 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
 .site-footer__brand{font-family:var(--font-heading);font-size:1.6rem;letter-spacing:.18em;text-transform:uppercase}
 .site-footer nav a{display:block;margin-bottom:.6rem;text-decoration:none}
 .site-footer__bottom{display:flex;justify-content:space-between;gap:2rem;margin-top:3rem;padding-top:1.5rem;border-top:1px solid color-mix(in srgb,var(--ink) 10%,transparent);color:var(--ink-muted);font-size:.75rem}
+.site-footer__policies{display:flex;flex-wrap:wrap;justify-content:center;gap:.5rem 1rem}
+.site-footer__policies a{display:inline;margin:0;text-decoration:underline;text-underline-offset:.2em}
 .collection-hero{display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:end;padding-block:clamp(3rem,7vw,6rem)}
 .collection-hero h1{max-width:11ch;margin-bottom:1rem}
 .facets{margin-bottom:2rem;border-block:1px solid color-mix(in srgb,var(--ink) 14%,transparent);padding-block:1rem}
