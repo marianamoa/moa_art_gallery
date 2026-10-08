@@ -80,7 +80,7 @@
     </p>
     <h1>{{ product.title }}</h1>
     <div class="price-large" data-product-price>{% render 'money', amount: current_variant.price %}</div>
-    <p class="muted">{{ 'products.product.shipping_checkout' | t }}</p>
+    {%- unless is_digital -%}<p class="muted">{{ 'products.product.shipping_checkout' | t }}</p>{%- endunless -%}
     {%- if product.description != blank -%}<div class="product-info__description rte">{{ product.description }}</div>{%- endif -%}
 
     {%- assign product_form_id = 'ProductForm-' | append: section.id -%}
@@ -162,7 +162,7 @@
       {%- if product.metafields.custom.dimensions.value != blank -%}<div><dt>{{ 'product_details.dimensions' | t }}</dt><dd>{{ product.metafields.custom.dimensions.value }}</dd></div>{%- endif -%}
       {%- if product.metafields.custom.medium.value != blank -%}<div><dt>{{ 'product_details.medium' | t }}</dt><dd>{{ product.metafields.custom.medium.value }}</dd></div>{%- endif -%}
       {%- if product.metafields.custom.paper.value != blank -%}<div><dt>{{ 'product_details.paper' | t }}</dt><dd>{{ product.metafields.custom.paper.value }}</dd></div>{%- endif -%}
-      {%- if product.metafields.custom.shipping_note.value != blank -%}<div><dt>{{ 'product_details.shipping' | t }}</dt><dd>{{ product.metafields.custom.shipping_note.value }}</dd></div>{%- endif -%}
+      {%- if is_digital == false and product.metafields.custom.shipping_note.value != blank -%}<div><dt>{{ 'product_details.shipping' | t }}</dt><dd>{{ product.metafields.custom.shipping_note.value }}</dd></div>{%- endif -%}
     </dl>
 
     {%- for block in section.blocks -%}{%- render block -%}{%- endfor -%}
