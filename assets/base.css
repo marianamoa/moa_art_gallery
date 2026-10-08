@@ -308,9 +308,9 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
 .commission-detail-example{margin:1.25rem 0 0}
 .commission-detail-example img{width:100%;height:auto}
 
-.commission-header{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);align-items:center}
-.commission-header__examples img{width:100%;height:auto;max-height:360px;object-fit:contain;border-radius:5px}
+.commission-header{display:grid;grid-template-columns:1fr minmax(340px,.75fr);gap:clamp(2rem,7vw,7rem);align-items:center}
+.commission-header__examples img{width:100%;height:auto;border-radius:5px}
 @media (max-width:990px){
   .commission-header{grid-template-columns:1fr;gap:1rem}
-  .commission-header__examples img{max-height:200px}
+  .commission-header__examples{justify-self:end;width:min(100%,300px)}
 }
