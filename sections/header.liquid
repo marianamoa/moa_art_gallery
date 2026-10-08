@@ -19,7 +19,7 @@
 <header class="site-header">
   <div class="site-header__inner page-width">
     <nav class="site-header__nav" aria-label="{{ 'header.primary_navigation' | t }}">
-      {%- for link in section.settings.menu.links limit: 4 -%}
+      {%- for link in section.settings.menu.links -%}
         <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
       {%- endfor -%}
     </nav>
