@@ -57,9 +57,7 @@
       {%- else -%}{{ product.type }}{%- endif -%}
     </p>
     <h1>{{ product.title }}</h1>
-    {%- if is_poster -%}<p class="meta" data-selection-total>{{ 'products.product.selection_total' | t: count: 1 }}</p>{%- endif -%}
     <div class="price-large" data-product-price>{% render 'money', amount: current_variant.price %}</div>
-    {%- if is_poster -%}<p class="meta" data-selection-savings hidden></p>{%- endif -%}
     <p class="muted">{{ 'products.product.shipping_checkout' | t }}</p>
     {%- if product.description != blank -%}<div class="product-info__description rte">{{ product.description }}</div>{%- endif -%}
 
@@ -105,6 +103,14 @@
         </div>
       {%- endunless -%}
 
+      {%- if is_poster -%}
+        <div class="product-selection-summary" aria-live="polite" aria-atomic="true">
+          <p class="meta" data-selection-total>{{ 'products.product.selection_total' | t: count: 1 }}</p>
+          <strong class="price-large" data-selection-price>{% render 'money', amount: current_variant.price %}</strong>
+          <p class="meta" data-selection-savings hidden></p>
+        </div>
+      {%- endif -%}
+
       <div class="product-form__cart-bar">
         <button class="button button--primary product-form__submit" type="submit" data-product-submit data-add-label="{{ 'products.product.add_to_shopping_cart' | t }}" data-sold-label="{{ 'products.product.sold_out' | t }}"{% unless current_variant.available %} disabled{% endunless %}>
         <span>{% if current_variant.available %}{{ 'products.product.add_to_shopping_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
@@ -144,6 +150,10 @@
 </section>
 
 {% stylesheet %}
+  .product-selection-summary { margin-block: 1rem; padding: 1rem; border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); background: var(--paper-deep); }
+  .product-selection-summary p { margin: 0 0 .5rem; }
+  .product-selection-summary .price-large { display: block; font-size: 1.8rem; margin: 0; }
+  .product-selection-summary [data-selection-savings] { margin: .65rem 0 0; }
   .product-form__cart-bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .75rem; }
   .product-form__cart-bar .button { padding-inline: .75rem; }
   .product-form__cart-bar .form-message { grid-column: 1 / -1; }

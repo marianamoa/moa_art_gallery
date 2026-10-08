@@ -82,7 +82,8 @@ document.querySelectorAll('[data-product-root]').forEach(root => {
     const quantity = Math.max(1, Math.floor(Number(quantityInput?.value) || 1));
     const subtotal = variant.price * quantity;
     const discount = quantity >= 2 && root.dataset.currency === 'COP' ? Math.min(subtotal, Number(root.dataset.posterDiscount)) : 0;
-    if (price) price.textContent = money(subtotal - discount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale);
+    const selectionPrice = root.querySelector('[data-selection-price]');
+    if (selectionPrice) selectionPrice.textContent = money(subtotal - discount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale);
     const label = root.querySelector('[data-selection-total]');
     if (label) label.textContent = root.dataset.selectionLabel.replace('[count]', quantity);
     const savings = root.querySelector('[data-selection-savings]');
