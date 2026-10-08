@@ -173,6 +173,28 @@ document.addEventListener('click', event => {
 })
 
 const cartDrawer = document.getElementById('CartDrawer');
+const desktopPurchaseBar = document.querySelector('[data-product-root] .product-form__cart-bar');
+const productMainContent = document.getElementById('MainContent');
+if (desktopPurchaseBar && productMainContent) {
+  const desktopViewport = matchMedia('(min-width: 991px)');
+  let barFramePending = false;
+  const positionPurchaseBar = () => {
+    barFramePending = false;
+    if (!desktopViewport.matches) { desktopPurchaseBar.style.removeProperty('bottom'); return; }
+    const contentBottom = productMainContent.getBoundingClientRect().bottom;
+    desktopPurchaseBar.style.bottom = `${Math.max(20, window.innerHeight - contentBottom + 20)}px`;
+  };
+  const schedulePurchaseBar = () => {
+    if (barFramePending) return;
+    barFramePending = true;
+    requestAnimationFrame(positionPurchaseBar);
+  };
+  window.addEventListener('scroll', schedulePurchaseBar, { passive: true });
+  window.addEventListener('resize', schedulePurchaseBar);
+  desktopViewport.addEventListener('change', schedulePurchaseBar);
+  new ResizeObserver(schedulePurchaseBar).observe(productMainContent);
+  positionPurchaseBar();
+}
 const renderCartDrawer = html => {
   const content = new DOMParser().parseFromString(html, 'text/html').querySelector('[data-drawer-content]');
   if (!content || !cartDrawer) return false;
