@@ -71,9 +71,6 @@ document.querySelectorAll('[data-product-root]').forEach(root => {
   const price = root.querySelector('[data-product-price]')
   const submit = root.querySelector('[data-product-submit]')
   const submitLabel = submit?.querySelector('span')
-  const stock = root.querySelector('[data-stock-meter]')
-  const stockLabel = root.querySelector('[data-stock-label]')
-  const stockBar = root.querySelector('[data-stock-bar]')
   const updateSelectionPrice = () => {
     const isCards = root.dataset.cards === 'true';
     if (root.dataset.poster !== 'true' && !isCards) return;
@@ -116,16 +113,6 @@ document.querySelectorAll('[data-product-root]').forEach(root => {
     const buyNow = root.querySelector('[data-buy-now]')
     if (buyNow) buyNow.disabled = !variant.available
     if (submitLabel) submitLabel.textContent = variant.available ? submit.dataset.addLabel : submit.dataset.soldLabel
-    if (stock && variant.tracked) {
-      const total = Number(variant.editionSize || 0)
-      const remaining = Math.max(variant.inventoryQuantity, 0)
-      stock.hidden = false
-      stock.classList.toggle('low', remaining <= 5)
-      if (stockLabel) stockLabel.textContent = total ? root.dataset.remainingLabel.replace('[count]', remaining).replace('[total]', total) : remaining
-      if (stockBar) stockBar.style.width = total ? `${Math.min(100, remaining / total * 100)}%` : '100%'
-    } else if (stock) {
-      stock.hidden = true
-    }
     history.replaceState({}, '', `${location.pathname}?variant=${variant.id}`)
   }
   root.querySelectorAll('[data-option-input]').forEach(input => input.addEventListener('change', update))
