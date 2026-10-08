@@ -44,9 +44,7 @@
         "a4_price": 40000000,
         "extra_subject_price": 3000000,
         "balanced_price": 6000000,
-        "fine_price": 12000000,
-        "balanced_large_price": 9000000,
-        "fine_large_price": 18000000
+        "balanced_large_price": 9000000
       }
     }
   },

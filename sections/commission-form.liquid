@@ -43,8 +43,15 @@
             <div class="choice-grid choice-grid--detail">
               <div class="choice"><input id="FinishLoose" type="radio" name="commission_finish" value="Esencial" data-price="0" data-weeks="2" checked><label for="FinishLoose">{{ 'commissions.loose' | t }}<small>{{ 'commissions.included' | t }}</small><span class="choice__description">{{ 'commissions.essential_description' | t }}</span></label></div>
               <div class="choice"><input id="FinishBalanced" type="radio" name="commission_finish" value="Detallado" data-price="{{ section.settings.balanced_price }}" data-price-small="{{ section.settings.balanced_price }}" data-price-large="{{ section.settings.balanced_large_price }}" data-weeks="3"><label for="FinishBalanced">{{ 'commissions.balanced' | t }}<small data-detail-price>+{% render 'money', amount: section.settings.balanced_price %}</small><span class="choice__description">{{ 'commissions.detailed_description' | t }}</span></label></div>
-              <div class="choice"><input id="FinishFine" type="radio" name="commission_finish" value="Minucioso" data-price="{{ section.settings.fine_price }}" data-price-small="{{ section.settings.fine_price }}" data-price-large="{{ section.settings.fine_large_price }}" data-weeks="4"><label for="FinishFine">{{ 'commissions.fine' | t }}<small data-detail-price>+{% render 'money', amount: section.settings.fine_price %}</small><span class="choice__description">{{ 'commissions.meticulous_description' | t }}</span></label></div>
             </div>
+            <figure class="commission-detail-example">
+              {%- assign detail_example_alt = 'commissions.detail_example_alt' | t -%}
+              {%- if section.settings.detail_example -%}
+                {{ section.settings.detail_example | image_url: width: 1536 | image_tag: loading: 'lazy', widths: '480, 768, 1200, 1536', sizes: '(min-width: 990px) 55vw, 100vw', alt: detail_example_alt }}
+              {%- else -%}
+                <img src="{{ 'commission-detail-comparison.png' | asset_url }}" width="1536" height="1024" loading="lazy" alt="{{ detail_example_alt | escape }}">
+              {%- endif -%}
+            </figure>
           </section>
 
           <section class="commission-step">
@@ -149,21 +156,14 @@
     },
     {
       "type": "number",
-      "id": "fine_price",
-      "label": "Minucioso · pequeño",
-      "default": 12000000
-    },
-    {
-      "type": "number",
       "id": "balanced_large_price",
       "label": "Detallado · grande",
       "default": 9000000
     },
     {
-      "type": "number",
-      "id": "fine_large_price",
-      "label": "Minucioso · grande",
-      "default": 18000000
+      "type": "image_picker",
+      "id": "detail_example",
+      "label": "Ejemplo de niveles de detalle"
     }
   ],
   "blocks": [
