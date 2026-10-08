@@ -3,7 +3,10 @@
     <header class="page-header">
       <p class="eyebrow">{{ section.settings.eyebrow }}</p>
       <h1 id="CommissionFormTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
-      <p class="lead">{{ section.settings.intro }}</p>
+      <div class="lead rte">{{ section.settings.intro }}</div>
+      <div class="lead rte commission-contact-copy">{{ section.settings.contact_text }}</div>
+      {%- assign commission_contact_url = section.settings.contact_link | default: pages.contact.url -%}
+      {%- if commission_contact_url != blank -%}<a class="button button--primary commission-contact-cta" href="{{ commission_contact_url }}">{{ section.settings.contact_label | escape }}</a>{%- endif -%}
     </header>
 
     <div class="commission-form" data-commission-calculator data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-timeline-label="{{ 'commissions.ready_in' | t: count: '[count]' }}">
@@ -81,19 +84,97 @@
 {
   "name": "t:schema.sections.commission_form",
   "settings": [
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Encargos" },
-    { "type": "inline_richtext", "id": "heading", "label": "Heading", "default": "Hagamos una <em>para ti.</em>" },
-    { "type": "textarea", "id": "intro", "label": "Introduction", "default": "Cuatro decisiones. Cada una cambia el precio y el plazo. Aquí no se cobra nada." },
-    { "type": "header", "content": "Prices in cents" },
-    { "type": "number", "id": "a5_price", "label": "Precio de 12,5 × 18 cm", "default": 25000000 },
-    { "type": "number", "id": "a4_price", "label": "Precio de 22,9 × 30,5 cm", "default": 40000000 },
-    { "type": "number", "id": "extra_subject_price", "label": "Precio por elemento adicional", "default": 3000000 },
-    { "type": "number", "id": "balanced_price", "label": "Detallado · pequeño", "default": 6000000 },
-    { "type": "number", "id": "fine_price", "label": "Minucioso · pequeño", "default": 12000000 },
-    { "type": "number", "id": "balanced_large_price", "label": "Detallado · grande", "default": 9000000 },
-    { "type": "number", "id": "fine_large_price", "label": "Minucioso · grande", "default": 18000000 }
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Encargos"
+    },
+    {
+      "type": "inline_richtext",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Hagamos una <em>para ti.</em>"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "label": "Introduction",
+      "default": "<p>El tamaño, la cantidad de elementos y el nivel de detalle ayudan a definir el precio y el tiempo de creación. Aquí puedes explorar las opciones y tener una referencia del valor de tu encargo. <strong>No estás realizando ningún pago.</strong></p>"
+    },
+    {
+      "type": "richtext",
+      "id": "contact_text",
+      "label": "Invitación a conversar",
+      "default": "<p>¿Tienes una idea diferente o quieres incluir algo especial? <strong>También puedes escribirme directamente y podemos conversar los detalles y crear una propuesta a tu medida.</strong></p>"
+    },
+    {
+      "type": "text",
+      "id": "contact_label",
+      "label": "Texto del botón de contacto",
+      "default": "Conversemos tu idea"
+    },
+    {
+      "type": "url",
+      "id": "contact_link",
+      "label": "Página de contacto"
+    },
+    {
+      "type": "header",
+      "content": "Prices in cents"
+    },
+    {
+      "type": "number",
+      "id": "a5_price",
+      "label": "Precio de 12,5 × 18 cm",
+      "default": 25000000
+    },
+    {
+      "type": "number",
+      "id": "a4_price",
+      "label": "Precio de 22,9 × 30,5 cm",
+      "default": 40000000
+    },
+    {
+      "type": "number",
+      "id": "extra_subject_price",
+      "label": "Precio por elemento adicional",
+      "default": 3000000
+    },
+    {
+      "type": "number",
+      "id": "balanced_price",
+      "label": "Detallado · pequeño",
+      "default": 6000000
+    },
+    {
+      "type": "number",
+      "id": "fine_price",
+      "label": "Minucioso · pequeño",
+      "default": 12000000
+    },
+    {
+      "type": "number",
+      "id": "balanced_large_price",
+      "label": "Detallado · grande",
+      "default": 9000000
+    },
+    {
+      "type": "number",
+      "id": "fine_large_price",
+      "label": "Minucioso · grande",
+      "default": 18000000
+    }
   ],
-  "blocks": [{ "type": "@app" }],
-  "presets": [{ "name": "t:schema.sections.commission_form" }]
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:schema.sections.commission_form"
+    }
+  ]
 }
 {% endschema %}
