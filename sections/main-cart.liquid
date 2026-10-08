@@ -1,4 +1,4 @@
-<section class="cart page-width">
+<section class="cart page-width" data-cart-section="{{ section.id }}">
   <h1>{{ 'cart.general.title' | t }} ({{ cart.item_count }})</h1>
   {%- if cart.item_count > 0 -%}
     <form class="cart-form" action="{{ routes.cart_url }}" method="post">
@@ -13,7 +13,7 @@
               <div class="cart-line__controls">
                 <div class="quantity" data-quantity>
                   <button type="button" data-quantity-action="decrease" aria-label="{{ 'accessibility.decrease_quantity' | t }}">−</button>
-                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.product.quantity' | t }}">
+                  <input type="number" name="updates[]" data-cart-key="{{ item.key | escape }}" value="{{ item.quantity }}" min="0" aria-label="{{ 'products.product.quantity' | t }}">
                   <button type="button" data-quantity-action="increase" aria-label="{{ 'accessibility.increase_quantity' | t }}">+</button>
                 </div>
                 <a class="text-link" href="{{ item.url_to_remove }}">{{ 'cart.general.remove' | t }}</a>

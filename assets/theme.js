@@ -21,6 +21,50 @@ document.addEventListener('click', event => {
   input.dispatchEvent(new Event('change', { bubbles: true }))
 })
 
+let cartUpdateTimer
+let cartUpdateInFlight = false
+let cartUpdatePending = false
+const updateCartQuantities = async () => {
+  if (cartUpdateInFlight) { cartUpdatePending = true; return }
+  const section = document.querySelector('[data-cart-section]')
+  const form = section?.querySelector('.cart-form')
+  if (!form || !form.checkValidity()) return
+  cartUpdateInFlight = true
+  section.setAttribute('aria-busy', 'true')
+  try {
+    const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart/update.js`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({
+        updates: Object.fromEntries([...form.querySelectorAll('[name="updates[]"]')].map(input => [input.dataset.cartKey, Number(input.value)])),
+        sections: [section.dataset.cartSection],
+        sections_url: window.location.pathname
+      })
+    })
+    const cart = await response.json()
+    if (!response.ok) throw new Error(cart.description || cart.message)
+    if (!cartUpdatePending) {
+      const html = cart.sections?.[section.dataset.cartSection]
+      const replacement = html && new DOMParser().parseFromString(html, 'text/html').querySelector('[data-cart-section]')
+      if (!replacement) { window.location.reload(); return }
+      section.replaceWith(replacement)
+      document.querySelectorAll('[data-cart-count]').forEach(link => { link.textContent = link.dataset.cartLabel.replace('[count]', cart.item_count) })
+    }
+  } catch {
+    form.requestSubmit(form.querySelector('[name="update"]'))
+  } finally {
+    section.removeAttribute('aria-busy')
+    cartUpdateInFlight = false
+    if (cartUpdatePending) { cartUpdatePending = false; updateCartQuantities() }
+  }
+}
+document.addEventListener('change', event => {
+  if (!event.target.matches('.cart-form [name="updates[]"]')) return
+  clearTimeout(cartUpdateTimer)
+  if (cartUpdateInFlight) cartUpdatePending = true
+  cartUpdateTimer = setTimeout(updateCartQuantities, 350)
+})
+
 document.querySelectorAll('[data-product-root]').forEach(root => {
   const variants = JSON.parse(root.querySelector('[data-variants-json]')?.textContent || '[]')
   const master = root.querySelector('[name="id"]')
