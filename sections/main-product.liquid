@@ -12,7 +12,17 @@
   if product.tags contains 'original'
     assign is_original = true
   endif
-  if product.tags contains 'digital'
+  if template.suffix == 'digital'
+    assign is_digital = true
+  elsif product_type_lower contains 'digital'
+    assign is_digital = true
+  elsif product_type_lower contains 'descarga'
+    assign is_digital = true
+  elsif product.tags contains 'digital'
+    assign is_digital = true
+  elsif product.tags contains 'descargas'
+    assign is_digital = true
+  elsif current_variant.requires_shipping == false
     assign is_digital = true
   endif
   if product_type_lower contains 'tarjet'
@@ -26,7 +36,7 @@
   endif
 -%}
 
-<section class="product page-width" data-product-root data-poster="{{ is_poster }}" data-cards="{{ is_cards }}" data-poster-discount="1000000" data-selection-label="{{ 'products.product.selection_total' | t: count: '[count]' }}" data-savings-label="{{ 'cart.general.savings' | t }}" data-per-card-label="{{ 'products.product.per_card' | t }}" data-card-count-label="{{ 'products.product.cards_total' | t: count: '[count]' }}" data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_shopping_cart' | t }}">
+<section class="product page-width" data-product-root data-digital="{{ is_digital }}" data-poster="{{ is_poster }}" data-cards="{{ is_cards }}" data-poster-discount="1000000" data-selection-label="{{ 'products.product.selection_total' | t: count: '[count]' }}" data-savings-label="{{ 'cart.general.savings' | t }}" data-per-card-label="{{ 'products.product.per_card' | t }}" data-card-count-label="{{ 'products.product.cards_total' | t: count: '[count]' }}" data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_shopping_cart' | t }}">
   <div class="product-gallery-shell" style="--mobile-image-zoom: {{ section.settings.mobile_image_zoom | default: 100 | divided_by: 100.0 }}; --mobile-image-fit: {{ section.settings.mobile_image_fit | default: 'contain' }}">
   <div id="ProductGallery-{{ section.id }}" class="product-gallery" tabindex="0" aria-label="{{ product.title | escape }}">
     {%- if product.media.size > 0 -%}
@@ -139,7 +149,7 @@
       </div>
     {%- endform -%}
 
-    {%- unless is_original or is_cards or is_digital -%}<p class="muted">{{ 'products.product.poster_pair_note' | t }}</p>{%- endunless -%}
+    {%- if is_poster and is_digital == false -%}<p class="muted">{{ 'products.product.poster_pair_note' | t }}</p>{%- endif -%}
 
     <dl class="product-details">
       {%- if product.metafields.custom.dimensions.value != blank -%}<div><dt>{{ 'product_details.dimensions' | t }}</dt><dd>{{ product.metafields.custom.dimensions.value }}</dd></div>{%- endif -%}
@@ -170,6 +180,7 @@
 </section>
 
 {% stylesheet %}
+  .product[data-digital="true"] .product-gallery__item img { object-fit: contain; transform: none; }
   .option-grid.card-pack-list { grid-template-columns: minmax(0, 1fr); }
   .card-pack-details { min-width: 0; }
   .card-pack-option .card-pack-quantity { font-size: 1.35rem; line-height: 1.25; }
@@ -197,6 +208,7 @@
     .product-gallery__item { flex: 0 0 92%; min-width: 0; overflow: hidden; scroll-snap-align: start; }
     .product-gallery__item:only-child { flex-basis: 100%; }
     .product-gallery-shell .product-gallery__item img { aspect-ratio: 4/5; object-fit: var(--mobile-image-fit); transform: scale(var(--mobile-image-zoom)); }
+    .product[data-digital="true"] .product-gallery__item img { object-fit: contain; transform: none; }
     .product-gallery__item video, .product-gallery__item iframe, .product-gallery__item model-viewer { width: 100%; height: 100%; aspect-ratio: 4/5; }
     .product-gallery-controls { display: flex; align-items: center; justify-content: center; gap: 12px; padding-top: 8px; flex-wrap: wrap; }
     .product-gallery-controls button { width: 44px; height: 44px; border: 1px solid var(--ink-muted); background: transparent; font-size: 1.2rem; }
