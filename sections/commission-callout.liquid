@@ -19,6 +19,11 @@
   </div>
 </section>
 
+{% stylesheet %}
+  .commission-callout__media { position: relative; overflow: hidden; container-type: size; min-height: 420px; }
+  .commission-callout__media img { position: absolute; top: 50%; left: 50%; width: 100cqh; height: 100cqw; max-width: none; object-fit: cover; transform: translate(-50%, -50%) rotate(90deg); }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:schema.sections.commission_callout",
