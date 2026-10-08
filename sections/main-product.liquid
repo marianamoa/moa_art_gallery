@@ -82,7 +82,7 @@
                 {%- for value in option.values -%}
                   <div class="option-card">
                     <input id="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}" type="radio" name="option{{ option.position }}" value="{{ value | escape }}" data-option-input{% if option.selected_value == value %} checked{% endif %}>
-                    <label for="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}">{{ value }}
+                    <label{% if is_cards and option.position == 1 %} class="card-pack-option"{% endif %} for="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}"><span class="card-pack-details">{{ value }}
                       {%- if is_cards and option.position == 1 -%}
                         {%- assign card_option_name = value.name | default: value | append: '' -%}
                         {%- assign card_variant = value.variant -%}
@@ -96,6 +96,10 @@
                           <span class="card-option-price">{% render 'money', amount: unit_price %} {{ 'products.product.per_card' | t }}</span>
                           {%- if card_savings > 0 -%}<span class="card-option-price">{{ 'cart.general.savings' | t }} {% render 'money', amount: card_savings %}</span>{%- endif -%}
                         {%- endif -%}
+                      {%- endif -%}
+                      </span>
+                      {%- if is_cards and option.position == 1 and card_variant != blank -%}
+                        <strong class="card-pack-total" data-card-pack-total data-pack-price="{{ card_variant.price }}">{% render 'money', amount: card_variant.price %}</strong>
                       {%- endif -%}
                     </label>
                   </div>
@@ -124,10 +128,9 @@
         </div>
       {%- endunless -%}
 
-      {%- if is_poster or is_cards -%}
+      {%- if is_poster -%}
         <div class="product-selection-summary" aria-live="polite" aria-atomic="true">
           <p class="meta" data-selection-total>{{ 'products.product.selection_total' | t: count: 1 }}</p>
-          {%- if is_cards -%}<p data-card-unit></p><p data-card-count></p>{%- endif -%}
           <strong class="price-large" data-selection-price>{% render 'money', amount: current_variant.price %}</strong>
           <p class="meta" data-selection-savings hidden></p>
         </div>
@@ -173,6 +176,8 @@
 </section>
 
 {% stylesheet %}
+  .option-card label.card-pack-option { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1rem; }
+  .card-pack-total { font-family: var(--font-heading); font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 400; text-align: right; line-height: 1.2; }
   .card-option-price { display: block; font-size: .8rem; font-weight: 400; margin-top: .35rem; }
   .product-selection-summary { margin-block: 1rem; padding: 1rem; border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); background: var(--paper-deep); }
   .product-selection-summary p { margin: 0 0 .5rem; }

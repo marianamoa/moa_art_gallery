@@ -87,9 +87,14 @@ document.querySelectorAll('[data-product-root]').forEach(root => {
     if (isCards && variant.cardCount > 0) {
       const reference = variants.filter(item => item.cardCount > 0).sort((a, b) => a.cardCount - b.cardCount)[0];
       savingsAmount = Math.max(0, Math.round((reference.price / reference.cardCount * variant.cardCount - variant.price) * quantity));
-      root.querySelector('[data-card-unit]').textContent = `${money(variant.price / variant.cardCount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale)} ${root.dataset.perCardLabel}`;
-      root.querySelector('[data-card-count]').textContent = root.dataset.cardCountLabel.replace('[count]', variant.cardCount * quantity);
+      const cardUnit = root.querySelector('[data-card-unit]');
+      if (cardUnit) cardUnit.textContent = `${money(variant.price / variant.cardCount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale)} ${root.dataset.perCardLabel}`;
+      const cardCount = root.querySelector('[data-card-count]');
+      if (cardCount) cardCount.textContent = root.dataset.cardCountLabel.replace('[count]', variant.cardCount * quantity);
     }
+    root.querySelectorAll('[data-card-pack-total]').forEach(total => {
+      total.textContent = money(Number(total.dataset.packPrice) * quantity, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale);
+    });
     const selectionPrice = root.querySelector('[data-selection-price]');
     if (selectionPrice) selectionPrice.textContent = money(subtotal - discount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale);
     const label = root.querySelector('[data-selection-total]');
