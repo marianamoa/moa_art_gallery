@@ -1,12 +1,22 @@
 <section class="section commission-page" aria-labelledby="CommissionFormTitle-{{ section.id }}">
   <div class="page-width">
-    <header class="page-header">
+    <header class="page-header commission-header">
+      <div class="commission-header__copy">
       <p class="eyebrow">{{ section.settings.eyebrow }}</p>
       <h1 id="CommissionFormTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
       <div class="lead rte">{{ section.settings.intro }}</div>
       <div class="lead rte commission-contact-copy">{{ section.settings.contact_text }}</div>
       {%- assign commission_contact_url = section.settings.contact_link | default: pages.contact.url -%}
       {%- if commission_contact_url != blank -%}<a class="button button--primary commission-contact-cta" href="{{ commission_contact_url }}">{{ section.settings.contact_label | escape }}</a>{%- endif -%}
+      </div>
+      <div class="commission-header__examples">
+        {%- assign commission_examples_alt = 'commissions.examples_alt' | t -%}
+        {%- if section.settings.header_examples -%}
+          {{ section.settings.header_examples | image_url: width: 1536 | image_tag: loading: 'eager', widths: '480, 768, 1200, 1536', sizes: '(min-width: 990px) 45vw, 100vw', alt: commission_examples_alt }}
+        {%- else -%}
+          <img src="{{ 'commission-examples.png' | asset_url }}" width="1536" height="1024" loading="eager" alt="{{ commission_examples_alt | escape }}">
+        {%- endif -%}
+      </div>
     </header>
 
     <div class="commission-form" data-commission-calculator data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-timeline-label="{{ 'commissions.ready_in' | t: count: '[count]' }}">
@@ -164,6 +174,11 @@
       "type": "image_picker",
       "id": "detail_example",
       "label": "Ejemplo de niveles de detalle"
+    },
+    {
+      "type": "image_picker",
+      "id": "header_examples",
+      "label": "Imagen de ejemplos de encargos"
     }
   ],
   "blocks": [
