@@ -42,7 +42,7 @@
     <nav class="site-header__actions" aria-label="{{ 'header.secondary_navigation' | t }}">
       {%- if commission_link != blank -%}<a class="commission-link" href="{{ commission_link }}">{{ section.settings.commission_label }}</a>{%- endif -%}
       <a class="search-link" href="{{ routes.search_url }}">{{ 'general.search.title' | t }}</a>
-      <a href="{{ routes.cart_url }}" data-cart-count data-cart-label="{{ 'header.cart' | t: count: '[count]' }}">{{ 'header.cart' | t: count: cart.item_count }}</a>
+      <a href="{{ routes.cart_url }}" data-cart-count data-cart-label="{{ 'header.shopping_cart' | t: count: '[count]' }}">{{ 'header.shopping_cart' | t: count: cart.item_count }}</a>
     </nav>
   </div>
 </header>

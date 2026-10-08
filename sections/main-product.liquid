@@ -16,7 +16,7 @@
   endif
 -%}
 
-<section class="product page-width" data-product-root data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_cart' | t }}">
+<section class="product page-width" data-product-root data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_shopping_cart' | t }}">
   <div class="product-gallery" aria-label="{{ product.title | escape }}">
     {%- if product.media.size > 0 -%}
       {%- for media in product.media -%}
@@ -85,14 +85,14 @@
         </div>
       {%- endunless -%}
 
-      <button class="button button--primary product-form__submit" type="submit" data-product-submit data-add-label="{{ 'products.product.add_to_cart' | t }}" data-sold-label="{{ 'products.product.sold_out' | t }}"{% unless current_variant.available %} disabled{% endunless %}>
-        <span>{% if current_variant.available %}{{ 'products.product.add_to_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
+      <button class="button button--primary product-form__submit" type="submit" data-product-submit data-add-label="{{ 'products.product.add_to_shopping_cart' | t }}" data-sold-label="{{ 'products.product.sold_out' | t }}"{% unless current_variant.available %} disabled{% endunless %}>
+        <span>{% if current_variant.available %}{{ 'products.product.add_to_shopping_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
       </button>
       <p class="form-message" data-product-message role="status" hidden></p>
       {%- if section.settings.show_dynamic_checkout and current_variant.available -%}{{ form | payment_button }}{%- endif -%}
     {%- endform -%}
 
-    {%- unless is_original or is_cards or is_digital -%}<p class="muted">{{ 'products.product.pair_note' | t }}</p>{%- endunless -%}
+    {%- unless is_original or is_cards or is_digital -%}<p class="muted">{{ 'products.product.poster_pair_note' | t }}</p>{%- endunless -%}
 
     <dl class="product-details">
       {%- if product.metafields.custom.dimensions.value != blank -%}<div><dt>{{ 'product_details.dimensions' | t }}</dt><dd>{{ product.metafields.custom.dimensions.value }}</dd></div>{%- endif -%}
