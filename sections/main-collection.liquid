@@ -6,7 +6,9 @@
       {%- if collection.description != blank -%}<div class="lead rte">{{ collection.description }}</div>{%- endif -%}
       {%- if collection.handle == 'afiches' and section.settings.editions_discount != blank -%}<div class="rte collection-discount">{{ section.settings.editions_discount }}</div>{%- endif -%}
     </div>
-    <p class="meta">{{ 'collections.general.products_count' | t: count: collection.products_count }}</p>
+    {%- unless collection.handle == 'afiches' -%}
+      <p class="meta">{{ 'collections.general.products_count' | t: count: collection.products_count }}</p>
+    {%- endunless -%}
   </header>
 
   {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
