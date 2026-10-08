@@ -38,7 +38,7 @@
   "contact": { "form": {
       "email_heading": "Send me an email",
       "email_help": "Fill out this form and I’ll reply to the email address you provide.",
-      "whatsapp_heading": "Prefer WhatsApp?",
+      "whatsapp_heading": "Message me on WhatsApp",
       "whatsapp_help": "You can also message me directly on WhatsApp.",
 
       "write_email": "Email me",
