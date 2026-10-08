@@ -36,7 +36,7 @@
       "settings": {
         "eyebrow": "Ediciones cortas",
         "heading": "Ediciones limitadas",
-        "collection": "ediciones",
+        "collection": "afiches",
         "products_to_show": 4,
         "link_label": "Elegir una edición",
         "deep_background": true
