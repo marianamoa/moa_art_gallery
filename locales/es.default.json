@@ -130,6 +130,8 @@
   },
   "contact": {
     "form": {
+      "write_email": "Escribir por correo",
+      "write_whatsapp": "Escribir por WhatsApp",
       "name": "Nombre",
       "email": "Correo",
       "message": "Cuéntame algo que deba saber",
