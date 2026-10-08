@@ -16,7 +16,13 @@
   if product.tags contains 'digital'
     assign is_digital = true
   endif
-  if product.tags contains 'cards' or product.tags contains 'tarjetas' or product_type_lower == 'tarjetas' or template.suffix == 'cards'
+  if product_type_lower contains 'tarjet'
+    assign is_cards = true
+  elsif product.handle contains 'tarjeta'
+    assign is_cards = true
+  elsif template.suffix == 'cards'
+    assign is_cards = true
+  elsif product.tags contains 'cards'
     assign is_cards = true
   endif
 -%}
@@ -78,8 +84,10 @@
                     <input id="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}" type="radio" name="option{{ option.position }}" value="{{ value | escape }}" data-option-input{% if option.selected_value == value %} checked{% endif %}>
                     <label for="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}">{{ value }}
                       {%- if is_cards and option.position == 1 -%}
-                        {%- assign card_variant = product.variants | where: 'option1', value | first -%}
-                        {%- assign card_count = value | plus: 0 -%}
+                        {%- assign card_option_name = value.name | default: value | append: '' -%}
+                        {%- assign card_variant = value.variant -%}
+                        {%- if card_variant == blank -%}{%- assign card_variant = product.variants | where: 'option1', card_option_name | first -%}{%- endif -%}
+                        {%- assign card_count = card_option_name | plus: 0 -%}
                         {%- assign base_card_count = product.variants.first.option1 | plus: 0 -%}
                         {%- if card_count > 0 and base_card_count > 0 -%}
                           {%- assign unit_price = card_variant.price | divided_by: card_count -%}
