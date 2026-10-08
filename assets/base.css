@@ -318,3 +318,7 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
 .commission-page:has(.commission-photos-screen) .commission-header,.commission-page:has(.commission-photos-screen) .commission-summary{display:none}
 .commission-page:has(.commission-photos-screen) .commission-form{display:block;max-width:760px;margin-inline:auto}
 .commission-photos-screen{outline:none;border-top:0}
+
+.commission-header__copy{text-align:center}
+.commission-page .commission-header__copy .lead{margin-inline:auto}
+.commission-photos-screen>h2,.commission-photos-screen>p{text-align:center}

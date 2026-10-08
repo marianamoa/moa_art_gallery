@@ -87,7 +87,7 @@
           <div class="commission-step commission-photos-screen" tabindex="-1">
             <h2>{{ 'contact.form.photos' | t }}</h2>
             <p role="status">{{ 'commissions.flow_saved' | t }}</p>
-            <p>{{ 'commissions.flow_match_email' | t }}</p>
+            <p><strong>{{ 'commissions.flow_match_email' | t }}</strong></p>
             <p class="meta" data-commission-email></p>
             <p class="label">{{ 'commissions.upload_app' | t }}</p>
             {%- for block in section.blocks -%}{%- render block -%}{%- endfor -%}
