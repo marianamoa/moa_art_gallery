@@ -108,3 +108,17 @@ document.addEventListener('submit', async event => {
     submit.disabled = false
   }
 })
+
+const commissionContact = document.getElementById('CommissionContactForm')
+commissionContact?.addEventListener('submit', () => {
+  if (!commissionContact.checkValidity()) return
+  try { sessionStorage.setItem('commissionEmail', commissionContact.querySelector('[name="contact[email]"]').value.trim()) } catch {}
+})
+const commissionPhotos = document.querySelector('.commission-photos-screen')
+if (commissionPhotos) {
+  try {
+    const email = sessionStorage.getItem('commissionEmail')
+    if (email) commissionPhotos.querySelector('[data-commission-email]').textContent = email
+  } catch {}
+  commissionPhotos.focus()
+}

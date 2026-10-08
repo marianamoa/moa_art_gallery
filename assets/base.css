@@ -314,3 +314,7 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
   .commission-header{grid-template-columns:1fr;gap:1rem}
   .commission-header__examples{justify-self:end;width:min(100%,300px)}
 }
+
+.commission-page:has(.commission-photos-screen) .commission-header,.commission-page:has(.commission-photos-screen) .commission-summary{display:none}
+.commission-page:has(.commission-photos-screen) .commission-form{display:block;max-width:760px;margin-inline:auto}
+.commission-photos-screen{outline:none;border-top:0}

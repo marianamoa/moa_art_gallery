@@ -21,7 +21,10 @@
 
     <div class="commission-form" data-commission-calculator data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-timeline-label="{{ 'commissions.ready_in' | t: count: '[count]' }}">
       <div>
+        {%- assign commission_sent = false -%}
         {% form 'contact', id: 'CommissionContactForm' %}
+          {%- assign commission_sent = form.posted_successfully? -%}
+          {%- unless form.posted_successfully? -%}
           {%- if form.posted_successfully? -%}<p class="form-message" role="status">{{ 'contact.form.success' | t }}</p>{%- endif -%}
           {%- if form.errors -%}<div class="form-message" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
 
@@ -65,22 +68,27 @@
           </section>
 
           <section class="commission-step">
-            <div class="commission-step__heading"><span class="meta">04</span><h2>{{ 'contact.form.photos' | t }}</h2></div>
-            <p class="muted">{{ 'commissions.photo_note' | t }}</p>
+            <div class="commission-step__heading"><span class="meta">04</span><h2>{{ 'commissions.flow_information' | t }}</h2></div>
+            <p class="muted">{{ 'commissions.flow_info_note' | t }}</p>
             <div class="field"><label class="label" for="CommissionName">{{ 'contact.form.name' | t }}</label><input id="CommissionName" type="text" name="contact[name]" autocomplete="name" required></div>
             <div class="field"><label class="label" for="CommissionEmail">{{ 'contact.form.email' | t }}</label><input id="CommissionEmail" type="email" name="contact[email]" autocomplete="email" required></div>
+            <div class="field"><label class="label" for="CommissionWhatsApp">{{ 'commissions.flow_whatsapp' | t }}</label><input id="CommissionWhatsApp" type="tel" name="contact[WhatsApp]" autocomplete="tel"></div>
             <div class="field"><label class="label" for="CommissionBody">{{ 'contact.form.message' | t }}</label><textarea id="CommissionBody" name="contact[body]"></textarea></div>
             <input type="hidden" name="contact[Tamaño]" data-hidden-size>
             <input type="hidden" name="contact[Número de elementos]" data-hidden-subjects>
             <input type="hidden" name="contact[Nivel de detalle]" data-hidden-finish>
             <input type="hidden" name="contact[Presupuesto estimado]" data-hidden-estimate>
-            <button class="button button--primary" type="submit">{{ 'commissions.send_details' | t }}</button>
-            <p class="muted">{{ 'commissions.next_step' | t }}</p>
+            <button class="button button--primary" type="submit">{{ 'commissions.flow_continue' | t }}</button>
           </section>
+          {%- endunless -%}
         {% endform %}
 
-        {%- if section.blocks.size > 0 -%}
-          <div class="commission-step">
+        {%- if commission_sent and section.blocks.size > 0 -%}
+          <div class="commission-step commission-photos-screen" tabindex="-1">
+            <h2>{{ 'contact.form.photos' | t }}</h2>
+            <p role="status">{{ 'commissions.flow_saved' | t }}</p>
+            <p>{{ 'commissions.flow_match_email' | t }}</p>
+            <p class="meta" data-commission-email></p>
             <p class="label">{{ 'commissions.upload_app' | t }}</p>
             {%- for block in section.blocks -%}{%- render block -%}{%- endfor -%}
           </div>
