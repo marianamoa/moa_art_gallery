@@ -20,9 +20,26 @@
 </section>
 
 {% stylesheet %}
-  .commission-callout__media { position: relative; overflow: hidden; container-type: size; min-height: 420px; }
-  .commission-callout__media img { position: absolute; top: 50%; left: 50%; width: 100cqh; height: 100cqw; max-width: none; object-fit: cover; transform: translate(-50%, -50%) rotate(90deg); }
+  .commission-callout__media { position: relative; overflow: hidden; min-height: 420px; }
+  .commission-callout__media img { position: absolute; top: 50%; left: 50%; width: var(--rotated-image-width, 100%); height: var(--rotated-image-height, 100%); max-width: none; object-fit: cover; transform: translate(-50%, -50%) rotate(90deg); }
 {% endstylesheet %}
+
+{% javascript %}
+  function sizeCommissionImages(root = document) {
+    root.querySelectorAll('.commission-callout__media').forEach(media => {
+      if (media.dataset.rotationReady) return;
+      media.dataset.rotationReady = 'true';
+      const resizeImage = () => {
+        media.style.setProperty('--rotated-image-width', `${media.clientHeight}px`);
+        media.style.setProperty('--rotated-image-height', `${media.clientWidth}px`);
+      };
+      resizeImage();
+      new ResizeObserver(resizeImage).observe(media);
+    });
+  }
+  sizeCommissionImages();
+  document.addEventListener('shopify:section:load', event => sizeCommissionImages(event.target));
+{% endjavascript %}
 
 {% schema %}
 {
