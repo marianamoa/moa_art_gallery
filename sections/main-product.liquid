@@ -69,12 +69,14 @@
         </div>
       {%- endunless -%}
 
-    <div class="stock-meter{% if current_inventory <= 5 %} low{% endif %}" data-stock-meter{% unless current_variant.inventory_management %} hidden{% endunless %}>
+      {%- unless is_original -%}
+      <div class="stock-meter{% if current_inventory <= 5 %} low{% endif %}" data-stock-meter{% unless current_variant.inventory_management %} hidden{% endunless %}>
         <p class="meta" data-stock-label>
-          {%- if edition_size -%}{{ 'products.product.remaining' | t: count: current_inventory, total: edition_size }}{%- elsif is_original -%}{{ 'products.product.original_remaining' | t: count: current_inventory }}{%- else -%}{{ current_inventory }}{%- endif -%}
+          {%- if edition_size -%}{{ 'products.product.remaining' | t: count: current_inventory, total: edition_size }}{%- else -%}{{ current_inventory }}{%- endif -%}
         </p>
         <div class="stock-meter__track"><span class="stock-meter__bar" data-stock-bar style="width:{% if edition_size %}{{ current_inventory | times: 100.0 | divided_by: edition_size | at_most: 100 }}{% else %}100{% endif %}%"></span></div>
       </div>
+      {%- endunless -%}
 
       {%- unless is_original or is_digital -%}
         <label class="label" for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
