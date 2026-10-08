@@ -18,6 +18,8 @@
     assign is_digital = true
   elsif product_type_lower contains 'descarga'
     assign is_digital = true
+  elsif product_type_lower contains 'download'
+    assign is_digital = true
   elsif product.tags contains 'digital'
     assign is_digital = true
   elsif product.tags contains 'descargas'
@@ -25,6 +27,11 @@
   elsif current_variant.requires_shipping == false
     assign is_digital = true
   endif
+  for product_collection in product.collections
+    if product_collection.handle contains 'descarga' or product_collection.handle contains 'download'
+      assign is_digital = true
+    endif
+  endfor
   if product_type_lower contains 'tarjet'
     assign is_cards = true
   elsif product.handle contains 'tarjeta'
