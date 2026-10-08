@@ -28,6 +28,14 @@
   .hero__overlay h1 { max-width: 13ch; margin: 0; color: #fff; text-shadow: 0 2px 12px rgba(0, 0, 0, .3); font-size: clamp(2.5rem, 5.5vw, 5.2rem); }
   .hero .hero__content { display: block; padding-block: 1.5rem 2rem; }
   .hero__copy p { margin-bottom: 1rem; }
+  @media (min-width: 991px) {
+    .hero.section { padding-bottom: 0; }
+    .hero .hero__content { padding-block: 1.5rem; }
+    .hero__copy { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding-bottom: 0; }
+    .hero__copy p { max-width: 48ch; margin: 0; flex: 1; }
+    .hero__copy .cluster { justify-content: flex-end; flex-shrink: 0; }
+    .shopify-section:has(> .hero) + .shopify-section > .section { padding-top: 2rem; }
+  }
   @media (max-width: 640px) {
     .hero__overlay h1 { font-size: clamp(2.3rem, 9vw, 3.5rem); }
   }
