@@ -1,4 +1,4 @@
 {
-  "sections": { "main": { "type": "contact-form", "settings": {} } },
+  "sections": { "main": { "type": "contact-form", "settings": { "contact_email": "marianaordonez04@gmail.com", "whatsapp_url": "https://w.app/v6xpin" } } },
   "order": ["main"]
 }
