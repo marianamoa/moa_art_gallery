@@ -62,12 +62,24 @@
         "text": "Suscríbete para conocer las nuevas obras antes de que estén disponibles en la tienda y recibir novedades.",
         "deep_background": true
       }
+    },
+    "cards": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Para regalar",
+        "heading": "Tarjetas",
+        "collection": "tarjetas",
+        "products_to_show": 4,
+        "link_label": "Ver todas las tarjetas",
+        "deep_background": false
+      }
     }
   },
   "order": [
     "hero",
     "originals",
     "editions",
+    "cards",
     "commissions",
     "newsletter"
   ]
