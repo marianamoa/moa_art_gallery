@@ -293,3 +293,5 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
   .commission-page .commission-summary__total{font-size:1.6rem}
   .commission-page .commission-summary>p:last-child{margin:.6rem 0 0;font-size:.78rem;line-height:1.4}
 }
+
+.choice-grid--sizes{grid-template-columns:repeat(2,minmax(0,1fr))}
