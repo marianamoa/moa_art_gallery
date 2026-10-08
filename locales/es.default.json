@@ -96,7 +96,7 @@
       "filter": "Filtrar",
       "sort": "Ordenar",
       "products_count": "{{ count }} piezas",
-      "cart_empty": "Todavía no hay obra en esta colección.",
+      "empty": "Todavía no hay obra en esta colección.",
       "remove_filter": "Quitar filtro {{ value }}",
       "clear": "Limpiar filtros"
     }
