@@ -6,12 +6,16 @@
         {%- if section.settings.tagline != blank -%}<p class="muted">{{ section.settings.tagline }}</p>{%- endif -%}
       </div>
       <nav aria-label="{{ 'footer.shop_navigation' | t }}">
-        {%- for link in section.settings.shop_menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
+        {%- for link in section.settings.shop_menu.links -%}
+          {%- if link.url contains '/collections/afiches' or link.url contains '/collections/ediciones' -%}{%- continue -%}{%- endif -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+        {%- endfor -%}
       </nav>
       <nav aria-label="{{ 'footer.information_navigation' | t }}">
         {%- assign has_instagram_link = false -%}
         {%- assign has_tiktok_link = false -%}
         {%- for link in section.settings.info_menu.links -%}
+          {%- if link.url contains '/collections/afiches' or link.url contains '/collections/ediciones' -%}{%- continue -%}{%- endif -%}
           {%- assign social_name = link.title | downcase | strip -%}
           {%- if social_name == 'instagram' -%}{%- assign has_instagram_link = true -%}{%- endif -%}
           {%- if social_name == 'tiktok' -%}{%- assign has_tiktok_link = true -%}{%- endif -%}
