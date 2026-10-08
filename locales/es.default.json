@@ -55,7 +55,7 @@
     "paper": "Papel",
     "shipping": "Envío"
   },
-  "commissions": {
+  "commissions": { "elements_question": "¿Qué quieres incluir?", "one_element": "1 elemento", "elements": "{{ count }} elementos", "four_plus_elements": "4+ elementos", "extra_from": "Desde +{{ price }}",
     "ready_in": "Lista en {{ count }} semanas",
     "subject": "protagonista",
     "loose": "Aguada suelta",
@@ -126,7 +126,7 @@
       "success": "He recibido tu solicitud. Te responderé en dos días laborables.",
       "no_payment": "Todavía no se cobra nada.",
       "size": "Tamaño",
-      "subjects": "Protagonistas",
+      "subjects": "Número de elementos",
       "finish": "Acabado",
       "photos": "Fotos",
       "estimate": "Presupuesto estimado",
