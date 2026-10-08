@@ -16,7 +16,7 @@
   if product.tags contains 'digital'
     assign is_digital = true
   endif
-  if product.tags contains 'cards'
+  if product.tags contains 'cards' or product.tags contains 'tarjetas' or product_type_lower == 'tarjetas' or template.suffix == 'cards'
     assign is_cards = true
   endif
 -%}
