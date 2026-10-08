@@ -81,6 +81,8 @@ document.querySelectorAll('[data-product-root]').forEach(root => {
     master.value = variant.id
     if (price) price.textContent = money(variant.price, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale)
     if (submit) submit.disabled = !variant.available
+    const buyNow = root.querySelector('[data-buy-now]')
+    if (buyNow) buyNow.disabled = !variant.available
     if (submitLabel) submitLabel.textContent = variant.available ? submit.dataset.addLabel : submit.dataset.soldLabel
     if (stock && variant.tracked) {
       const total = Number(variant.editionSize || 0)
@@ -136,12 +138,20 @@ document.addEventListener('submit', async event => {
   event.preventDefault()
   const root = form.closest('[data-product-root]')
   const submit = form.querySelector('[data-product-submit]')
+  const buyNow = form.querySelector('[data-buy-now]')
+  const goToCheckout = event.submitter?.matches('[data-buy-now]')
   const message = form.querySelector('[data-product-message]')
   submit.disabled = true
+  if (buyNow) buyNow.disabled = true
+  if (message) message.hidden = true
   try {
     const response = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
     const payload = await response.json()
     if (!response.ok) throw new Error(payload.description || payload.message)
+    if (goToCheckout) {
+      window.location.assign(`${window.Shopify?.routes?.root || '/'}checkout`)
+      return
+    }
     const cartResponse = await fetch(`${window.Shopify?.routes?.root || '/'}cart.js`)
     const cart = await cartResponse.json()
     document.querySelectorAll('[data-cart-count]').forEach(link => { link.textContent = link.dataset.cartLabel.replace('[count]', cart.item_count) })
@@ -150,6 +160,7 @@ document.addEventListener('submit', async event => {
     if (message) { message.textContent = error.message; message.hidden = false }
   } finally {
     submit.disabled = false
+    if (buyNow) buyNow.disabled = false
   }
 })
 
