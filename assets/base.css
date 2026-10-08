@@ -309,7 +309,7 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
 .commission-detail-example img{width:100%;height:auto}
 
 .commission-header{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);align-items:center}
-.commission-header__examples img{width:100%;height:auto;max-height:360px;object-fit:contain}
+.commission-header__examples img{width:100%;height:auto;max-height:360px;object-fit:contain;border-radius:5px}
 @media (max-width:990px){
   .commission-header{grid-template-columns:1fr;gap:1rem}
   .commission-header__examples img{max-height:200px}
