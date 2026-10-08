@@ -2,14 +2,14 @@
   <header class="collection-hero">
     <div>
       <p class="eyebrow">{{ collection.title }}</p>
-      <h1><span class="collection-heading--desktop">{{ section.settings.heading | default: collection.title }}</span><span class="collection-heading--mobile">{{ collection.title }}</span></h1>
+      <h1>{{ collection.title }}</h1>
       {%- if collection.description != blank -%}<div class="lead rte">{{ collection.description }}</div>{%- endif -%}
     </div>
     <p class="meta">{{ 'collections.general.products_count' | t: count: collection.products_count }}</p>
   </header>
 
   {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
-    <details class="facets collection-tools" open>
+    <details class="facets collection-tools">
       <summary class="collection-tools__toggle">{{ 'collections.general.filter' | t }} · {{ 'collections.general.sort' | t }}</summary>
       <form id="CollectionFilters" action="{{ collection.url }}" method="get">
         <div class="facets__groups">

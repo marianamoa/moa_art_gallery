@@ -102,13 +102,3 @@ document.addEventListener('submit', async event => {
     submit.disabled = false
   }
 })
-
-const collectionMobileLayout = window.matchMedia('(max-width: 640px)')
-const updateCollectionTools = () => {
-  document.querySelectorAll('.collection-tools').forEach(tools => {
-    tools.open = !collectionMobileLayout.matches
-  })
-}
-updateCollectionTools()
-collectionMobileLayout.addEventListener('change', updateCollectionTools)
-document.addEventListener('shopify:section:load', updateCollectionTools)
