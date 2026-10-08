@@ -65,6 +65,12 @@ document.querySelectorAll('[data-commission-calculator]').forEach(root => {
     const subjects = root.querySelector('[name="commission_subjects"]:checked')
     const finish = root.querySelector('[name="commission_finish"]:checked')
     if (!size || !subjects || !finish) return
+    root.querySelectorAll('[name="commission_finish"][data-price-small]').forEach(option => {
+      const additionalPrice = size.dataset.detailSize === 'large' ? option.dataset.priceLarge : option.dataset.priceSmall
+      option.dataset.price = additionalPrice
+      const label = option.closest('.choice').querySelector('[data-detail-price]')
+      if (label) label.textContent = `+${money(Number(additionalPrice), root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale)}`
+    })
     const total = Number(size.dataset.price) + Number(subjects.dataset.price) + Number(finish.dataset.price)
     const weeks = Math.max(Number(size.dataset.weeks), Number(finish.dataset.weeks))
     if (output) output.textContent = money(total, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale)

@@ -15,8 +15,8 @@
           <section class="commission-step">
             <div class="commission-step__heading"><span class="meta">01</span><h2>{{ 'contact.form.size' | t }}</h2></div>
             <div class="choice-grid choice-grid--sizes">
-              <div class="choice"><input id="SizeA5" type="radio" name="commission_size" value="12,5 × 18 cm" data-price="{{ section.settings.a5_price }}" data-weeks="2" checked><label for="SizeA5">12,5 × 18 cm<small> {% render 'money', amount: section.settings.a5_price %}</small></label></div>
-              <div class="choice"><input id="SizeA4" type="radio" name="commission_size" value="22,9 × 30,5 cm" data-price="{{ section.settings.a4_price }}" data-weeks="3"><label for="SizeA4">22,9 × 30,5 cm<small> {% render 'money', amount: section.settings.a4_price %}</small></label></div>
+              <div class="choice"><input id="SizeA5" type="radio" name="commission_size" value="12,5 × 18 cm" data-detail-size="small" data-price="{{ section.settings.a5_price }}" data-weeks="2" checked><label for="SizeA5">12,5 × 18 cm<small> {% render 'money', amount: section.settings.a5_price %}</small></label></div>
+              <div class="choice"><input id="SizeA4" type="radio" name="commission_size" value="22,9 × 30,5 cm" data-detail-size="large" data-price="{{ section.settings.a4_price }}" data-weeks="3"><label for="SizeA4">22,9 × 30,5 cm<small> {% render 'money', amount: section.settings.a4_price %}</small></label></div>
             </div>
           </section>
 
@@ -37,9 +37,9 @@
           <section class="commission-step">
             <div class="commission-step__heading"><span class="meta">03</span><h2>{{ 'contact.form.finish' | t }}</h2></div>
             <div class="choice-grid">
-              <div class="choice"><input id="FinishLoose" type="radio" name="commission_finish" value="Aguada suelta" data-price="0" data-weeks="2" checked><label for="FinishLoose">{{ 'commissions.loose' | t }}<small>{{ 'commissions.included' | t }}</small></label></div>
-              <div class="choice"><input id="FinishBalanced" type="radio" name="commission_finish" value="Equilibrado" data-price="{{ section.settings.balanced_price }}" data-weeks="3"><label for="FinishBalanced">{{ 'commissions.balanced' | t }}<small>+{% render 'money', amount: section.settings.balanced_price %}</small></label></div>
-              <div class="choice"><input id="FinishFine" type="radio" name="commission_finish" value="Detalle fino" data-price="{{ section.settings.fine_price }}" data-weeks="4"><label for="FinishFine">{{ 'commissions.fine' | t }}<small>+{% render 'money', amount: section.settings.fine_price %}</small></label></div>
+              <div class="choice"><input id="FinishLoose" type="radio" name="commission_finish" value="Esencial" data-price="0" data-weeks="2" checked><label for="FinishLoose">{{ 'commissions.loose' | t }}<small>{{ 'commissions.included' | t }}</small></label></div>
+              <div class="choice"><input id="FinishBalanced" type="radio" name="commission_finish" value="Detallado" data-price="{{ section.settings.balanced_price }}" data-price-small="{{ section.settings.balanced_price }}" data-price-large="{{ section.settings.balanced_large_price }}" data-weeks="3"><label for="FinishBalanced">{{ 'commissions.balanced' | t }}<small data-detail-price>+{% render 'money', amount: section.settings.balanced_price %}</small></label></div>
+              <div class="choice"><input id="FinishFine" type="radio" name="commission_finish" value="Minucioso" data-price="{{ section.settings.fine_price }}" data-price-small="{{ section.settings.fine_price }}" data-price-large="{{ section.settings.fine_large_price }}" data-weeks="4"><label for="FinishFine">{{ 'commissions.fine' | t }}<small data-detail-price>+{% render 'money', amount: section.settings.fine_price %}</small></label></div>
             </div>
           </section>
 
@@ -51,7 +51,7 @@
             <div class="field"><label class="label" for="CommissionBody">{{ 'contact.form.message' | t }}</label><textarea id="CommissionBody" name="contact[body]"></textarea></div>
             <input type="hidden" name="contact[Tamaño]" data-hidden-size>
             <input type="hidden" name="contact[Número de elementos]" data-hidden-subjects>
-            <input type="hidden" name="contact[Acabado]" data-hidden-finish>
+            <input type="hidden" name="contact[Nivel de detalle]" data-hidden-finish>
             <input type="hidden" name="contact[Presupuesto estimado]" data-hidden-estimate>
             <button class="button button--primary" type="submit">{{ 'commissions.send_details' | t }}</button>
             <p class="muted">{{ 'commissions.next_step' | t }}</p>
@@ -87,8 +87,10 @@
     { "type": "number", "id": "a5_price", "label": "Precio de 12,5 × 18 cm", "default": 25000000 },
     { "type": "number", "id": "a4_price", "label": "Precio de 22,9 × 30,5 cm", "default": 40000000 },
     { "type": "number", "id": "extra_subject_price", "label": "Precio por elemento adicional", "default": 3000000 },
-    { "type": "number", "id": "balanced_price", "label": "Balanced finish", "default": 1200000 },
-    { "type": "number", "id": "fine_price", "label": "Fine detail finish", "default": 2800000 }
+    { "type": "number", "id": "balanced_price", "label": "Detallado · pequeño", "default": 6000000 },
+    { "type": "number", "id": "fine_price", "label": "Minucioso · pequeño", "default": 12000000 },
+    { "type": "number", "id": "balanced_large_price", "label": "Detallado · grande", "default": 9000000 },
+    { "type": "number", "id": "fine_large_price", "label": "Minucioso · grande", "default": 18000000 }
   ],
   "blocks": [{ "type": "@app" }],
   "presets": [{ "name": "t:schema.sections.commission_form" }]
