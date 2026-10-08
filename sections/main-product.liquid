@@ -78,7 +78,7 @@
           {%- for option in product.options_with_values -%}
             <fieldset>
               <legend class="label">{{ 'products.product.choose_option' | t: option: option.name }}</legend>
-              <div class="option-grid">
+              <div class="option-grid{% if is_cards and option.position == 1 %} card-pack-list{% endif %}">
                 {%- for value in option.values -%}
                   <div class="option-card">
                     <input id="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}" type="radio" name="option{{ option.position }}" value="{{ value | escape }}" data-option-input{% if option.selected_value == value %} checked{% endif %}>
@@ -178,6 +178,8 @@
 </section>
 
 {% stylesheet %}
+  .option-grid.card-pack-list { grid-template-columns: minmax(0, 1fr); }
+  .card-pack-details { min-width: 0; }
   .option-card label.card-pack-option { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1rem; }
   .card-pack-total { font-family: var(--font-heading); font-size: clamp(1.2rem, 2vw, 1.7rem); font-weight: 400; text-align: right; line-height: 1.2; }
   .card-option-price { display: block; font-size: .8rem; font-weight: 400; margin-top: .35rem; }
