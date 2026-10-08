@@ -1,4 +1,26 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "sections": { "main": { "type": "contact-form", "settings": { "contact_email": "marianaordonez04@gmail.com", "whatsapp_url": "https://w.app/v6xpin" } } },
-  "order": ["main"]
+  "sections": {
+    "main": {
+      "type": "contact-form",
+      "settings": {
+        "contact_email": "marianaordonez04@gmail.com",
+        "whatsapp_url": "https://w.app/v6xpin",
+        "eyebrow": "Contacto",
+        "heading": "Hablemos",
+        "text": "¿Prefieres WhatsApp o correo? Elige la opción que te resulte más cómoda y cuéntame qué necesitas."
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
 }
