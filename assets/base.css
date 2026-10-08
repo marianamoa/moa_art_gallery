@@ -322,3 +322,8 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
 .commission-header__copy{text-align:center}
 .commission-page .commission-header__copy .lead{margin-inline:auto}
 .commission-photos-screen>h2,.commission-photos-screen>p{text-align:center}
+.commission-confirmation { max-width: 760px; margin-inline: auto; text-align: center; }
+.commission-confirmation h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem; }
+.commission-confirmation .rte { font-size: 1.125rem; line-height: 1.7; }
+.commission-confirmation .rte p + p { margin-top: 1.5rem; }
+.commission-page [hidden] { display: none !important; }

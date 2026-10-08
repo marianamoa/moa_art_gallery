@@ -122,3 +122,13 @@ if (commissionPhotos) {
   } catch {}
   commissionPhotos.focus()
 }
+
+const commissionConfirmation = document.querySelector('[data-commission-confirmation]')
+if (commissionConfirmation && new URLSearchParams(window.location.search).get('encargo_recibido') === 'true') {
+  [...commissionConfirmation.parentElement.children].forEach(element => { element.hidden = element !== commissionConfirmation })
+  const page = commissionConfirmation.closest('.commission-page')
+  page.setAttribute('aria-labelledby', 'CommissionConfirmationTitle')
+  commissionConfirmation.querySelector('h1').id = 'CommissionConfirmationTitle'
+  document.title = 'Ya falta poquito. – ' + document.title.split(' – ').pop()
+  commissionConfirmation.focus()
+}
