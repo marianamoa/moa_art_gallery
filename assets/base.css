@@ -270,3 +270,19 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
   .collection-page .collection-hero .lead{font-size:.9rem}
   .collection-tools{margin-bottom:1rem}
 }
+
+.commission-page{padding-top:2rem}
+.commission-page .page-header{padding-block:0 1.5rem}
+.commission-page .page-header .eyebrow{margin-bottom:.6rem}
+.commission-page .page-header h1{max-width:none;margin-bottom:.75rem;font-size:clamp(2rem,3vw,2.8rem);line-height:1.15}
+.commission-page .page-header .lead{max-width:80ch;margin-bottom:0;font-size:1rem;line-height:1.5}
+.commission-page .commission-step{padding-block:1.25rem}
+.commission-page .commission-step__heading h2{margin-bottom:.8rem;font-size:1.6rem}
+@media (max-width:640px){
+  .commission-page{padding-top:1.25rem}
+  .commission-page .page-header{padding-bottom:1rem}
+  .commission-page .page-header h1{font-size:1.8rem}
+  .commission-page .page-header .lead{font-size:.9rem}
+  .commission-page .commission-step{padding-block:1rem}
+  .commission-page .choice label{min-height:72px;padding:.75rem}
+}
