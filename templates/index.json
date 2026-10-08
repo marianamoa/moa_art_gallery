@@ -63,7 +63,8 @@
         "products_to_show": 4,
         "link_label": "Elegir un afiche",
         "deep_background": true
-      }
+      },
+      "disabled": true
     },
     "newsletter": {
       "type": "newsletter",
