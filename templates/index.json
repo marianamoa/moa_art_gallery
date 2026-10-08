@@ -47,9 +47,9 @@
       "settings": {
         "eyebrow": "Encargos",
         "heading": "Que te pinte <em>algo tuyo.</em>",
-        "text": "Animales y objetos a partir de tus fotos, siempre sobre fondo blanco.",
-        "starting_price": "$60.000 COP",
-        "timeline": "2–4",
+        "text": "Una acuarela original, pintada a mano a partir de tus fotos o ideas. \n\nElige el tamaño, la cantidad de elementos y el nivel de detalle para crear una pieza hecha especialmente para ti.",
+        "starting_price": "$200.000 COP",
+        "timeline": "2–3",
         "link_label": "Empezar mi encargo",
         "link": "shopify://pages/encargos"
       }
