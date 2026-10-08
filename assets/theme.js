@@ -124,11 +124,37 @@ if (commissionPhotos) {
 }
 
 const commissionConfirmation = document.querySelector('[data-commission-confirmation]')
-if (commissionConfirmation && new URLSearchParams(window.location.search).get('encargo_recibido') === 'true') {
+const showCommissionConfirmation = () => {
+  if (!commissionConfirmation) return
   [...commissionConfirmation.parentElement.children].forEach(element => { element.hidden = element !== commissionConfirmation })
   const page = commissionConfirmation.closest('.commission-page')
   page.setAttribute('aria-labelledby', 'CommissionConfirmationTitle')
   commissionConfirmation.querySelector('h1').id = 'CommissionConfirmationTitle'
   document.title = 'Ya falta poquito. – ' + document.title.split(' – ').pop()
   commissionConfirmation.focus()
+}
+if (commissionConfirmation && new URLSearchParams(window.location.search).get('encargo_recibido') === 'true') showCommissionConfirmation()
+
+if (commissionPhotos && commissionConfirmation) {
+  const observedRoots = new WeakSet()
+  const observePhotoForms = () => {
+    commissionPhotos.querySelectorAll('shopify-forms-embed').forEach(embed => {
+      const root = embed.shadowRoot
+      if (!root || observedRoots.has(root)) return
+      observedRoots.add(root)
+      const checkSuccess = () => {
+        if (!root.querySelector('#app-embed[data-current-step="success"]')) return
+        successObserver.disconnect()
+        hostObserver.disconnect()
+        showCommissionConfirmation()
+      }
+      const successObserver = new MutationObserver(checkSuccess)
+      successObserver.observe(root, { childList: true, subtree: true, attributes: true, attributeFilter: ['data-current-step'] })
+      checkSuccess()
+    })
+  }
+  const hostObserver = new MutationObserver(observePhotoForms)
+  hostObserver.observe(commissionPhotos, { childList: true, subtree: true })
+  customElements.whenDefined('shopify-forms-embed').then(observePhotoForms)
+  observePhotoForms()
 }
