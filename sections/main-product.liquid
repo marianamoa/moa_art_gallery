@@ -119,13 +119,15 @@
       </div>
       {%- endunless -%}
 
-      {%- unless is_original or is_digital -%}
+      {%- unless is_original or is_digital or is_cards -%}
         <label class="label" for="Quantity-{{ section.id }}">{{ 'products.product.quantity' | t }}</label>
         <div class="quantity" data-quantity>
           <button type="button" data-quantity-action="decrease" aria-label="{{ 'accessibility.decrease_quantity' | t }}">−</button>
           <input id="Quantity-{{ section.id }}" type="number" name="quantity" value="1" min="1">
           <button type="button" data-quantity-action="increase" aria-label="{{ 'accessibility.increase_quantity' | t }}">+</button>
         </div>
+      {%- else -%}
+        <input type="hidden" name="quantity" value="1">
       {%- endunless -%}
 
       {%- if is_poster -%}
