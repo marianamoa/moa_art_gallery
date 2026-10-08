@@ -111,6 +111,9 @@
   },
   "cart": {
     "general": {
+      "close_drawer": "Cerrar carrito",
+      "view_cart": "Ver carrito",
+      "update_error": "No pudimos actualizar el carrito. Inténtalo de nuevo.",
       "cart_title": "Tu carrito",
       "cart_empty": "El carrito está vacío.",
       "continue": "Ver la obra disponible",

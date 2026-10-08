@@ -172,6 +172,68 @@ document.addEventListener('click', event => {
   buySelectedProduct(button.closest('.product-form'));
 })
 
+const cartDrawer = document.getElementById('CartDrawer');
+const renderCartDrawer = html => {
+  const content = new DOMParser().parseFromString(html, 'text/html').querySelector('[data-drawer-content]');
+  if (!content || !cartDrawer) return false;
+  cartDrawer.querySelector('[data-drawer-content]').replaceWith(content);
+  return true;
+}
+const refreshCartDrawer = async () => {
+  const response = await fetch(`${window.Shopify?.routes?.root || '/'}?sections=cart-drawer`);
+  if (!response.ok) throw new Error('Cart drawer unavailable');
+  const sections = await response.json();
+  if (!renderCartDrawer(sections['cart-drawer'])) throw new Error('Cart drawer unavailable');
+}
+const openCartDrawer = () => {
+  if (cartDrawer && !cartDrawer.open) cartDrawer.showModal();
+}
+cartDrawer?.addEventListener('click', event => {
+  if (event.target.closest('[data-drawer-close]')) cartDrawer.close();
+  if (event.target === cartDrawer) {
+    const bounds = cartDrawer.getBoundingClientRect();
+    if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) cartDrawer.close();
+  }
+});
+document.addEventListener('click', async event => {
+  const link = event.target.closest('[data-cart-count]');
+  if (!link || !cartDrawer || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  try { await refreshCartDrawer(); openCartDrawer(); } catch { window.location.assign(link.href); }
+});
+let drawerUpdateQueue = Promise.resolve();
+const updateDrawerItem = (key, quantity) => {
+  drawerUpdateQueue = drawerUpdateQueue.then(async () => {
+    const error = cartDrawer.querySelector('[data-drawer-error]');
+    error.hidden = true;
+    cartDrawer.setAttribute('aria-busy', 'true');
+    try {
+      const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart/change.js`, {
+        method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({ id: key, quantity, sections: ['cart-drawer'], sections_url: window.location.pathname })
+      });
+      const cart = await response.json();
+      if (!response.ok) throw new Error(cart.description || cart.message);
+      const focused = cartDrawer.querySelector(':focus');
+      const focusedKey = focused?.dataset.cartKey;
+      if (!renderCartDrawer(cart.sections?.['cart-drawer'] || '')) await refreshCartDrawer();
+      document.querySelectorAll('[data-cart-count]').forEach(link => { link.textContent = link.dataset.cartLabel.replace('[count]', cart.item_count); });
+      if (focusedKey) cartDrawer.querySelector(`[data-drawer-quantity][data-cart-key="${CSS.escape(focusedKey)}"]`)?.focus();
+    } catch (failure) {
+      error.textContent = failure.message || cartDrawer.dataset.errorLabel;
+      error.hidden = false;
+    } finally { cartDrawer.removeAttribute('aria-busy'); }
+  });
+}
+cartDrawer?.addEventListener('change', event => {
+  const input = event.target.closest('[data-drawer-quantity]');
+  if (input && input.checkValidity()) updateDrawerItem(input.dataset.cartKey, Number(input.value));
+});
+cartDrawer?.addEventListener('click', event => {
+  const remove = event.target.closest('[data-drawer-remove]');
+  if (remove) updateDrawerItem(remove.dataset.cartKey, 0);
+});
+
 document.addEventListener('submit', async event => {
   const form = event.target.closest('.product-form')
   if (!form || !window.fetch) return
@@ -186,13 +248,21 @@ document.addEventListener('submit', async event => {
   if (buyNow) buyNow.disabled = true
   if (message) message.hidden = true
   try {
-    const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart/add.js`, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
+    const formData = new FormData(form)
+    if (cartDrawer) { formData.set('sections', 'cart-drawer'); formData.set('sections_url', window.location.pathname) }
+    const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart/add.js`, { method: 'POST', headers: { Accept: 'application/json' }, body: formData })
     const payload = await response.json()
     if (!response.ok) throw new Error(payload.description || payload.message)
     const cartResponse = await fetch(`${window.Shopify?.routes?.root || '/'}cart.js`)
     const cart = await cartResponse.json()
     document.querySelectorAll('[data-cart-count]').forEach(link => { link.textContent = link.dataset.cartLabel.replace('[count]', cart.item_count) })
     if (message) { message.textContent = root.dataset.addedLabel; message.hidden = false }
+    if (cartDrawer) {
+      try {
+        if (!renderCartDrawer(payload.sections?.['cart-drawer'] || '')) await refreshCartDrawer();
+        openCartDrawer();
+      } catch {}
+    }
   } catch (error) {
     if (message) { message.textContent = error.message; message.hidden = false }
   } finally {

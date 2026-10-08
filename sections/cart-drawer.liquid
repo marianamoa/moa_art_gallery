@@ -1,0 +1,64 @@
+<dialog id="CartDrawer" class="cart-drawer" aria-labelledby="CartDrawerTitle" data-error-label="{{ 'cart.general.update_error' | t }}">
+  <header class="cart-drawer__header">
+    <h2 id="CartDrawerTitle">{{ 'cart.general.cart_title' | t }}</h2>
+    <button type="button" data-drawer-close aria-label="{{ 'cart.general.close_drawer' | t }}">×</button>
+  </header>
+  <div data-drawer-content>
+    <div class="cart-drawer__items">
+      {%- for item in cart.items -%}
+        <article class="cart-drawer__item">
+          {%- if item.image -%}<a href="{{ item.url }}">{{ item.image | image_url: width: 180 | image_tag: loading: 'lazy', alt: item.product.title }}</a>{%- endif -%}
+          <div>
+            <a class="cart-drawer__title" href="{{ item.url }}">{{ item.product.title }}</a>
+            {%- unless item.product.has_only_default_variant -%}<p class="muted">{{ item.variant.title }}</p>{%- endunless -%}
+            <p>{% render 'money', amount: item.final_line_price %}</p>
+            <div class="quantity" data-quantity>
+              <button type="button" data-quantity-action="decrease" aria-label="{{ 'accessibility.decrease_quantity' | t }}">−</button>
+              <input type="number" min="0" value="{{ item.quantity }}" data-drawer-quantity data-cart-key="{{ item.key | escape }}" aria-label="{{ 'products.product.quantity' | t }}">
+              <button type="button" data-quantity-action="increase" aria-label="{{ 'accessibility.increase_quantity' | t }}">+</button>
+            </div>
+            <button class="text-link" type="button" data-drawer-remove data-cart-key="{{ item.key | escape }}">{{ 'cart.general.remove' | t }}</button>
+          </div>
+        </article>
+      {%- else -%}
+        <p>{{ 'cart.general.cart_empty' | t }}</p>
+      {%- endfor -%}
+    </div>
+    {%- if cart.item_count > 0 -%}
+      <footer class="cart-drawer__summary">
+        {%- if cart.total_discount > 0 -%}<p>{{ 'cart.general.savings' | t }} {% render 'money', amount: cart.total_discount %}</p>{%- endif -%}
+        <div class="cart-summary__row"><span>{{ 'cart.general.total' | t }}</span><strong>{% render 'money', amount: cart.total_price %}</strong></div>
+        <p class="muted">{{ 'cart.general.shipping' | t }}</p>
+        <form action="{{ routes.cart_url }}" method="post"><button class="button button--primary" name="checkout" type="submit">{{ 'cart.general.checkout' | t }}</button></form>
+        <a href="{{ routes.cart_url }}">{{ 'cart.general.view_cart' | t }}</a>
+      </footer>
+    {%- endif -%}
+  </div>
+  <p class="cart-drawer__error" data-drawer-error role="alert" hidden></p>
+</dialog>
+
+{% stylesheet %}
+  .cart-drawer { position: fixed; inset: 0 0 0 auto; width: min(460px, 100%); max-width: 100%; height: 100dvh; max-height: 100dvh; margin: 0; padding: 0; border: 0; background: var(--paper); color: var(--ink); }
+  .cart-drawer[open] { display: flex; flex-direction: column; }
+  .cart-drawer::backdrop { background: rgba(0,0,0,.4); }
+  body:has(.cart-drawer[open]) { overflow: hidden; }
+  .cart-drawer__header { display: flex; align-items: center; justify-content: space-between; padding: 18px 24px; border-bottom: 1px solid color-mix(in srgb,var(--ink) 15%,transparent); }
+  .cart-drawer__header h2 { margin: 0; font-size: 1.8rem; }
+  .cart-drawer__header button { width: 44px; height: 44px; border: 0; background: transparent; font-size: 1.8rem; }
+  .cart-drawer [data-drawer-content] { flex: 1; overflow-y: auto; }
+  .cart-drawer__items { padding: 0 24px; }
+  .cart-drawer__item { display: grid; grid-template-columns: 88px minmax(0,1fr); gap: 16px; padding-block: 24px; border-bottom: 1px solid color-mix(in srgb,var(--ink) 12%,transparent); }
+  .cart-drawer__item img { width: 88px; aspect-ratio: 4/5; object-fit: cover; }
+  .cart-drawer__title { text-decoration: none; line-height: 1.35; display: block; }
+  .cart-drawer__item p { margin: .5rem 0; }
+  .cart-drawer .quantity { margin: .5rem 0; display: inline-flex; }
+  .cart-drawer .quantity button,.cart-drawer .quantity input { width: 44px; min-height: 44px; }
+  .cart-drawer__summary { padding: 24px 24px calc(24px + env(safe-area-inset-bottom,0px)); }
+  .cart-drawer__summary .button { width: 100%; margin-bottom: 12px; }
+  .cart-drawer__summary > a { display: block; text-align: center; }
+  .cart-drawer__error { padding: 0 24px 16px; }
+{% endstylesheet %}
+
+{% schema %}
+{ "name": "Cart drawer", "settings": [] }
+{% endschema %}
