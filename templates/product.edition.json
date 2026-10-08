@@ -1,5 +1,5 @@
 {
-  "sections": { "main": { "type": "main-product", "settings": { "show_dynamic_checkout": false } } },
+  "sections": { "main": { "type": "main-product", "settings": { "show_dynamic_checkout": false, "mobile_image_zoom": 130, "mobile_image_fit": "cover" } } },
   "order": ["main"]
 }
 

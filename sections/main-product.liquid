@@ -17,7 +17,7 @@
 -%}
 
 <section class="product page-width" data-product-root data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_shopping_cart' | t }}">
-  <div class="product-gallery-shell">
+  <div class="product-gallery-shell" style="--mobile-image-zoom: {{ section.settings.mobile_image_zoom | default: 100 | divided_by: 100.0 }}; --mobile-image-fit: {{ section.settings.mobile_image_fit | default: 'contain' }}">
   <div id="ProductGallery-{{ section.id }}" class="product-gallery" tabindex="0" aria-label="{{ product.title | escape }}">
     {%- if product.media.size > 0 -%}
       {%- for media in product.media -%}
@@ -145,9 +145,9 @@
   @media (max-width: 990px) {
     .product-gallery-shell .product-gallery { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; padding-inline: 18px; background: transparent; scrollbar-width: none; }
     .product-gallery::-webkit-scrollbar { display: none; }
-    .product-gallery__item { flex: 0 0 92%; min-width: 0; scroll-snap-align: start; }
+    .product-gallery__item { flex: 0 0 92%; min-width: 0; overflow: hidden; scroll-snap-align: start; }
     .product-gallery__item:only-child { flex-basis: 100%; }
-    .product-gallery-shell .product-gallery__item img { aspect-ratio: 4/5; object-fit: contain; }
+    .product-gallery-shell .product-gallery__item img { aspect-ratio: 4/5; object-fit: var(--mobile-image-fit); transform: scale(var(--mobile-image-zoom)); }
     .product-gallery__item video, .product-gallery__item iframe, .product-gallery__item model-viewer { width: 100%; height: 100%; aspect-ratio: 4/5; }
     .product-gallery-controls { display: flex; align-items: center; justify-content: center; gap: 12px; padding-top: 8px; flex-wrap: wrap; }
     .product-gallery-controls button { width: 44px; height: 44px; border: 1px solid var(--ink-muted); background: transparent; font-size: 1.2rem; }
@@ -204,6 +204,8 @@
 {
   "name": "t:schema.sections.main_product",
   "settings": [
+    { "type": "range", "id": "mobile_image_zoom", "label": "Zoom de imágenes en móvil", "min": 100, "max": 180, "step": 5, "unit": "%", "default": 100 },
+    { "type": "select", "id": "mobile_image_fit", "label": "Encuadre de imágenes en móvil", "options": [{ "value": "contain", "label": "Mostrar imagen completa" }, { "value": "cover", "label": "Llenar el espacio" }], "default": "contain" },
     { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout button", "default": false }
   ],
   "blocks": [{ "type": "@app" }]
