@@ -24,7 +24,10 @@
       {%- endfor -%}
     </nav>
     <details class="mobile-menu">
-      <summary aria-label="{{ 'accessibility.menu' | t }}">{{ 'general.navigation.menu' | t }}</summary>
+      <summary aria-label="{{ 'accessibility.menu' | t }}">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+        <span class="visually-hidden">{{ 'general.navigation.menu' | t }}</span>
+      </summary>
       <nav class="mobile-menu__panel" aria-label="{{ 'header.mobile_navigation' | t }}">
         {%- for link in section.settings.menu.links -%}
           <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
