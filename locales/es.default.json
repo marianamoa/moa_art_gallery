@@ -130,6 +130,11 @@
   },
   "contact": {
     "form": {
+      "email_heading": "Escríbeme por correo",
+      "email_help": "Completa este formulario y te responderé al correo que indiques.",
+      "whatsapp_heading": "¿Prefieres WhatsApp?",
+      "whatsapp_help": "También puedes escribirme directamente por WhatsApp.",
+
       "write_email": "Escribir por correo",
       "write_whatsapp": "Escribir por WhatsApp",
       "name": "Nombre",

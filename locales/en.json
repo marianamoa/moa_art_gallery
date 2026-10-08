@@ -36,6 +36,11 @@
       "view_cart": "View cart",
       "update_error": "We could not update your cart. Please try again.", "cart_title": "Your cart", "cart_empty": "Your cart is empty.", "continue": "View available work", "remove": "Remove", "subtotal": "Subtotal", "total": "Total", "discounts": "Discounts", "savings": "You save", "shipping": "Shipping calculated at checkout", "checkout": "Checkout", "update": "Update", "note": "Order note" } },
   "contact": { "form": {
+      "email_heading": "Send me an email",
+      "email_help": "Fill out this form and I’ll reply to the email address you provide.",
+      "whatsapp_heading": "Prefer WhatsApp?",
+      "whatsapp_help": "You can also message me directly on WhatsApp.",
+
       "write_email": "Email me",
       "write_whatsapp": "Message me on WhatsApp", "name": "Name", "email": "Email", "message": "Anything else I should know", "submit": "Send request", "success": "I received your request. I will reply within two business days.", "no_payment": "No payment is taken yet.", "size": "Size", "subjects": "Number of elements", "finish": "Level of detail", "photos": "Photos", "estimate": "Estimated price", "timeline": "Estimated timeline" } },
   "templates": { "404": { "title": "This page is not here.", "text": "The artwork may have moved.", "button": "Back to the shop" }, "password": { "title": "The shop will open soon.", "password": "Password", "enter": "Enter" } },

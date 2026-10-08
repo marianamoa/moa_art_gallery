@@ -3,10 +3,8 @@
     <p class="eyebrow">{{ section.settings.eyebrow }}</p>
     <h1>{{ section.settings.heading }}</h1>
     <p class="lead">{{ section.settings.text }}</p>
-    <div class="contact-options">
-      {%- if section.settings.contact_email != blank -%}<a class="button" href="mailto:{{ section.settings.contact_email | escape }}">{{ 'contact.form.write_email' | t }}</a>{%- endif -%}
-      {%- if section.settings.whatsapp_url != blank -%}<a class="button" href="{{ section.settings.whatsapp_url }}" target="_blank" rel="noopener">{{ 'contact.form.write_whatsapp' | t }}</a>{%- endif -%}
-    </div>
+    <h2 class="contact-method-heading">{{ 'contact.form.email_heading' | t }}</h2>
+    <p class="muted">{{ 'contact.form.email_help' | t }}</p>
     {% form 'contact' %}
       {%- if form.posted_successfully? -%}<p class="form-message" role="status">{{ 'contact.form.success' | t }}</p>{%- endif -%}
       {%- if form.errors -%}<div class="form-message" role="alert">{{ form.errors | default_errors }}</div>{%- endif -%}
@@ -15,12 +13,20 @@
       <div class="field"><label class="label" for="ContactBody">{{ 'contact.form.message' | t }}</label><textarea id="ContactBody" name="contact[body]" required></textarea></div>
       <button class="button button--primary" type="submit">{{ 'contact.form.submit' | t }}</button>
     {% endform %}
+    {%- if section.settings.whatsapp_url != blank -%}
+      <div class="contact-whatsapp">
+        <h2 class="contact-method-heading">{{ 'contact.form.whatsapp_heading' | t }}</h2>
+        <p class="muted">{{ 'contact.form.whatsapp_help' | t }}</p>
+        <a class="button" href="{{ section.settings.whatsapp_url }}" target="_blank" rel="noopener">{{ 'contact.form.write_whatsapp' | t }}</a>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
 {% stylesheet %}
-  .contact-options { display: flex; flex-wrap: wrap; gap: .75rem; margin-block: 1.5rem 2rem; }
-  @media (max-width: 640px) { .contact-options .button { width: 100%; } }
+  .contact-method-heading { font-size: 1.5rem; margin-bottom: .5rem; }
+  .contact-whatsapp { margin-top: 2rem; padding-top: 2rem; border-top: 1px solid color-mix(in srgb, var(--ink) 15%, transparent); }
+  @media (max-width: 640px) { .contact-whatsapp .button { width: 100%; } }
 {% endstylesheet %}
 
 {% schema %}
