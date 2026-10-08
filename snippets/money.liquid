@@ -4,7 +4,7 @@ Renders a monetary amount using the merchant's currency-code preference.
 {% enddoc %}
 
 {%- if settings.show_currency_codes -%}
-  {{- amount | money_with_currency -}}
+  {{- amount | money_without_trailing_zeros }} {{ cart.currency.iso_code | default: shop.currency -}}
 {%- else -%}
-  {{- amount | money -}}
+  {{- amount | money_without_trailing_zeros -}}
 {%- endif -%}

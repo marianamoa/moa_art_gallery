@@ -3,7 +3,7 @@ const money = (cents, currency = 'COP', showCurrencyCode = false, locale = docum
     style: 'currency',
     currency,
     currencyDisplay: 'narrowSymbol',
-    minimumFractionDigits: 2,
+    minimumFractionDigits: 0,
     maximumFractionDigits: 2
   }).format(cents / 100)
 
