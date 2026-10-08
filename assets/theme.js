@@ -155,6 +155,23 @@ document.querySelectorAll('[data-commission-calculator]').forEach(root => {
 
 document.querySelectorAll('[data-auto-submit]').forEach(input => input.addEventListener('change', () => input.form.submit()))
 
+const buySelectedProduct = form => {
+  if (!form.reportValidity()) return;
+  const root = form.closest('[data-product-root]');
+  const variantId = form.querySelector('select[name="id"]')?.value;
+  const variants = JSON.parse(root.querySelector('[data-variants-json]').textContent);
+  const variant = variants.find(item => String(item.id) === variantId);
+  if (!variant?.available) return;
+  const quantity = Math.max(1, Math.floor(Number(form.querySelector('[name="quantity"]')?.value) || 1));
+  window.location.assign(`${window.Shopify?.routes?.root || '/'}cart/${variantId}:${quantity}`);
+}
+document.addEventListener('click', event => {
+  const button = event.target.closest('[data-buy-now]');
+  if (!button || button.disabled) return;
+  event.preventDefault();
+  buySelectedProduct(button.closest('.product-form'));
+})
+
 document.addEventListener('submit', async event => {
   const form = event.target.closest('.product-form')
   if (!form || !window.fetch) return
@@ -163,18 +180,15 @@ document.addEventListener('submit', async event => {
   const submit = form.querySelector('[data-product-submit]')
   const buyNow = form.querySelector('[data-buy-now]')
   const goToCheckout = event.submitter?.matches('[data-buy-now]')
+  if (goToCheckout) { buySelectedProduct(form); return }
   const message = form.querySelector('[data-product-message]')
   submit.disabled = true
   if (buyNow) buyNow.disabled = true
   if (message) message.hidden = true
   try {
-    const response = await fetch(form.action, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
+    const response = await fetch(`${window.Shopify?.routes?.root || '/'}cart/add.js`, { method: 'POST', headers: { Accept: 'application/json' }, body: new FormData(form) })
     const payload = await response.json()
     if (!response.ok) throw new Error(payload.description || payload.message)
-    if (goToCheckout) {
-      window.location.assign(`${window.Shopify?.routes?.root || '/'}checkout`)
-      return
-    }
     const cartResponse = await fetch(`${window.Shopify?.routes?.root || '/'}cart.js`)
     const cart = await cartResponse.json()
     document.querySelectorAll('[data-cart-count]').forEach(link => { link.textContent = link.dataset.cartLabel.replace('[count]', cart.item_count) })
