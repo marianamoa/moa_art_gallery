@@ -256,6 +256,7 @@ h3{font-size:clamp(1.3rem,2vw,1.75rem)}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
 
+.collection-page{padding-bottom:clamp(2rem,4vw,3rem)}
 .collection-page .collection-hero{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:2rem 1rem}
 .collection-page .collection-hero .eyebrow{display:none}
 .collection-page .collection-hero h1{max-width:none;margin:0;font-size:2.4rem;line-height:1.15}
