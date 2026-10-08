@@ -12,13 +12,6 @@
     "main": {
       "type": "faq",
       "blocks": {
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "¿Las láminas se parecen al original?",
-            "answer": "<p>Escaneo la acuarela a alta resolución y ajusto la prueba a mano hasta que el color coincide.</p>"
-          }
-        },
         "q2": {
           "type": "question",
           "settings": {
@@ -31,6 +24,13 @@
           "settings": {
             "question": "¿Puedo devolver una pieza?",
             "answer": "<p>Las condiciones dependen del tipo de obra. Actualiza esta respuesta con la política definitiva de la tienda.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "¿Qué puedo encargar?",
+            "answer": "<p>Puedes encargar una acuarela a partir de una fotografía o referencia. Puede ser una mascota, una persona, un objeto especial, una planta, un lugar o una composición que tenga un significado para ti.</p><p>Si tienes una idea diferente, <strong>escríbeme directamente</strong> y podemos conversar cómo hacerla realidad.</p>"
           }
         },
         "q4": {
@@ -49,9 +49,9 @@
         }
       },
       "block_order": [
-        "q1",
         "q2",
         "q3",
+        "q1",
         "q4",
         "q5"
       ],
