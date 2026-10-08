@@ -185,6 +185,12 @@
   .product-form__cart-bar .form-message { grid-column: 1 / -1; }
   .product-gallery-shell { min-width: 0; }
   .product-gallery-controls { display: none; }
+  @media (min-width: 991px) {
+    body:has([data-product-root]) { padding-bottom: 104px; }
+    .product-form__cart-bar { position: fixed; right: max(24px, calc((100vw - var(--page-width)) / 2)); bottom: 20px; width: min(560px, calc(50vw - 48px)); z-index: 25; padding: 14px; background: var(--paper); border: 1px solid color-mix(in srgb, var(--ink) 15%, transparent); box-shadow: 0 4px 24px rgba(0, 0, 0, .1); }
+    .product-form__cart-bar .button { min-height: 48px; margin: 0; }
+    .product-form__cart-bar .form-message { margin: .25rem 0 0; }
+  }
   @media (max-width: 990px) {
     .product-gallery-shell .product-gallery { display: flex; gap: 10px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: 18px; padding-inline: 18px; background: transparent; scrollbar-width: none; }
     .product-gallery::-webkit-scrollbar { display: none; }
