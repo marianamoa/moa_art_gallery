@@ -122,7 +122,7 @@
       "name": "Nombre",
       "email": "Correo",
       "message": "Cuéntame algo que deba saber",
-      "submit": "Enviar solicitud",
+      "submit": "Enviar",
       "success": "He recibido tu solicitud. Te responderé en dos días laborables.",
       "no_payment": "Todavía no se cobra nada.",
       "size": "Tamaño",
