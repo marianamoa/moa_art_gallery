@@ -75,21 +75,29 @@ document.querySelectorAll('[data-product-root]').forEach(root => {
   const stockLabel = root.querySelector('[data-stock-label]')
   const stockBar = root.querySelector('[data-stock-bar]')
   const updateSelectionPrice = () => {
-    if (root.dataset.poster !== 'true') return;
+    const isCards = root.dataset.cards === 'true';
+    if (root.dataset.poster !== 'true' && !isCards) return;
     const variant = variants.find(item => String(item.id) === master.value);
     if (!variant) return;
     const quantityInput = root.querySelector('[name="quantity"]');
     const quantity = Math.max(1, Math.floor(Number(quantityInput?.value) || 1));
     const subtotal = variant.price * quantity;
-    const discount = quantity >= 2 && root.dataset.currency === 'COP' ? Math.min(subtotal, Number(root.dataset.posterDiscount)) : 0;
+    const discount = !isCards && quantity >= 2 && root.dataset.currency === 'COP' ? Math.min(subtotal, Number(root.dataset.posterDiscount)) : 0;
+    let savingsAmount = discount;
+    if (isCards && variant.cardCount > 0) {
+      const reference = variants.filter(item => item.cardCount > 0).sort((a, b) => a.cardCount - b.cardCount)[0];
+      savingsAmount = Math.max(0, Math.round((reference.price / reference.cardCount * variant.cardCount - variant.price) * quantity));
+      root.querySelector('[data-card-unit]').textContent = `${money(variant.price / variant.cardCount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale)} ${root.dataset.perCardLabel}`;
+      root.querySelector('[data-card-count]').textContent = root.dataset.cardCountLabel.replace('[count]', variant.cardCount * quantity);
+    }
     const selectionPrice = root.querySelector('[data-selection-price]');
     if (selectionPrice) selectionPrice.textContent = money(subtotal - discount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale);
     const label = root.querySelector('[data-selection-total]');
     if (label) label.textContent = root.dataset.selectionLabel.replace('[count]', quantity);
     const savings = root.querySelector('[data-selection-savings]');
     if (savings) {
-      savings.hidden = !discount;
-      savings.textContent = `${root.dataset.savingsLabel} ${money(discount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale)}`;
+      savings.hidden = !savingsAmount;
+      savings.textContent = `${root.dataset.savingsLabel} ${money(savingsAmount, root.dataset.currency, root.dataset.showCurrencyCode === 'true', root.dataset.locale)}`;
     }
   }
   const update = () => {

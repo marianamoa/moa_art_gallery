@@ -70,6 +70,8 @@
   },
   "products": {
     "product": {
+      "per_card": "por tarjeta",
+      "cards_total": "{{ count }} tarjetas en total",
       "selection_total": "Total · Cantidad: {{ count }}",
       "buy_now": "Comprar ahora",
       "previous_image": "Imagen anterior",

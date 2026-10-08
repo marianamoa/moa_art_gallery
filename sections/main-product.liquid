@@ -21,7 +21,7 @@
   endif
 -%}
 
-<section class="product page-width" data-product-root data-poster="{{ is_poster }}" data-poster-discount="1000000" data-selection-label="{{ 'products.product.selection_total' | t: count: '[count]' }}" data-savings-label="{{ 'cart.general.savings' | t }}" data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_shopping_cart' | t }}">
+<section class="product page-width" data-product-root data-poster="{{ is_poster }}" data-cards="{{ is_cards }}" data-poster-discount="1000000" data-selection-label="{{ 'products.product.selection_total' | t: count: '[count]' }}" data-savings-label="{{ 'cart.general.savings' | t }}" data-per-card-label="{{ 'products.product.per_card' | t }}" data-card-count-label="{{ 'products.product.cards_total' | t: count: '[count]' }}" data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_shopping_cart' | t }}">
   <div class="product-gallery-shell" style="--mobile-image-zoom: {{ section.settings.mobile_image_zoom | default: 100 | divided_by: 100.0 }}; --mobile-image-fit: {{ section.settings.mobile_image_fit | default: 'contain' }}">
   <div id="ProductGallery-{{ section.id }}" class="product-gallery" tabindex="0" aria-label="{{ product.title | escape }}">
     {%- if product.media.size > 0 -%}
@@ -76,7 +76,20 @@
                 {%- for value in option.values -%}
                   <div class="option-card">
                     <input id="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}" type="radio" name="option{{ option.position }}" value="{{ value | escape }}" data-option-input{% if option.selected_value == value %} checked{% endif %}>
-                    <label for="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}">{{ value }}</label>
+                    <label for="Option-{{ section.id }}-{{ option.position }}-{{ forloop.index }}">{{ value }}
+                      {%- if is_cards and option.position == 1 -%}
+                        {%- assign card_variant = product.variants | where: 'option1', value | first -%}
+                        {%- assign card_count = value | plus: 0 -%}
+                        {%- assign base_card_count = product.variants.first.option1 | plus: 0 -%}
+                        {%- if card_count > 0 and base_card_count > 0 -%}
+                          {%- assign unit_price = card_variant.price | divided_by: card_count -%}
+                          {%- assign reference_unit_price = product.variants.first.price | divided_by: base_card_count -%}
+                          {%- assign card_savings = reference_unit_price | times: card_count | minus: card_variant.price -%}
+                          <span class="card-option-price">{% render 'money', amount: unit_price %} {{ 'products.product.per_card' | t }}</span>
+                          {%- if card_savings > 0 -%}<span class="card-option-price">{{ 'cart.general.savings' | t }} {% render 'money', amount: card_savings %}</span>{%- endif -%}
+                        {%- endif -%}
+                      {%- endif -%}
+                    </label>
                   </div>
                 {%- endfor -%}
               </div>
@@ -103,9 +116,10 @@
         </div>
       {%- endunless -%}
 
-      {%- if is_poster -%}
+      {%- if is_poster or is_cards -%}
         <div class="product-selection-summary" aria-live="polite" aria-atomic="true">
           <p class="meta" data-selection-total>{{ 'products.product.selection_total' | t: count: 1 }}</p>
+          {%- if is_cards -%}<p data-card-unit></p><p data-card-count></p>{%- endif -%}
           <strong class="price-large" data-selection-price>{% render 'money', amount: current_variant.price %}</strong>
           <p class="meta" data-selection-savings hidden></p>
         </div>
@@ -138,6 +152,7 @@
         {
           "id": {{ variant.id | json }},
           "options": {{ variant.options | json }},
+          "cardCount": {{ variant.option1 | plus: 0 | json }},
           "price": {{ variant.price | json }},
           "available": {{ variant.available | json }},
           "tracked": {% if variant.inventory_management %}true{% else %}false{% endif %},
@@ -150,6 +165,7 @@
 </section>
 
 {% stylesheet %}
+  .card-option-price { display: block; font-size: .8rem; font-weight: 400; margin-top: .35rem; }
   .product-selection-summary { margin-block: 1rem; padding: 1rem; border: 1px solid color-mix(in srgb, var(--ink) 20%, transparent); background: var(--paper-deep); }
   .product-selection-summary p { margin: 0 0 .5rem; }
   .product-selection-summary .price-large { display: block; font-size: 1.8rem; margin: 0; }
