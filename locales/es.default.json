@@ -70,6 +70,10 @@
   },
   "products": {
     "product": {
+      "previous_image": "Imagen anterior",
+      "next_image": "Siguiente imagen",
+      "swipe_images": "Desliza para ver más imágenes",
+
       "add_to_shopping_cart": "Añadir al carrito",
       "added_to_shopping_cart": "Añadido al carrito.",
       "variant": "Variante",
