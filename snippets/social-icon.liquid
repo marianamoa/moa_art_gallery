@@ -1,0 +1,12 @@
+{% doc %}
+  @param {string} platform - Instagram or TikTok.
+{% enddoc %}
+<svg class="footer-social-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+  {% if platform == 'instagram' %}
+    <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8" />
+    <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8" />
+    <circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" />
+  {% else %}
+    <path fill="currentColor" d="M16.7 2h-3.2v13.1a3.1 3.1 0 1 1-2.7-3.1V8.7a6.4 6.4 0 1 0 6 6.4V8.5a8.2 8.2 0 0 0 5 1.7V7a5.1 5.1 0 0 1-5.1-5Z" />
+  {% endif %}
+</svg>

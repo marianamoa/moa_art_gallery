@@ -9,8 +9,20 @@
         {%- for link in section.settings.shop_menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
       </nav>
       <nav aria-label="{{ 'footer.information_navigation' | t }}">
-        {%- for link in section.settings.info_menu.links -%}<a href="{{ link.url }}">{{ link.title }}</a>{%- endfor -%}
-        {%- if settings.instagram_url != blank -%}<a href="{{ settings.instagram_url }}" rel="noopener">Instagram</a>{%- endif -%}
+        {%- assign has_instagram_link = false -%}
+        {%- assign has_tiktok_link = false -%}
+        {%- for link in section.settings.info_menu.links -%}
+          {%- assign social_name = link.title | downcase | strip -%}
+          {%- if social_name == 'instagram' -%}{%- assign has_instagram_link = true -%}{%- endif -%}
+          {%- if social_name == 'tiktok' -%}{%- assign has_tiktok_link = true -%}{%- endif -%}
+          {%- if social_name == 'instagram' or social_name == 'tiktok' -%}
+            <a class="footer-social-link" href="{{ link.url }}" aria-label="{{ link.title | escape }}" rel="noopener">{% render 'social-icon', platform: social_name %}</a>
+          {%- else -%}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if settings.instagram_url != blank and has_instagram_link == false -%}<a class="footer-social-link" href="{{ settings.instagram_url }}" aria-label="Instagram" rel="noopener">{% render 'social-icon', platform: 'instagram' %}</a>{%- endif -%}
+        {%- if settings.tiktok_url != blank and has_tiktok_link == false -%}<a class="footer-social-link" href="{{ settings.tiktok_url }}" aria-label="TikTok" rel="noopener">{% render 'social-icon', platform: 'tiktok' %}</a>{%- endif -%}
       </nav>
     </div>
     <div class="site-footer__bottom">
@@ -26,6 +38,11 @@
     </div>
   </div>
 </footer>
+
+{% stylesheet %}
+  .site-footer nav a.footer-social-link { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin: 0 .35rem 0 0; vertical-align: middle; }
+  .footer-social-icon { display: block; }
+{% endstylesheet %}
 
 {% schema %}
 {

@@ -28,6 +28,7 @@
     "name": "t:schema.social.name",
     "settings": [
       { "type": "url", "id": "instagram_url", "label": "Instagram" },
+      { "type": "url", "id": "tiktok_url", "label": "TikTok" },
       { "type": "url", "id": "contact_url", "label": "t:schema.social.contact" }
     ]
   }
