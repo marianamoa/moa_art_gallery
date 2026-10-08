@@ -80,7 +80,7 @@
       "tax_included": "IVA incluido",
       "from_price": "Desde {{ price }}",
       "view_product": "Ver {{ title }}",
-      "edition": "Edición de {{ count }}",
+      "edition": "Afiche · tiraje de {{ count }}",
       "remaining": "Quedan {{ count }} de {{ total }}",
       "original_remaining": "{{ count }} disponible",
       "unique": "Pieza única",

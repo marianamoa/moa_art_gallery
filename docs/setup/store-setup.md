@@ -16,7 +16,7 @@ Create these collections:
 | Collection | Recommended handle | Contents |
 | --- | --- | --- |
 | Originales | `originales` | Unique originals |
-| Ediciones | `ediciones` | Limited-edition prints |
+| Afiches | `afiches` | Limited-edition prints |
 | Tarjetas | `tarjetas` | Card sets and stationery |
 | Descargas | `descargas` | Digital products |
 
@@ -64,7 +64,7 @@ After the definitions exist:
 
 Open an edition product using `product.edition` and confirm:
 
-- The product label displays “Edición de N”.
+- The product label displays “Afiche · tiraje de N”.
 - Selecting a size updates price, availability, and remaining inventory.
 - The stock bar turns terracotta at five or fewer units.
 - Medium, dimensions, paper, and shipping note appear when populated and disappear cleanly when blank.
@@ -78,7 +78,7 @@ In **Search & Discovery → Filters**, enable availability, price, product type,
 Create an automatic fixed-amount discount:
 
 - Value: €10
-- Applies to: Ediciones collection
+- Applies to: Afiches collection
 - Minimum requirement: quantity 2
 - Apply once per order: enabled if the intended maximum discount is €10
 
