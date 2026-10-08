@@ -12,25 +12,11 @@
     "main": {
       "type": "faq",
       "blocks": {
-        "q2": {
+        "question_yi8xB9": {
           "type": "question",
           "settings": {
-            "question": "¿Vienen enmarcadas?",
-            "answer": "<p>No. Todo lleva margen para enmarcar en medidas estándar.</p>"
-          }
-        },
-        "q3": {
-          "type": "question",
-          "settings": {
-            "question": "¿Puedo devolver una pieza?",
-            "answer": "<p><strong>Productos físicos no personalizados:</strong> puedes solicitar una devolución por retracto dentro de los <strong>5 días hábiles siguientes a la entrega</strong>. La pieza debe estar sin uso y en las mismas condiciones en que la recibiste. Los costos de devolución corren por tu cuenta; el reembolso se realiza sin descuentos ni retenciones, dentro del plazo legal aplicable.</p><p><strong>Si llega dañada, defectuosa o no corresponde a tu pedido:</strong> escríbeme dentro de los <strong>5 días calendario siguientes a la entrega</strong> con el número de pedido y fotografías. Asumiré los costos necesarios para resolverlo. Esto no limita tus derechos legales de garantía.</p><p><strong>Encargos personalizados:</strong> puedes cancelarlos antes de que comience el trabajo. Una vez iniciada la elaboración con tu aprobación, no son reembolsables en los casos permitidos por la ley.</p><p><strong>Descargas digitales:</strong> las solicitudes de cancelación o reembolso después de la entrega o descarga se revisan según la legislación aplicable. Si el archivo tiene algún problema, escríbeme para encontrar una solución.</p><p>Para solicitar ayuda, escribe a <a href=\"mailto:marianaordonez04@gmail.com\">marianaordonez04@gmail.com</a>. Consulta la <a href=\"/policies/refund-policy\">política completa de devoluciones y reembolsos</a>.</p>"
-          }
-        },
-        "q1": {
-          "type": "question",
-          "settings": {
-            "question": "¿Qué puedo encargar?",
-            "answer": "<p>Puedes encargar una acuarela a partir de una fotografía o referencia. Puede ser una mascota, una persona, un objeto especial, una planta, un lugar o una composición que tenga un significado para ti.</p><p>Si tienes una idea diferente, <strong>escríbeme directamente</strong> y podemos conversar cómo hacerla realidad.</p>"
+            "question": "¿Qué materiales utilizas?",
+            "answer": "<p>Para las acuarelas. Trabajo principalmente con acuarela sobre <strong>papel profesional 100% algodón</strong>, seleccionado para conservar la calidad y durabilidad de la obra.</p>"
           }
         },
         "q4": {
@@ -40,20 +26,50 @@
             "answer": "<p>Lejos del sol directo y de baños con vapor. Si recibe luz intensa, usa cristal con filtro UV.</p>"
           }
         },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "¿Vienen enmarcadas?",
+            "answer": "<p>No. Todo lleva margen para enmarcar en medidas estándar.</p>"
+          }
+        },
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "¿Qué puedo encargar?",
+            "answer": "<p>Puedes encargar una acuarela a partir de una fotografía o referencia. Puede ser una mascota, una persona, un objeto especial, una planta, un lugar o una composición que tenga un significado para ti.</p><p>Si tienes una idea diferente, <strong>escríbeme directamente</strong> y podemos conversar cómo hacerla realidad.</p>"
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "¿Puedo devolver una pieza?",
+            "answer": "<p><strong>Productos físicos no personalizados:</strong> puedes solicitar una devolución por retracto dentro de los <strong>5 días hábiles siguientes a la entrega</strong>. La pieza debe estar sin uso y en las mismas condiciones en que la recibiste. Los costos de devolución corren por tu cuenta; el reembolso se realiza sin descuentos ni retenciones, dentro del plazo legal aplicable.</p><p><strong>Si llega dañada, defectuosa o no corresponde a tu pedido:</strong> escríbeme dentro de los <strong>5 días calendario siguientes a la entrega</strong> con el número de pedido y fotografías. Asumiré los costos necesarios para resolverlo. Esto no limita tus derechos legales de garantía.</p><p><strong>Encargos personalizados:</strong> puedes cancelarlos antes de que comience el trabajo. Una vez iniciada la elaboración con tu aprobación, no son reembolsables en los casos permitidos por la ley.</p><p><strong>Descargas digitales:</strong> las solicitudes de cancelación o reembolso después de la entrega o descarga se revisan según la legislación aplicable. Si el archivo tiene algún problema, escríbeme para encontrar una solución.</p><p>Para solicitar ayuda, escribe a <a href=\"mailto:marianaordonez04@gmail.com\">marianaordonez04@gmail.com</a>. Consulta la <a href=\"/policies/refund-policy\">política completa de devoluciones y reembolsos</a>.</p>"
+          }
+        },
         "q5": {
           "type": "question",
           "settings": {
             "question": "¿Cómo se paga un encargo?",
             "answer": "<p>Después de revisar la solicitud se envía una factura con el anticipo acordado.</p>"
           }
+        },
+        "question_ggnggi": {
+          "type": "question",
+          "settings": {
+            "question": "¿Tienes otra pregunta?",
+            "answer": "<p>Si no encontraste la respuesta que buscabas, <strong>escríbeme directamente en la página de contacto</strong>. Estaré feliz de ayudarte a encontrar la mejor opción para tu pieza.&nbsp;</p>"
+          }
         }
       },
       "block_order": [
-        "q2",
-        "q3",
-        "q1",
+        "question_yi8xB9",
         "q4",
-        "q5"
+        "q2",
+        "q1",
+        "q3",
+        "q5",
+        "question_ggnggi"
       ],
       "settings": {
         "eyebrow": "Envíos y preguntas",
