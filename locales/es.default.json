@@ -55,7 +55,7 @@
     "paper": "Papel",
     "shipping": "Envío"
   },
-  "commissions": { "elements_description": "Agrega personas, mascotas u objetos adicionales a tu composición.", "elements_quote_note": "Para composiciones de 4 o más elementos, escríbeme para crear una cotización personalizada.", "elements_question": "¿Qué quieres incluir?", "one_element": "1 elemento", "elements": "{{ count }} elementos", "four_plus_elements": "4+ elementos", "extra_from": "Desde +{{ price }}",
+  "commissions": { "essential_description": "Para representaciones limpias y sencillas. Se mantienen las características principales del objeto, con una composición minimalista y pocas texturas.", "detailed_description": "Más trabajo en volumen, sombras, textura y características particulares. Ideal para mascotas, objetos con varias texturas o piezas donde quieres mayor fidelidad a la referencia.", "meticulous_description": "El máximo nivel de precisión. Pensado para pelo, plumas, piel, materiales complejos, texturas muy finas y elementos que requieren muchas horas de observación y pintura.", "elements_description": "Agrega personas, mascotas u objetos adicionales a tu composición.", "elements_quote_note": "Para composiciones de 4 o más elementos, escríbeme para crear una cotización personalizada.", "elements_question": "¿Qué quieres incluir?", "one_element": "1 elemento", "elements": "{{ count }} elementos", "four_plus_elements": "4+ elementos", "extra_from": "Desde +{{ price }}",
     "ready_in": "Lista en {{ count }} semanas",
     "subject": "protagonista",
     "loose": "Esencial",
