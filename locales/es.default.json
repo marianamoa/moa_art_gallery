@@ -30,7 +30,7 @@
     "primary_navigation": "Navegación principal",
     "mobile_navigation": "Navegación móvil",
     "secondary_navigation": "Acciones de la tienda",
-    "cart": "Bolsa ({{ count }})"
+    "cart": "Carrito ({{ count }})"
   },
   "footer": {
     "shop_navigation": "Tienda",
@@ -70,8 +70,8 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Añadir a la bolsa",
-      "added_to_cart": "Añadido a la bolsa.",
+      "add_to_cart": "Añadir al carrito",
+      "added_to_cart": "Añadido al carrito.",
       "variant": "Variante",
       "sold_out": "Agotado",
       "unavailable": "No disponible",
@@ -86,7 +86,7 @@
       "unique": "Pieza única",
       "digital": "Descarga digital",
       "details": "Detalles",
-      "pair_note": "Compra 2 afiches y ahorra $10.000 COP en el total de tu compra. Puedes elegir el mismo diseño o combinar dos diferentes. El descuento se aplica automáticamente en la bolsa.",
+      "pair_note": "Compra 2 afiches y ahorra $10.000 COP en el total de tu compra. Puedes elegir el mismo diseño o combinar dos diferentes. El descuento se aplica automáticamente en el carrito.",
       "shipping_checkout": "Envío calculado al finalizar la compra"
     }
   },
@@ -103,8 +103,8 @@
   },
   "cart": {
     "general": {
-      "title": "Tu bolsa",
-      "empty": "La bolsa está vacía.",
+      "title": "Tu carrito",
+      "empty": "El carrito está vacío.",
       "continue": "Ver la obra disponible",
       "remove": "Quitar",
       "subtotal": "Subtotal",
@@ -163,7 +163,7 @@
       "newsletter": "Boletín",
       "main_product": "Producto",
       "main_collection": "Colección",
-      "main_cart": "Bolsa",
+      "main_cart": "Carrito",
       "main_page": "Página",
       "main_search": "Búsqueda",
       "commission_form": "Formulario de encargos",
