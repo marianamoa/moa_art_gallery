@@ -70,6 +70,7 @@
   },
   "products": {
     "product": {
+      "selection_total": "Total · Cantidad: {{ count }}",
       "buy_now": "Comprar ahora",
       "previous_image": "Imagen anterior",
       "next_image": "Siguiente imagen",

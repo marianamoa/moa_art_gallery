@@ -5,6 +5,11 @@
   assign is_original = false
   assign is_digital = false
   assign is_cards = false
+  assign is_poster = false
+  assign product_type_lower = product.type | downcase
+  if product_type_lower == 'afiches' or template.suffix == 'edition'
+    assign is_poster = true
+  endif
   if product.tags contains 'original'
     assign is_original = true
   endif
@@ -16,7 +21,7 @@
   endif
 -%}
 
-<section class="product page-width" data-product-root data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_shopping_cart' | t }}">
+<section class="product page-width" data-product-root data-poster="{{ is_poster }}" data-poster-discount="1000000" data-selection-label="{{ 'products.product.selection_total' | t: count: '[count]' }}" data-savings-label="{{ 'cart.general.savings' | t }}" data-currency="{{ cart.currency.iso_code }}" data-locale="{{ request.locale.iso_code }}-{{ localization.country.iso_code }}" data-show-currency-code="{{ settings.show_currency_codes }}" data-remaining-label="{{ 'products.product.remaining' | t: count: '[count]', total: '[total]' }}" data-added-label="{{ 'products.product.added_to_shopping_cart' | t }}">
   <div class="product-gallery-shell" style="--mobile-image-zoom: {{ section.settings.mobile_image_zoom | default: 100 | divided_by: 100.0 }}; --mobile-image-fit: {{ section.settings.mobile_image_fit | default: 'contain' }}">
   <div id="ProductGallery-{{ section.id }}" class="product-gallery" tabindex="0" aria-label="{{ product.title | escape }}">
     {%- if product.media.size > 0 -%}
@@ -52,7 +57,9 @@
       {%- else -%}{{ product.type }}{%- endif -%}
     </p>
     <h1>{{ product.title }}</h1>
+    {%- if is_poster -%}<p class="meta" data-selection-total>{{ 'products.product.selection_total' | t: count: 1 }}</p>{%- endif -%}
     <div class="price-large" data-product-price>{% render 'money', amount: current_variant.price %}</div>
+    {%- if is_poster -%}<p class="meta" data-selection-savings hidden></p>{%- endif -%}
     <p class="muted">{{ 'products.product.shipping_checkout' | t }}</p>
     {%- if product.description != blank -%}<div class="product-info__description rte">{{ product.description }}</div>{%- endif -%}
 
