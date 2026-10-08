@@ -22,7 +22,7 @@
             <div class="cart-line__price">
               {%- if item.original_line_price > item.final_line_price -%}<s>{% render 'money', amount: item.original_line_price %}</s>{%- endif -%}
               <div>{% render 'money', amount: item.final_line_price %}</div>
-              {%- for discount in item.line_level_discount_allocations -%}<span class="meta">{{ discount.discount_application.title }} −{% render 'money', amount: discount.amount %}</span>{%- endfor -%}
+              {%- if item.line_level_total_discount > 0 -%}<span class="meta">{{ 'cart.general.savings' | t }} {% render 'money', amount: item.line_level_total_discount %}</span>{%- endif -%}
             </div>
           </article>
         {%- endfor -%}
