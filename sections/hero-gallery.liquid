@@ -6,9 +6,11 @@
       {%- assign hero_fallback_alt = 'home.hero_fallback_alt' | t -%}
       <img src="{{ 'studio-hero.jpg' | asset_url }}" width="2000" height="1333" loading="eager" fetchpriority="high" alt="{{ hero_fallback_alt | escape }}">
     {%- endif -%}
+    <div class="hero__overlay page-width">
+      <h1 id="HeroTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
+    </div>
   </div>
   <div class="hero__content page-width">
-    <h1 id="HeroTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
     <div class="hero__copy">
       <p>{{ section.settings.text }}</p>
       <div class="cluster">
@@ -18,6 +20,18 @@
     </div>
   </div>
 </section>
+
+{% stylesheet %}
+  .hero__media { position: relative; isolation: isolate; }
+  .hero__media::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, .6) 100%); pointer-events: none; }
+  .hero__overlay { position: absolute; inset: auto 0 clamp(1.5rem, 4vw, 4rem); z-index: 1; }
+  .hero__overlay h1 { max-width: 13ch; margin: 0; color: #fff; text-shadow: 0 2px 12px rgba(0, 0, 0, .3); font-size: clamp(2.5rem, 5.5vw, 5.2rem); }
+  .hero .hero__content { display: block; padding-block: 1.5rem 2rem; }
+  .hero__copy p { margin-bottom: 1rem; }
+  @media (max-width: 640px) {
+    .hero__overlay h1 { font-size: clamp(2.3rem, 9vw, 3.5rem); }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
