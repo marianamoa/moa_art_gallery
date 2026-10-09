@@ -27,7 +27,7 @@
         <p>{{ 'gallery.empty' | t }}</p>
       {% endfor %}
     </div>
-    {{ paginate | default_pagination }}
+    {% render 'pagination', paginate: paginate, show_labels: true %}
   {% endpaginate %}
 </section>
 {% schema %}
