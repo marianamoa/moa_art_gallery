@@ -54,7 +54,11 @@
       {%- for media in product.media -%}
         <div class="product-gallery__item">
           {%- if media.media_type == 'image' -%}
-            {{ media | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '420, 720, 1100, 1600', sizes: '(min-width: 990px) 55vw, 100vw', alt: media.alt | default: product.title }}
+            {%- if forloop.first -%}
+              {{ media | image_url: width: 1600 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '420, 720, 1100, 1600', sizes: '(min-width: 990px) 55vw, 100vw', alt: media.alt | default: product.title }}
+            {%- else -%}
+              {{ media | image_url: width: 1600 | image_tag: loading: 'lazy', widths: '420, 720, 1100, 1600', sizes: '(min-width: 990px) 27vw, 100vw', alt: media.alt | default: product.title }}
+            {%- endif -%}
           {%- else -%}
             {{ media | media_tag: image_size: '1200x', controls: true }}
           {%- endif -%}

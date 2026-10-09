@@ -6,7 +6,7 @@
     </div>
     <div class="product-grid">
       {%- if section.settings.collection != blank and section.settings.collection.products_count > 0 -%}
-        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}{% render 'product-card', product: product, index: forloop.index %}{%- endfor -%}
+        {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}{% render 'product-card', product: product %}{%- endfor -%}
       {%- else -%}
         {%- for index in (1..4) -%}
           <article class="product-card"><div class="product-card__media"><div class="placeholder">{{ 'product-' | append: index | placeholder_svg_tag }}<span class="placeholder__label meta">{{ 'home.artwork_placeholder' | t }}</span></div></div><div class="product-card__content"><h3 class="product-card__title">{{ 'home.artwork_title' | t }}</h3><p class="product-card__meta">{{ 'home.artwork_meta' | t }}</p></div></article>
@@ -30,4 +30,3 @@
   "presets": [{ "name": "t:schema.sections.featured_collection" }]
 }
 {% endschema %}
-

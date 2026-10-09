@@ -4,7 +4,7 @@
       {{ section.settings.image | image_url: width: 2400 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '640, 960, 1440, 1920, 2400', sizes: '100vw', alt: section.settings.image.alt }}
     {%- else -%}
       {%- assign hero_fallback_alt = 'home.hero_fallback_alt' | t -%}
-      <img src="{{ 'studio-hero.jpg' | asset_url }}" width="2000" height="1333" loading="eager" fetchpriority="high" alt="{{ hero_fallback_alt | escape }}">
+      <img src="{{ 'studio-hero.jpg' | asset_url }}" srcset="{{ 'studio-hero-640.jpg' | asset_url }} 640w, {{ 'studio-hero-1280.jpg' | asset_url }} 1280w, {{ 'studio-hero.jpg' | asset_url }} 2000w" sizes="100vw" width="2000" height="1333" loading="eager" fetchpriority="high" alt="{{ hero_fallback_alt | escape }}">
     {%- endif -%}
     <div class="hero__overlay page-width">
       <h1 id="HeroTitle-{{ section.id }}">{{ section.settings.heading }}</h1>
