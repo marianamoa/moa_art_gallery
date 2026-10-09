@@ -1,4 +1,4 @@
-<section class="page-width collection-page">
+<section class="page-width collection-page gallery-exhibition">
   <header class="collection-hero">
     <div>
       <h1>{{ collection.title }}</h1>
@@ -9,16 +9,16 @@
     <div class="product-grid">
       {% for product in collection.products %}
         {% unless product.available %}
-          <article class="product-card">
+          <article class="product-card gallery-artwork">
             <a class="product-card__link" href="{{ product.url }}">
               <div class="product-card__media">
                 {% if product.featured_image %}
                   {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '260, 420, 640, 900', sizes: '(min-width: 990px) 33vw, 50vw', alt: product.title }}
                 {% endif %}
               </div>
-              <div class="product-card__content">
+              <div class="product-card__content gallery-artwork__label">
                 <h2 class="product-card__title">{{ product.title }}</h2>
-                <p class="product-card__meta">{{ 'gallery.sold' | t }}</p>
+                <p class="product-card__meta">{{ product.metafields.custom.medium.value | default: section.settings.technique | escape }}</p>
               </div>
             </a>
           </article>
@@ -30,6 +30,33 @@
     {{ paginate | default_pagination }}
   {% endpaginate %}
 </section>
+{% stylesheet %}
+  .gallery-exhibition .product-grid { row-gap: 2.5rem; }
+  .gallery-artwork .product-card__media img { object-fit: contain; }
+  .gallery-artwork .gallery-artwork__label {
+    display: grid;
+    gap: .35rem;
+    width: min(80%, 270px);
+    margin: .9rem 0 0 auto;
+    padding: .85rem 1rem;
+    background: #fffefa;
+    border: 1px solid rgba(35, 32, 28, .08);
+    box-shadow: 0 2px 4px rgba(35, 32, 28, .04);
+  }
+  .gallery-artwork__label .product-card__title {
+    font-family: var(--font-body);
+    font-size: .95rem;
+    font-weight: 600;
+    line-height: 1.35;
+    letter-spacing: 0;
+  }
+  .gallery-artwork__label .product-card__meta { font-size: .78rem; line-height: 1.45; }
+  @media (max-width: 640px) {
+    .gallery-artwork .gallery-artwork__label { width: 100%; padding: .7rem .75rem; }
+    .gallery-artwork__label .product-card__title { font-size: .85rem; }
+    .gallery-artwork__label .product-card__meta { font-size: .72rem; }
+  }
+{% endstylesheet %}
 {% schema %}
-{"name":"Galería de obras vendidas","settings":[]}
+{"name":"Galería de obras vendidas","settings":[{"type":"text","id":"technique","label":"Técnica predeterminada","default":"Acuarela"}]}
 {% endschema %}
