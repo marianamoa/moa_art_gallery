@@ -23,6 +23,7 @@
         {%- if link.url contains '/collections/afiches' or link.url contains '/collections/ediciones' -%}{%- continue -%}{%- endif -%}
         <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
       {%- endfor -%}
+      <a href="/collections/obras-vendidas">{{ 'gallery.title' | t }}</a>
     </nav>
     <details class="mobile-menu">
       <summary aria-label="{{ 'accessibility.menu' | t }}">
@@ -34,6 +35,7 @@
         {%- if link.url contains '/collections/afiches' or link.url contains '/collections/ediciones' -%}{%- continue -%}{%- endif -%}
           <a href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
         {%- endfor -%}
+        <a href="/collections/obras-vendidas">{{ 'gallery.title' | t }}</a>
         {%- if commission_link != blank -%}<a href="{{ commission_link }}">{{ section.settings.commission_label }}</a>{%- endif -%}
       </nav>
     </details>

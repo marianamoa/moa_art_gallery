@@ -188,5 +188,11 @@
       "about_story": "Sobre mí",
       "faq": "Preguntas frecuentes"
     }
-  }
+  },
+  "gallery": {
+    "title": "Galería",
+    "sold": "Obra vendida",
+    "empty": "Las obras vendidas aparecerán aquí.",
+    "intro": "Acuarelas originales que ya encontraron su hogar."
+}
 }

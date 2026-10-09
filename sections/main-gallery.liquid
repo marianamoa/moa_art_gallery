@@ -1,0 +1,35 @@
+<section class="page-width collection-page">
+  <header class="collection-hero">
+    <div>
+      <h1>{{ collection.title }}</h1>
+      <p class="lead">{{ 'gallery.intro' | t }}</p>
+    </div>
+  </header>
+  {% paginate collection.products by 24 %}
+    <div class="product-grid">
+      {% for product in collection.products %}
+        {% unless product.available %}
+          <article class="product-card">
+            <a class="product-card__link" href="{{ product.url }}">
+              <div class="product-card__media">
+                {% if product.featured_image %}
+                  {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '260, 420, 640, 900', sizes: '(min-width: 990px) 33vw, 50vw', alt: product.title }}
+                {% endif %}
+              </div>
+              <div class="product-card__content">
+                <h2 class="product-card__title">{{ product.title }}</h2>
+                <p class="product-card__meta">{{ 'gallery.sold' | t }}</p>
+              </div>
+            </a>
+          </article>
+        {% endunless %}
+      {% else %}
+        <p>{{ 'gallery.empty' | t }}</p>
+      {% endfor %}
+    </div>
+    {{ paginate | default_pagination }}
+  {% endpaginate %}
+</section>
+{% schema %}
+{"name":"Galería de obras vendidas","settings":[]}
+{% endschema %}

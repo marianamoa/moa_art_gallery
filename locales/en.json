@@ -48,5 +48,11 @@
     "global": { "name": "Global design", "brand_name": "Brand name", "paper": "Paper", "paper_deep": "Deep paper", "ink": "Ink", "ink_soft": "Soft ink", "ink_muted": "Muted ink", "studio": "Studio blue", "low_stock": "Terracotta", "heading_font": "Heading font", "body_font": "Body font", "page_width": "Maximum width", "currency_codes": "Show currency codes" },
     "social": { "name": "Social and contact", "contact": "Contact link" },
     "sections": { "header": "Header", "footer": "Footer", "hero": "Gallery hero", "featured_collection": "Featured collection", "commission_callout": "Commission callout", "newsletter": "Newsletter", "main_product": "Product", "main_collection": "Collection", "main_cart": "Cart", "main_page": "Page", "main_search": "Search", "commission_form": "Commission form", "about_story": "About", "faq": "Frequently asked questions" }
-  }
+  },
+  "gallery": {
+    "title": "Gallery",
+    "sold": "Sold artwork",
+    "empty": "Sold artworks will appear here.",
+    "intro": "Original watercolors that have found their home."
+}
 }

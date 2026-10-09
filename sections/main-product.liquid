@@ -2,6 +2,10 @@
   assign current_variant = product.selected_or_first_available_variant
   assign edition_size = current_variant.metafields.custom.edition_size.value | default: product.metafields.custom.edition_size.value
   assign is_original = false
+  assign is_gallery = false
+  if product.tags contains 'original' and product.available == false
+    assign is_gallery = true
+  endif
   assign is_digital = false
   assign is_cards = false
   assign is_poster = false
@@ -79,10 +83,14 @@
       {%- else -%}{{ product.type }}{%- endif -%}
     </p>
     <h1>{{ product.title }}</h1>
+    {%- unless is_gallery -%}
     <div class="price-large" data-product-price>{% render 'money', amount: current_variant.price %}</div>
     {%- unless is_digital -%}<p class="muted">{{ 'products.product.shipping_checkout' | t }}</p>{%- endunless -%}
+    {%- endunless -%}
+    {%- if is_gallery -%}<p class="meta">{{ 'gallery.sold' | t }}</p>{%- endif -%}
     {%- if product.description != blank -%}<div class="product-info__description rte">{{ product.description }}</div>{%- endif -%}
 
+    {%- unless is_gallery -%}
     {%- assign product_form_id = 'ProductForm-' | append: section.id -%}
     {%- form 'product', product, id: product_form_id, class: 'product-form' -%}
       <select class="visually-hidden" name="id" aria-label="{{ 'products.product.variant' | t }}">
@@ -158,6 +166,7 @@
 
     {%- if is_poster and is_digital == false -%}<p class="muted">{{ 'products.product.poster_pair_note' | t }}</p>{%- endif -%}
 
+    {%- endunless -%}
     <dl class="product-details">
       {%- if product.metafields.custom.dimensions.value != blank -%}<div><dt>{{ 'product_details.dimensions' | t }}</dt><dd>{{ product.metafields.custom.dimensions.value }}</dd></div>{%- endif -%}
       {%- if product.metafields.custom.medium.value != blank -%}<div><dt>{{ 'product_details.medium' | t }}</dt><dd>{{ product.metafields.custom.medium.value }}</dd></div>{%- endif -%}
