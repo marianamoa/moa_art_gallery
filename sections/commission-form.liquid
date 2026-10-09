@@ -21,9 +21,9 @@
       <div class="commission-header__examples">
         {%- assign commission_examples_alt = 'commissions.examples_alt' | t -%}
         {%- if section.settings.header_examples -%}
-          {{ section.settings.header_examples | image_url: width: 1536 | image_tag: loading: 'eager', widths: '480, 768, 1200, 1536', sizes: '(min-width: 990px) 45vw, 100vw', alt: commission_examples_alt }}
+          {{ section.settings.header_examples | image_url: width: 1536 | image_tag: loading: 'eager', widths: '480, 768, 1200, 1536', sizes: '(min-width: 991px) 40vw, (min-width: 336px) 300px, calc(100vw - 36px)', alt: commission_examples_alt }}
         {%- else -%}
-          <img src="{{ 'commission-examples.png' | asset_url }}" width="1536" height="1024" loading="eager" alt="{{ commission_examples_alt | escape }}">
+          <img src="{{ 'commission-examples-1536.jpg' | asset_url }}" srcset="{{ 'commission-examples-480.jpg' | asset_url }} 480w, {{ 'commission-examples-768.jpg' | asset_url }} 768w, {{ 'commission-examples-1536.jpg' | asset_url }} 1536w" sizes="(min-width: 991px) 40vw, (min-width: 336px) 300px, calc(100vw - 36px)" width="1536" height="1024" loading="eager" alt="{{ commission_examples_alt | escape }}">
         {%- endif -%}
       </div>
     </header>
@@ -71,7 +71,7 @@
               {%- if section.settings.detail_example -%}
                 {{ section.settings.detail_example | image_url: width: 1536 | image_tag: loading: 'lazy', widths: '480, 768, 1200, 1536', sizes: '(min-width: 990px) 55vw, 100vw', alt: detail_example_alt }}
               {%- else -%}
-                <img src="{{ 'commission-detail-comparison.png' | asset_url }}" width="1536" height="1024" loading="lazy" alt="{{ detail_example_alt | escape }}">
+                <img src="{{ 'commission-detail-comparison-1536.jpg' | asset_url }}" srcset="{{ 'commission-detail-comparison-480.jpg' | asset_url }} 480w, {{ 'commission-detail-comparison-768.jpg' | asset_url }} 768w, {{ 'commission-detail-comparison-1536.jpg' | asset_url }} 1536w" sizes="(min-width: 991px) 55vw, calc(100vw - 36px)" width="1536" height="1024" loading="lazy" alt="{{ detail_example_alt | escape }}">
               {%- endif -%}
             </figure>
           </section>

@@ -17,7 +17,7 @@
       <div class="process-grid">
         {%- for block in process_blocks -%}
           <article class="process-card" {{ block.shopify_attributes }}>
-            {%- if block.settings.image -%}{{ block.settings.image | image_url: width: 900 | image_tag: class: 'process-card__image', loading: 'lazy', alt: block.settings.image.alt }}{%- endif -%}
+            {%- if block.settings.image -%}{{ block.settings.image | image_url: width: 900 | image_tag: class: 'process-card__image', loading: 'lazy', widths: '320, 540, 900', sizes: '(min-width: 991px) 33vw, calc(100vw - 36px)', alt: block.settings.image.alt }}{%- endif -%}
             <span class="meta">0{{ forloop.index }}</span><h3>{{ block.settings.heading }}</h3><p>{{ block.settings.text }}</p>
           </article>
         {%- endfor -%}
