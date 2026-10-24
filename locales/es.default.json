@@ -73,6 +73,7 @@
       "per_card": "por tarjeta",
       "cards_total": "{{ count }} tarjetas en total",
       "selection_total": "Total · Cantidad: {{ count }}",
+      "go_to_download": "Ir a descargar",
       "buy_now": "Comprar ahora",
       "previous_image": "Imagen anterior",
       "next_image": "Siguiente imagen",

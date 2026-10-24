@@ -25,6 +25,7 @@
       "per_card": "per card",
       "cards_total": "{{ count }} cards in total",
       "selection_total": "Total · Quantity: {{ count }}",
+      "go_to_download": "Go to download",
       "buy_now": "Buy now",
       "previous_image": "Previous image",
       "next_image": "Next image",

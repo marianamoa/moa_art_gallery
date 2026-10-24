@@ -6,6 +6,7 @@
   if product.tags contains 'original' and product.available == false
     assign is_gallery = true
   endif
+  assign is_free_download = false
   assign is_digital = false
   assign is_cards = false
   assign is_poster = false
@@ -32,6 +33,10 @@
     assign is_digital = true
   endif
   for product_collection in product.collections
+    if product_collection.handle == '30-dias-de-tarjetas-de-navidad' and product.price_max == 0
+      assign is_free_download = true
+      assign is_digital = true
+    endif
     if product_collection.handle contains 'descarga' or product_collection.handle contains 'download'
       assign is_digital = true
     endif
@@ -44,6 +49,9 @@
     assign is_cards = true
   elsif product.tags contains 'cards'
     assign is_cards = true
+  endif
+  if is_free_download
+    assign is_cards = false
   endif
 -%}
 
@@ -159,11 +167,15 @@
         </div>
       {%- endif -%}
 
-      <div class="product-form__cart-bar">
+      <div class="product-form__cart-bar"{% if is_free_download %} style="grid-template-columns: 1fr"{% endif %}>
+        {%- if is_free_download -%}
+          <button class="button button--primary product-form__buy-now" type="submit" name="return_to" value="/checkout" data-buy-now{% unless current_variant.available %} disabled{% endunless %}>{{ 'products.product.go_to_download' | t }}</button>
+        {%- else -%}
         <button class="button button--primary product-form__submit" type="submit" data-product-submit data-add-label="{{ 'products.product.add_to_shopping_cart' | t }}" data-sold-label="{{ 'products.product.sold_out' | t }}"{% unless current_variant.available %} disabled{% endunless %}>
         <span>{% if current_variant.available %}{{ 'products.product.add_to_shopping_cart' | t }}{% else %}{{ 'products.product.sold_out' | t }}{% endif %}</span>
       </button>
       <button class="button product-form__buy-now" type="submit" name="return_to" value="/checkout" data-buy-now{% unless current_variant.available %} disabled{% endunless %}>{{ 'products.product.buy_now' | t }}</button>
+        {%- endif -%}
       <p class="form-message" data-product-message role="status" hidden></p>
       </div>
     {%- endform -%}
